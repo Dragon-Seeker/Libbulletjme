@@ -25,10 +25,10 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Quatd;
-import com.simsilica.mathd.Vec3d;
+import org.joml.Quaterniond;
+import org.joml.Quaternionf;
+import org.joml.Vector3d;
+import org.joml.Vector3f;
 import java.util.logging.Logger;
 import org.junit.Assert;
 
@@ -70,7 +70,7 @@ final public class Utils {
      * @param tolerance the allowable difference for each component (&ge;0)
      */
     public static void assertEquals(double x, double y, double z, double w,
-            Quatd actual, double tolerance) {
+                                    Quaterniond actual, double tolerance) {
         Assert.assertEquals("x component", x, actual.x, tolerance);
         Assert.assertEquals("y component", y, actual.y, tolerance);
         Assert.assertEquals("z component", z, actual.z, tolerance);
@@ -89,11 +89,11 @@ final public class Utils {
      * @param tolerance the allowable difference for each component (&ge;0)
      */
     public static void assertEquals(float x, float y, float z, float w,
-            Quaternion actual, float tolerance) {
-        Assert.assertEquals("x component", x, actual.getX(), tolerance);
-        Assert.assertEquals("y component", y, actual.getY(), tolerance);
-        Assert.assertEquals("z component", z, actual.getZ(), tolerance);
-        Assert.assertEquals("w component", w, actual.getW(), tolerance);
+                                    Quaternionf actual, float tolerance) {
+        Assert.assertEquals("x component", x, actual.x(), tolerance);
+        Assert.assertEquals("y component", y, actual.y(), tolerance);
+        Assert.assertEquals("z component", z, actual.z(), tolerance);
+        Assert.assertEquals("w component", w, actual.w(), tolerance);
     }
 
     /**
@@ -107,7 +107,7 @@ final public class Utils {
      * @param tolerance the allowable difference for each component (&ge;0)
      */
     public static void assertEquals(
-            double x, double y, double z, Vec3d actual, double tolerance) {
+            double x, double y, double z, Vector3d actual, double tolerance) {
         Assert.assertEquals("x component", x, actual.x, tolerance);
         Assert.assertEquals("y component", y, actual.y, tolerance);
         Assert.assertEquals("z component", z, actual.z, tolerance);

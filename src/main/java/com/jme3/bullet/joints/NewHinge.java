@@ -38,11 +38,13 @@ import com.jme3.bullet.joints.motors.RotationMotor;
 import com.jme3.bullet.joints.motors.TranslationMotor;
 import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.math.FastMath;
-import com.jme3.math.Matrix3f;
+import com.jme3.math.Matrix3fUtils;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.math.MyMath;
+import org.joml.Matrix3f;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * A 3 degree-of-freedom Constraint that mimics ODE's Hinge2 joint, such as
@@ -105,8 +107,8 @@ public class NewHinge extends New6Dof {
                 rotInBody(rigidBodyA, axis1, axis2),
                 rotInBody(rigidBodyB, axis1, axis2),
                 RotationOrder.XYZ);
-        this.axis1 = axis1.clone();
-        this.axis2 = axis2.clone();
+        this.axis1 = new Vector3f(axis1);
+        this.axis2 = new Vector3f(axis2);
 
         // Configure the limits as in btHinge2Constraint.cpp .
         TranslationMotor translation = super.getTranslationMotor();
@@ -180,7 +182,7 @@ public class NewHinge extends New6Dof {
     public Vector3f getAxis1(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = axis1.clone();
+            result = new Vector3f(axis1);
         } else {
             result = storeResult.set(axis1);
         }
@@ -197,7 +199,7 @@ public class NewHinge extends New6Dof {
     public Vector3f getAxis2(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = axis2.clone();
+            result = new Vector3f(axis2);
         } else {
             result = storeResult.set(axis2);
         }
@@ -271,13 +273,12 @@ public class NewHinge extends New6Dof {
         Vector3f xAxis = axis2.normalize();
         Vector3f yAxis = zAxis.cross(xAxis);
 
-        Matrix3f frameInW = new Matrix3f();
-        frameInW.fromAxes(xAxis, yAxis, zAxis);
+        Matrix3f frameInW = Matrix3fUtils.fromAxes(xAxis, yAxis, zAxis);
 
         // Calculate constraint frame rotation in the body's local coordinates.
         Matrix3f rotation = body.getPhysicsRotationMatrix(null); // b2w
         rotation.invert(null); // w2b
-        Matrix3f result = rotation.mult(frameInW, null);
+        Matrix3f result = rotation.mul(frameInW, new Matrix3f());
 
         return result;
     }

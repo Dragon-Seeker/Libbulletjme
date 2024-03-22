@@ -31,9 +31,10 @@
  */
 package com.jme3.bullet;
 
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * Physics-simulation parameters that can be customized for each

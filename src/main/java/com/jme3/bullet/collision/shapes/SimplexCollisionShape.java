@@ -33,13 +33,14 @@ package com.jme3.bullet.collision.shapes;
 
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.math.FastMath;
-import com.jme3.math.Vector3f;
-import java.nio.FloatBuffer;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyBuffer;
 import jme3utilities.math.MyVector3f;
 import jme3utilities.math.MyVolume;
+import org.joml.Vector3f;
+
+import java.nio.FloatBuffer;
+import java.util.logging.Logger;
 
 /**
  * A simple point, line-segment, triangle, or tetrahedron collision shape based
@@ -78,7 +79,7 @@ public class SimplexCollisionShape extends ConvexShape {
      */
     public SimplexCollisionShape(Vector3f location) {
         this.locations = new Vector3f[1];
-        locations[0] = location.clone();
+        locations[0] = new Vector3f(location);
         createShape();
     }
 
@@ -92,8 +93,8 @@ public class SimplexCollisionShape extends ConvexShape {
      */
     public SimplexCollisionShape(Vector3f point1, Vector3f point2) {
         this.locations = new Vector3f[2];
-        locations[0] = point1.clone();
-        locations[1] = point2.clone();
+        locations[0] = new Vector3f(point1);
+        locations[1] = new Vector3f(point2);
         createShape();
     }
 
@@ -110,9 +111,9 @@ public class SimplexCollisionShape extends ConvexShape {
     public SimplexCollisionShape(Vector3f vertex1, Vector3f vertex2,
             Vector3f vertex3) {
         this.locations = new Vector3f[3];
-        locations[0] = vertex1.clone();
-        locations[1] = vertex2.clone();
-        locations[2] = vertex3.clone();
+        locations[0] = new Vector3f(vertex1);
+        locations[1] = new Vector3f(vertex2);
+        locations[2] = new Vector3f(vertex3);
         createShape();
     }
 
@@ -131,10 +132,10 @@ public class SimplexCollisionShape extends ConvexShape {
     public SimplexCollisionShape(Vector3f vertex1, Vector3f vertex2,
             Vector3f vertex3, Vector3f vertex4) {
         this.locations = new Vector3f[4];
-        locations[0] = vertex1.clone();
-        locations[1] = vertex2.clone();
-        locations[2] = vertex3.clone();
-        locations[3] = vertex4.clone();
+        locations[0] = new Vector3f(vertex1);
+        locations[1] = new Vector3f(vertex2);
+        locations[2] = new Vector3f(vertex3);
+        locations[3] = new Vector3f(vertex4);
         createShape();
     }
 
@@ -184,7 +185,7 @@ public class SimplexCollisionShape extends ConvexShape {
 
         this.locations = new Vector3f[numVertices];
         for (int vertexIndex = 0; vertexIndex < numVertices; ++vertexIndex) {
-            locations[vertexIndex] = vertices[vertexIndex].clone();
+            locations[vertexIndex] = new Vector3f(vertices[vertexIndex]);
         }
 
         createShape();
@@ -205,7 +206,7 @@ public class SimplexCollisionShape extends ConvexShape {
 
         Vector3f result;
         if (storeResult == null) {
-            result = locations[index].clone();
+            result = new Vector3f(locations[index]);
         } else {
             result = storeResult.set(locations[index]);
         }

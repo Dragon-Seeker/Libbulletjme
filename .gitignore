@@ -4,3 +4,5 @@
 /.nb-gradle/
 /build/
 /private/
+/bin/
+/dist/

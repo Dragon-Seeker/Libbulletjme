@@ -37,20 +37,17 @@ import com.jme3.bullet.collision.shapes.CompoundCollisionShape;
 import com.jme3.math.Plane;
 import com.jme3.math.Transform;
 import com.jme3.math.Triangle;
-import com.jme3.math.Vector3f;
 import com.jme3.util.BufferUtils;
+import jme3utilities.Validate;
+import jme3utilities.math.*;
+import org.joml.Vector3f;
+
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
-import jme3utilities.math.DistinctVectorValues;
-import jme3utilities.math.MyBuffer;
-import jme3utilities.math.MyMath;
-import jme3utilities.math.MyVector3f;
-import jme3utilities.math.MyVolume;
 
 /**
  * An indexed triangle mesh based on Bullet's {@code btIndexedMesh}. Immutable.

@@ -33,15 +33,16 @@ package com.jme3.bullet.collision.shapes;
 
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.util.DebugShapeFactory;
-import com.jme3.math.Vector3f;
-import java.nio.FloatBuffer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyMath;
 import jme3utilities.math.MyVolume;
 import jme3utilities.math.RectangularSolid;
+import org.joml.Vector3f;
+
+import java.nio.FloatBuffer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * A convex collision shape based on Bullet's {@code btMultiSphereShape}. Unlike
@@ -167,7 +168,7 @@ public class MultiSphere extends ConvexShape {
         this.centers = new Vector3f[numSpheres];
         this.radii = new float[numSpheres];
         for (int i = 0; i < numSpheres; ++i) {
-            this.centers[i] = centers.get(i).clone();
+            this.centers[i] = new Vector3f(centers.get(i));
 
             float radius = radii.get(i);
             assert radius >= 0f : radius;
@@ -189,9 +190,9 @@ public class MultiSphere extends ConvexShape {
 
         // Enumerate the local coordinates of the centers of the 4 spheres.
         Vector3f max = rectangularSolid.maxima(null);
-        max.subtractLocal(radius, radius, radius);
+        max.sub(radius, radius, radius);
         Vector3f min = rectangularSolid.minima(null);
-        min.addLocal(radius, radius, radius);
+        min.add(radius, radius, radius);
         List<Vector3f> centerLocations = new ArrayList<>(4);
         if (radius == halfExtents.x) {
             float x = max.x;
@@ -239,7 +240,7 @@ public class MultiSphere extends ConvexShape {
         Validate.nonNegative(radius, "radius");
 
         this.centers = new Vector3f[1];
-        this.centers[0] = center.clone();
+        this.centers[0] = new Vector3f(center);
 
         this.radii = new float[]{radius};
 
@@ -265,7 +266,7 @@ public class MultiSphere extends ConvexShape {
         this.centers = new Vector3f[numSpheres];
         this.radii = new float[numSpheres];
         for (int i = 0; i < numSpheres; ++i) {
-            this.centers[i] = centers[i].clone();
+            this.centers[i] = new Vector3f(centers[i]);
 
             float radius = radii[i];
             assert radius >= 0f : radius;

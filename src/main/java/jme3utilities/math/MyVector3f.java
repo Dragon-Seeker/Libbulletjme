@@ -26,10 +26,12 @@
  */
 package jme3utilities.math;
 
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.MyString;
 import jme3utilities.Validate;
+import org.joml.Vector3f;
+import org.joml.Vector3fc;
+
+import java.util.logging.Logger;
 
 /**
  * Utility methods for 3-D vectors.
@@ -217,7 +219,7 @@ final public class MyVector3f {
 
     /**
      * Determine the dot (scalar) product of 2 vectors. Unlike
-     * {@link com.jme3.math.Vector3f#dot(Vector3f)}, this method returns a
+     * {@link Vector3f#dot(Vector3fc)}, this method returns a
      * double-precision value for precise calculation of angles.
      *
      * @param vector1 the first input vector (not null, unaffected)
@@ -310,7 +312,7 @@ final public class MyVector3f {
      *
      * @param vector input (not null, unaffected)
      * @return true if the vector equals
-     * {@link com.jme3.math.Vector3f#UNIT_XYZ}, false otherwise
+     * {@link com.jme3.math.Vector3fUtils#UNIT_XYZ}, false otherwise
      */
     public static boolean isScaleIdentity(Vector3f vector) {
         if (vector.x == 1f && vector.y == 1f && vector.z == 1f) {
@@ -350,7 +352,7 @@ final public class MyVector3f {
 
     /**
      * Determine the squared length of a vector. Unlike
-     * {@link com.jme3.math.Vector3f#lengthSquared()}, this method uses
+     * {@link Vector3f#lengthSquared()}, this method uses
      * double-precision arithmetic to reduce the risk of overflow and returns a
      * double-precision value for precise comparison of lengths.
      *
@@ -445,7 +447,7 @@ final public class MyVector3f {
         if (lengthSquared < 0.9999998 || lengthSquared > 1.0000002) {
             float fScale = (float) Math.sqrt(lengthSquared);
             if (fScale != 0f) {
-                input.divideLocal(fScale);
+                input.div(fScale);
             }
         }
     }

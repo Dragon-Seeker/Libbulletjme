@@ -52,33 +52,33 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    addForce
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_addForce__JLcom_jme3_math_Vector3f_2
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_addForce__JLorg_joml_Vector3f_2
   (JNIEnv *, jclass, jlong, jobject);
 
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    addForce
- * Signature: (JLcom/jme3/math/Vector3f;I)V
+ * Signature: (JLorg/joml/Vector3f;I)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_addForce__JLcom_jme3_math_Vector3f_2I
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_addForce__JLorg_joml_Vector3f_2I
   (JNIEnv *, jclass, jlong, jobject, jint);
 
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    addVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_addVelocity__JLcom_jme3_math_Vector3f_2
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_addVelocity__JLorg_joml_Vector3f_2
   (JNIEnv *, jclass, jlong, jobject);
 
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    addVelocity
- * Signature: (JLcom/jme3/math/Vector3f;I)V
+ * Signature: (JLorg/joml/Vector3f;I)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_addVelocity__JLcom_jme3_math_Vector3f_2I
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_addVelocity__JLorg_joml_Vector3f_2I
   (JNIEnv *, jclass, jlong, jobject, jint);
 
 /*
@@ -172,7 +172,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_appendTetras
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    applyPhysicsRotation
- * Signature: (JLcom/jme3/math/Quaternion;)V
+ * Signature: (JLorg/joml/Quaternionf;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_applyPhysicsRotation
   (JNIEnv *, jclass, jlong, jobject);
@@ -180,7 +180,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_applyPhysics
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    applyPhysicsScale
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_applyPhysicsScale
   (JNIEnv *, jclass, jlong, jobject);
@@ -196,7 +196,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_applyPhysics
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    applyPhysicsTranslate
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_applyPhysicsTranslate
   (JNIEnv *, jclass, jlong, jobject);
@@ -252,7 +252,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_generateClus
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    getBounds
- * Signature: (JLcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;Lorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getBounds
   (JNIEnv *, jclass, jlong, jobject, jobject);
@@ -268,7 +268,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getCluster
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    getClusterCenter
- * Signature: (JILcom/jme3/math/Vector3f;)V
+ * Signature: (JILorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getClusterCenter
   (JNIEnv *, jclass, jlong, jint, jobject);
@@ -428,7 +428,7 @@ JNIEXPORT jint JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getNbTetras
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    getNodeLocation
- * Signature: (JILcom/jme3/math/Vector3f;)V
+ * Signature: (JILorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getNodeLocation
   (JNIEnv *, jclass, jlong, jint, jobject);
@@ -436,7 +436,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getNodeLocat
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    getNodeNormal
- * Signature: (JILcom/jme3/math/Vector3f;)V
+ * Signature: (JILorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getNodeNormal
   (JNIEnv *, jclass, jlong, jint, jobject);
@@ -468,7 +468,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getNodesVelo
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    getNodeVelocity
- * Signature: (JILcom/jme3/math/Vector3f;)V
+ * Signature: (JILorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getNodeVelocity
   (JNIEnv *, jclass, jlong, jint, jobject);
@@ -476,7 +476,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getNodeVeloc
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    getPhysicsLocation
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getPhysicsLocation
   (JNIEnv *, jclass, jlong, jobject);
@@ -484,7 +484,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getPhysicsLo
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    getPhysicsLocationDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getPhysicsLocationDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -532,7 +532,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getVolume
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    getWindVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_getWindVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -668,7 +668,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_setMasses
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    setNodeVelocity
- * Signature: (JILcom/jme3/math/Vector3f;)V
+ * Signature: (JILorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_setNodeVelocity
   (JNIEnv *, jclass, jlong, jint, jobject);
@@ -684,7 +684,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_setNormals
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    setPhysicsLocation
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_setPhysicsLocation
   (JNIEnv *, jclass, jlong, jobject);
@@ -692,7 +692,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_setPhysicsLo
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    setPhysicsLocationDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_setPhysicsLocationDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -748,7 +748,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_setVelocitie
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    setVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_setVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -772,7 +772,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_setVolumeMas
 /*
  * Class:     com_jme3_bullet_objects_PhysicsSoftBody
  * Method:    setWindVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsSoftBody_setWindVelocity
   (JNIEnv *, jclass, jlong, jobject);

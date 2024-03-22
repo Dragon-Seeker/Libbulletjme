@@ -33,13 +33,14 @@ package com.jme3.bullet.collision.shapes;
 
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.util.DebugShapeFactory;
-import com.jme3.math.Vector3f;
-import java.nio.FloatBuffer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyVector3f;
 import jme3utilities.math.MyVolume;
+import org.joml.Vector3f;
+
+import java.nio.FloatBuffer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A capsule collision shape based on Bullet's {@code btCapsuleShapeX},
@@ -248,7 +249,7 @@ public class CapsuleCollisionShape extends ConvexShape {
 
         } else { // Use 2 vertices with a reduced margin.
             Vector3f v1 = new Vector3f();
-            v1.set(axis, height / 2f);
+            v1.setComponent(axis, height / 2f);
             Vector3f v2 = v1.negate();
             result = new HullCollisionShape(v1, v2);
             if (effectiveRadius <= 1e-9f) {

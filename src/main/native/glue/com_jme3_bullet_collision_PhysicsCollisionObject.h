@@ -108,7 +108,7 @@ JNIEXPORT jint JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_get
 /*
  * Class:     com_jme3_bullet_collision_PhysicsCollisionObject
  * Method:    getAnisotropicFriction
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_getAnisotropicFriction
   (JNIEnv *, jclass, jlong, jobject);
@@ -116,7 +116,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_get
 /*
  * Class:     com_jme3_bullet_collision_PhysicsCollisionObject
  * Method:    getBasis
- * Signature: (JLcom/jme3/math/Matrix3f;)V
+ * Signature: (JLorg/joml/Matrix3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_getBasis
   (JNIEnv *, jclass, jlong, jobject);
@@ -124,7 +124,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_get
 /*
  * Class:     com_jme3_bullet_collision_PhysicsCollisionObject
  * Method:    getBasisDp
- * Signature: (JLcom/simsilica/mathd/Matrix3d;)V
+ * Signature: (JLorg/joml/Matrix3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_getBasisDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -220,7 +220,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_g
 /*
  * Class:     com_jme3_bullet_collision_PhysicsCollisionObject
  * Method:    getLocation
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_getLocation
   (JNIEnv *, jclass, jlong, jobject);
@@ -228,7 +228,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_get
 /*
  * Class:     com_jme3_bullet_collision_PhysicsCollisionObject
  * Method:    getLocationDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_getLocationDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -252,7 +252,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_ge
 /*
  * Class:     com_jme3_bullet_collision_PhysicsCollisionObject
  * Method:    getOrientation
- * Signature: (JLcom/jme3/math/Quaternion;)V
+ * Signature: (JLorg/joml/Quaternionf;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_getOrientation
   (JNIEnv *, jclass, jlong, jobject);
@@ -260,7 +260,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_get
 /*
  * Class:     com_jme3_bullet_collision_PhysicsCollisionObject
  * Method:    getOrientationDp
- * Signature: (JLcom/simsilica/mathd/Quatd;)V
+ * Signature: (JLorg/joml/Quaterniond;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_getOrientationDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -356,7 +356,7 @@ JNIEXPORT jboolean JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject
 /*
  * Class:     com_jme3_bullet_collision_PhysicsCollisionObject
  * Method:    setAnisotropicFriction
- * Signature: (JLcom/jme3/math/Vector3f;I)V
+ * Signature: (JLorg/joml/Vector3f;I)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_setAnisotropicFriction
   (JNIEnv *, jclass, jlong, jobject, jint);
@@ -436,7 +436,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_set
 /*
  * Class:     com_jme3_bullet_collision_PhysicsCollisionObject
  * Method:    setLocationAndBasis
- * Signature: (JLcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;)V
+ * Signature: (JLorg/joml/Vector3f;Lorg/joml/Matrix3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_PhysicsCollisionObject_setLocationAndBasis
   (JNIEnv *, jclass, jlong, jobject, jobject);

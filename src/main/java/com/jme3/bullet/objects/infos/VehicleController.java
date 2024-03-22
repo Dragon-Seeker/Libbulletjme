@@ -35,9 +35,10 @@ import com.jme3.bullet.NativePhysicsObject;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.objects.PhysicsVehicle;
 import com.jme3.bullet.objects.VehicleWheel;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * The "action" (controller) portion of a PhysicsVehicle, based on Bullet's

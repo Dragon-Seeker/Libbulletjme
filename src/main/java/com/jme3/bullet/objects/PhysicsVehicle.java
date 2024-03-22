@@ -36,11 +36,12 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.objects.infos.RigidBodyMotionState;
 import com.jme3.bullet.objects.infos.VehicleController;
 import com.jme3.bullet.objects.infos.VehicleTuning;
-import com.jme3.math.Vector3f;
+import jme3utilities.Validate;
+import org.joml.Vector3f;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
 
 /**
  * A rigid body for simplified vehicle simulation based on Bullet's

@@ -33,12 +33,13 @@ package com.jme3.bullet;
 
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.objects.MultiBodyCollider;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Matrix3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * A single link in a MultiBody, based on Bullet's {@code btMultibodyLink}.
@@ -487,9 +488,9 @@ public class MultiBodyLink extends NativePhysicsObject {
      * @param storeResult storage for the result (modified if not null)
      * @return the orientation (either storeResult or a new Quaternion)
      */
-    public Quaternion orientation(Quaternion storeResult) {
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+    public Quaternionf orientation(Quaternionf storeResult) {
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
         long linkId = nativeId();
         getQ0Parent2LinkRotation(linkId, result);
@@ -650,14 +651,14 @@ public class MultiBodyLink extends NativePhysicsObject {
     native private static float getMass(long linkId);
 
     native private static void
-            getParent2LinkRotation(long linkId, Quaternion storeQuaternion);
+            getParent2LinkRotation(long linkId, Quaternionf storeQuaternion);
 
     native private static int getParentIndex(long linkId);
 
     native private static int getPosVarCount(long linkId);
 
     native private static void
-            getQ0Parent2LinkRotation(long linkId, Quaternion storeQuaternion);
+            getQ0Parent2LinkRotation(long linkId, Quaternionf storeQuaternion);
 
     native private static void
             getWorldTransform(long linkId, Transform storeTransform);

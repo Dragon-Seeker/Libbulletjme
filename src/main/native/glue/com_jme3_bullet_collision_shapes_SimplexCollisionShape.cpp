@@ -41,7 +41,7 @@
  * Method:    createShape
  * Signature: (Lcom/jme3/math/Vector3f;)J
  */
-JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_SimplexCollisionShape_createShape__Lcom_jme3_math_Vector3f_2
+JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_SimplexCollisionShape_createShape__Lorg_joml_Vector3f_2
 (JNIEnv *pEnv, jclass, jobject vector1) {
     jmeClasses::initJavaClasses(pEnv);
 
@@ -58,7 +58,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_SimplexCollisionSh
  * Method:    createShape
  * Signature: (Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;)J
  */
-JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_SimplexCollisionShape_createShape__Lcom_jme3_math_Vector3f_2Lcom_jme3_math_Vector3f_2
+JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_SimplexCollisionShape_createShape__Lorg_joml_Vector3f_2Lorg_joml_Vector3f_2
 (JNIEnv *pEnv, jclass, jobject vector1, jobject vector2) {
     jmeClasses::initJavaClasses(pEnv);
 
@@ -80,7 +80,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_SimplexCollisionSh
  * Method:    createShape
  * Signature: (Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;)J
  */
-JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_SimplexCollisionShape_createShape__Lcom_jme3_math_Vector3f_2Lcom_jme3_math_Vector3f_2Lcom_jme3_math_Vector3f_2
+JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_SimplexCollisionShape_createShape__Lorg_joml_Vector3f_2Lorg_joml_Vector3f_2Lorg_joml_Vector3f_2
 (JNIEnv *pEnv, jclass, jobject vector1, jobject vector2, jobject vector3) {
     jmeClasses::initJavaClasses(pEnv);
 
@@ -106,7 +106,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_SimplexCollisionSh
  * Method:    createShape
  * Signature: (Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;)J
  */
-JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_SimplexCollisionShape_createShape__Lcom_jme3_math_Vector3f_2Lcom_jme3_math_Vector3f_2Lcom_jme3_math_Vector3f_2Lcom_jme3_math_Vector3f_2
+JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_SimplexCollisionShape_createShape__Lorg_joml_Vector3f_2Lorg_joml_Vector3f_2Lorg_joml_Vector3f_2Lorg_joml_Vector3f_2
 (JNIEnv *pEnv, jclass, jobject vector1, jobject vector2, jobject vector3,
         jobject vector4) {
     jmeClasses::initJavaClasses(pEnv);

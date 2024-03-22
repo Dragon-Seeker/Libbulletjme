@@ -12,7 +12,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_joints_SixDofJoint
  * Method:    createJoint
- * Signature: (JJLcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;Lcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;Z)J
+ * Signature: (JJLorg/joml/Vector3f;Lorg/joml/Matrix3f;Lorg/joml/Vector3f;Lorg/joml/Matrix3f;Z)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_SixDofJoint_createJoint
   (JNIEnv *, jobject, jlong, jlong, jobject, jobject, jobject, jobject, jboolean);
@@ -20,7 +20,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_SixDofJoint_createJoint
 /*
  * Class:     com_jme3_bullet_joints_SixDofJoint
  * Method:    createJoint1
- * Signature: (JLcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;Z)J
+ * Signature: (JLorg/joml/Vector3f;Lorg/joml/Matrix3f;Z)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_SixDofJoint_createJoint1
   (JNIEnv *, jobject, jlong, jobject, jobject, jboolean);
@@ -28,7 +28,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_SixDofJoint_createJoint1
 /*
  * Class:     com_jme3_bullet_joints_SixDofJoint
  * Method:    getAngles
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_SixDofJoint_getAngles
   (JNIEnv *, jclass, jlong, jobject);
@@ -52,7 +52,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_SixDofJoint_getFrameOffsetB
 /*
  * Class:     com_jme3_bullet_joints_SixDofJoint
  * Method:    getPivotOffset
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_SixDofJoint_getPivotOffset
   (JNIEnv *, jclass, jlong, jobject);
@@ -76,7 +76,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_SixDofJoint_getTranslational
 /*
  * Class:     com_jme3_bullet_joints_SixDofJoint
  * Method:    setAngularLowerLimit
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_SixDofJoint_setAngularLowerLimit
   (JNIEnv *, jclass, jlong, jobject);
@@ -84,7 +84,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_SixDofJoint_setAngularLowerLi
 /*
  * Class:     com_jme3_bullet_joints_SixDofJoint
  * Method:    setAngularUpperLimit
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_SixDofJoint_setAngularUpperLimit
   (JNIEnv *, jclass, jlong, jobject);
@@ -92,7 +92,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_SixDofJoint_setAngularUpperLi
 /*
  * Class:     com_jme3_bullet_joints_SixDofJoint
  * Method:    setLinearLowerLimit
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_SixDofJoint_setLinearLowerLimit
   (JNIEnv *, jclass, jlong, jobject);
@@ -100,7 +100,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_SixDofJoint_setLinearLowerLim
 /*
  * Class:     com_jme3_bullet_joints_SixDofJoint
  * Method:    setLinearUpperLimit
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_SixDofJoint_setLinearUpperLimit
   (JNIEnv *, jclass, jlong, jobject);

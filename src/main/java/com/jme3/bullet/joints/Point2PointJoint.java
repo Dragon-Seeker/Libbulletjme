@@ -33,10 +33,11 @@ package com.jme3.bullet.joints;
 
 import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyMath;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * A 3 degree-of-freedom joint based on Bullet's btPoint2PointConstraint.
@@ -278,7 +279,7 @@ public class Point2PointJoint extends Constraint {
 
                 Vector3f pivotAWorld
                         = MyMath.transform(localToWorld, pivotA, null);
-                Vector3f worldOffset = pivotB.subtract(pivotAWorld);
+                Vector3f worldOffset = pivotB.sub(pivotAWorld, new Vector3f());
                 Vector3f tempLocation = saveLocation.add(worldOffset);
                 a.setPhysicsLocation(tempLocation);
                 constraintId = createJoint1(aId, pivotA);

@@ -32,6 +32,9 @@
 package com.jme3.math;
 
 import com.jme3.util.TempVars;
+import org.joml.Matrix4f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 /**
  * A 3-D coordinate transform composed of translation, rotation, and scaling.
@@ -52,7 +55,7 @@ public final class Transform implements Cloneable, java.io.Serializable {
     /**
      * Rotation component.
      */
-    private Quaternion rot = new Quaternion();
+    private Quaternionf rot = new Quaternionf();
     /**
      * Translation component: an offset for each local axis.
      */
@@ -68,7 +71,7 @@ public final class Transform implements Cloneable, java.io.Serializable {
      * @param translation the desired translation (not null, unaffected)
      * @param rot the desired rotation (not null, unaffected)
      */
-    public Transform(Vector3f translation, Quaternion rot) {
+    public Transform(Vector3f translation, Quaternionf rot) {
         this.translation.set(translation);
         this.rot.set(rot);
     }
@@ -80,7 +83,7 @@ public final class Transform implements Cloneable, java.io.Serializable {
      * @param rot the desired rotation (not null, unaffected)
      * @param scale the desired scaling (not null, unaffected)
      */
-    public Transform(Vector3f translation, Quaternion rot, Vector3f scale) {
+    public Transform(Vector3f translation, Quaternionf rot, Vector3f scale) {
         this(translation, rot);
         this.scale.set(scale);
     }
@@ -90,7 +93,7 @@ public final class Transform implements Cloneable, java.io.Serializable {
      * scaling.
      */
     public Transform() {
-        this(Vector3f.ZERO, Quaternion.IDENTITY);
+        this(Vector3fUtils.ZERO, QuaternionfUtils.IDENTITY);
     }
 
     /**
@@ -99,7 +102,7 @@ public final class Transform implements Cloneable, java.io.Serializable {
      * @param rot the desired rotation value (not null, unaffected)
      * @return the (modified) current instance (for chaining)
      */
-    public Transform setRotation(Quaternion rot) {
+    public Transform setRotation(Quaternionf rot) {
         this.rot.set(rot);
         return this;
     }
@@ -160,7 +163,7 @@ public final class Transform implements Cloneable, java.io.Serializable {
      *
      * @return the pre-existing instance (not null)
      */
-    public Quaternion getRotation() {
+    public Quaternionf getRotation() {
         return rot;
     }
 
@@ -186,8 +189,8 @@ public final class Transform implements Cloneable, java.io.Serializable {
             store = new Matrix4f();
         }
         store.setTranslation(translation);
-        rot.toTransformMatrix(store);
-        store.setScale(scale);
+        QuaternionfUtils.toTransformMatrix(rot, store);
+        store.scale(scale);
         return store;
     }
 
@@ -203,9 +206,9 @@ public final class Transform implements Cloneable, java.io.Serializable {
      */
     public void fromTransformMatrix(Matrix4f mat) {
         TempVars vars = TempVars.get();
-        translation.set(mat.toTranslationVector(vars.vect1));
-        rot.set(mat.toRotationQuat(vars.quat1));
-        scale.set(mat.toScaleVector(vars.vect2));
+        translation.set(Vector3fUtils.toTranslationVector(mat, vars.vect1));
+        rot.set(Matrix4fUtils.toRotationQuat(mat, vars.quat1));
+        scale.set(Matrix4fUtils.toScaleVector(mat, vars.vect2));
         vars.release();
     }
 
@@ -220,7 +223,7 @@ public final class Transform implements Cloneable, java.io.Serializable {
      */
     public Transform invert() {
         Transform t = new Transform();
-        t.fromTransformMatrix(toTransformMatrix().invertLocal());
+        t.fromTransformMatrix(toTransformMatrix().invert());
         return t;
     }
 
@@ -300,9 +303,9 @@ public final class Transform implements Cloneable, java.io.Serializable {
     public Transform clone() {
         try {
             Transform tq = (Transform) super.clone();
-            tq.rot = rot.clone();
-            tq.scale = scale.clone();
-            tq.translation = translation.clone();
+            tq.rot = new Quaternionf(rot);
+            tq.scale = new Vector3f(scale);
+            tq.translation = new Vector3f(translation);
             return tq;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();

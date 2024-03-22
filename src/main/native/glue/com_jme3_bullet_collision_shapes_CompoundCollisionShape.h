@@ -12,7 +12,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_collision_shapes_CompoundCollisionShape
  * Method:    addChildShape
- * Signature: (JJLcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;)V
+ * Signature: (JJLorg/joml/Vector3f;Lorg/joml/Matrix3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CompoundCollisionShape_addChildShape
   (JNIEnv *, jclass, jlong, jlong, jobject, jobject);
@@ -20,7 +20,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CompoundCollisionSh
 /*
  * Class:     com_jme3_bullet_collision_shapes_CompoundCollisionShape
  * Method:    calculatePrincipalAxisTransform
- * Signature: (JLjava/nio/FloatBuffer;Lcom/jme3/math/Transform;Lcom/jme3/math/Vector3f;)V
+ * Signature: (JLjava/nio/FloatBuffer;Lcom/jme3/math/Transform;Lorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CompoundCollisionShape_calculatePrincipalAxisTransform
   (JNIEnv *, jclass, jlong, jobject, jobject, jobject);
@@ -60,7 +60,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CompoundCollisionSh
 /*
  * Class:     com_jme3_bullet_collision_shapes_CompoundCollisionShape
  * Method:    rotate
- * Signature: (JLcom/jme3/math/Matrix3f;)V
+ * Signature: (JLorg/joml/Matrix3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CompoundCollisionShape_rotate
   (JNIEnv *, jclass, jlong, jobject);
@@ -68,7 +68,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CompoundCollisionSh
 /*
  * Class:     com_jme3_bullet_collision_shapes_CompoundCollisionShape
  * Method:    setChildTransform
- * Signature: (JJLcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;)V
+ * Signature: (JJLorg/joml/Vector3f;Lorg/joml/Matrix3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CompoundCollisionShape_setChildTransform
   (JNIEnv *, jclass, jlong, jlong, jobject, jobject);
@@ -76,7 +76,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CompoundCollisionSh
 /*
  * Class:     com_jme3_bullet_collision_shapes_CompoundCollisionShape
  * Method:    translate
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CompoundCollisionShape_translate
   (JNIEnv *, jclass, jlong, jobject);

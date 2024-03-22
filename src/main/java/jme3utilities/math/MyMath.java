@@ -27,14 +27,15 @@
 package jme3utilities.math;
 
 import com.jme3.math.FastMath;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Transform;
 import com.jme3.math.Triangle;
-import com.jme3.math.Vector3f;
 import com.jme3.util.TempVars;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Matrix3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * Mathematical utility methods.
@@ -174,27 +175,27 @@ final public class MyMath {
             Transform child, Transform parent, Transform storeResult) {
         TempVars tempVars = TempVars.get();
         Vector3f combTranslation = tempVars.vect1; // alias
-        Quaternion combRotation = tempVars.quat1; // alias
+        Quaternionf combRotation = tempVars.quat1; // alias
         Vector3f combScale = tempVars.vect2; // alias
 
         Vector3f parentTranslation = parent.getTranslation(); // alias
-        Quaternion parentRotation = parent.getRotation(); // alias
+        Quaternionf parentRotation = parent.getRotation(); // alias
         Vector3f parentScale = parent.getScale(); // alias
 
         // Combine the scales.
-        child.getScale().mult(parentScale, combScale);
+        child.getScale().mul(parentScale, combScale);
 
         // Combine the (intrinsic) rotations and re-normalize.
-        Quaternion childRotation = child.getRotation(); // alias
-        parentRotation.mult(childRotation, combRotation);
+        Quaternionf childRotation = child.getRotation(); // alias
+        parentRotation.mul(childRotation, combRotation);
         MyQuaternion.normalizeLocal(combRotation);
         /*
          * The combined translation is the parent's scale, rotation,
          * and translation applied (in that order) to the child's translation.
          */
-        child.getTranslation().mult(parentScale, combTranslation);
+        child.getTranslation().mul(parentScale, combTranslation);
         MyQuaternion.rotate(parentRotation, combTranslation, combTranslation);
-        combTranslation.addLocal(parentTranslation);
+        combTranslation.add(parentTranslation);
 
         Transform result
                 = (storeResult == null) ? new Transform() : storeResult;
@@ -360,7 +361,7 @@ final public class MyMath {
         boolean result = false;
         Vector3f translation = transform.getTranslation(); // alias
         if (MyVector3f.isZero(translation)) {
-            Quaternion rotation = transform.getRotation(); // alias
+            Quaternionf rotation = transform.getRotation(); // alias
             if (MyQuaternion.isRotationIdentity(rotation)) {
                 Vector3f scale = transform.getScale(); // alias
                 result = MyVector3f.isScaleIdentity(scale);
@@ -649,19 +650,19 @@ final public class MyMath {
         Vector3f result = (storeResult == null) ? new Vector3f() : storeResult;
         Vector3f translation = transform.getTranslation(); // alias
         if (translation == result) {
-            translation = translation.clone();
+            translation = new Vector3f(translation);
         }
 
         // scale
         Vector3f scale = transform.getScale(); // alias
-        input.mult(scale, result);
+        input.mul(scale, result);
 
         // rotate
-        Quaternion rotation = transform.getRotation(); // alias
+        Quaternionf rotation = transform.getRotation(); // alias
         MyQuaternion.rotate(rotation, result, result);
 
         // translate
-        result.addLocal(translation);
+        result.add(translation);
 
         return result;
     }
@@ -715,19 +716,19 @@ final public class MyMath {
         Vector3f result = (storeResult == null) ? new Vector3f() : storeResult;
         Vector3f scale = transform.getScale(); // alias
         if (scale == result) {
-            scale = scale.clone();
+            scale = new Vector3f(scale);
         }
 
         // un-translate
         Vector3f translation = transform.getTranslation(); // alias
-        input.subtract(translation, result);
+        input.sub(translation, result);
 
         // un-rotate
-        Quaternion rotation = transform.getRotation(); // alias
+        Quaternionf rotation = transform.getRotation(); // alias
         MyQuaternion.rotateInverse(rotation, result, result);
 
         // de-scale
-        result.divideLocal(scale);
+        result.div(scale);
 
         return result;
     }

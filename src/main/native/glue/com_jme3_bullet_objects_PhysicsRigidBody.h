@@ -46,7 +46,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    applyCentralForce
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_applyCentralForce
   (JNIEnv *, jclass, jlong, jobject);
@@ -54,7 +54,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_applyCentra
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    applyCentralImpulse
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_applyCentralImpulse
   (JNIEnv *, jclass, jlong, jobject);
@@ -62,7 +62,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_applyCentra
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    applyForce
- * Signature: (JLcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;Lorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_applyForce
   (JNIEnv *, jclass, jlong, jobject, jobject);
@@ -70,7 +70,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_applyForce
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    applyImpulse
- * Signature: (JLcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;Lorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_applyImpulse
   (JNIEnv *, jclass, jlong, jobject, jobject);
@@ -78,7 +78,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_applyImpuls
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    applyTorque
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_applyTorque
   (JNIEnv *, jclass, jlong, jobject);
@@ -86,7 +86,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_applyTorque
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    applyTorqueImpulse
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_applyTorqueImpulse
   (JNIEnv *, jclass, jlong, jobject);
@@ -118,7 +118,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getAngula
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getAngularFactor
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getAngularFactor
   (JNIEnv *, jclass, jlong, jobject);
@@ -134,7 +134,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getAngula
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getAngularVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getAngularVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -142,7 +142,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getAngularV
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getAngularVelocityDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getAngularVelocityDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -150,7 +150,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getAngularV
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getGravity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getGravity
   (JNIEnv *, jclass, jlong, jobject);
@@ -158,7 +158,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getGravity
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getGravityDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getGravityDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -166,7 +166,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getGravityD
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getInverseInertiaLocal
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getInverseInertiaLocal
   (JNIEnv *, jclass, jlong, jobject);
@@ -174,7 +174,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getInverseI
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getInverseInertiaWorld
- * Signature: (JLcom/jme3/math/Matrix3f;)V
+ * Signature: (JLorg/joml/Matrix3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getInverseInertiaWorld
   (JNIEnv *, jclass, jlong, jobject);
@@ -190,7 +190,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getLinear
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getLinearFactor
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getLinearFactor
   (JNIEnv *, jclass, jlong, jobject);
@@ -206,7 +206,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getLinear
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getLinearVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getLinearVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -214,7 +214,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getLinearVe
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getLinearVelocityDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getLinearVelocityDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -238,7 +238,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getSquare
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getTotalForce
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getTotalForce
   (JNIEnv *, jclass, jlong, jobject);
@@ -246,7 +246,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getTotalFor
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    getTotalTorque
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_getTotalTorque
   (JNIEnv *, jclass, jlong, jobject);
@@ -270,7 +270,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setAngularD
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setAngularFactor
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setAngularFactor
   (JNIEnv *, jclass, jlong, jobject);
@@ -286,7 +286,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setAngularS
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setAngularVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setAngularVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -294,7 +294,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setAngularV
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setAngularVelocityDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setAngularVelocityDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -318,7 +318,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setDamping
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setGravity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setGravity
   (JNIEnv *, jclass, jlong, jobject);
@@ -326,7 +326,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setGravity
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setGravityDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setGravityDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -334,7 +334,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setGravityD
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setInverseInertiaLocal
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setInverseInertiaLocal
   (JNIEnv *, jclass, jlong, jobject);
@@ -350,7 +350,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setKinemati
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setLinearFactor
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setLinearFactor
   (JNIEnv *, jclass, jlong, jobject);
@@ -366,7 +366,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setLinearSl
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setLinearVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setLinearVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -374,7 +374,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setLinearVe
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setLinearVelocityDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setLinearVelocityDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -382,7 +382,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setLinearVe
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setPhysicsLocation
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsLocation
   (JNIEnv *, jclass, jlong, jobject);
@@ -390,7 +390,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsL
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setPhysicsLocationDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsLocationDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -398,33 +398,33 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsL
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setPhysicsRotation
- * Signature: (JLcom/jme3/math/Matrix3f;)V
+ * Signature: (JLorg/joml/Matrix3f;)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsRotation__JLcom_jme3_math_Matrix3f_2
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsRotation__JLorg_joml_Matrix3f_2
   (JNIEnv *, jclass, jlong, jobject);
 
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setPhysicsRotation
- * Signature: (JLcom/jme3/math/Quaternion;)V
+ * Signature: (JLorg/joml/Quaternionf;)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsRotation__JLcom_jme3_math_Quaternion_2
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsRotation__JLorg_joml_Quaternionf_2
   (JNIEnv *, jclass, jlong, jobject);
 
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setPhysicsRotationDp
- * Signature: (JLcom/simsilica/mathd/Matrix3d;)V
+ * Signature: (JLorg/joml/Matrix3d;)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsRotationDp__JLcom_simsilica_mathd_Matrix3d_2
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsRotationDp__JLorg_joml_Matrix3d_2
   (JNIEnv *, jclass, jlong, jobject);
 
 /*
  * Class:     com_jme3_bullet_objects_PhysicsRigidBody
  * Method:    setPhysicsRotationDp
- * Signature: (JLcom/simsilica/mathd/Quatd;)V
+ * Signature: (JLorg/joml/Quaterniond;)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsRotationDp__JLcom_simsilica_mathd_Quatd_2
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsRigidBody_setPhysicsRotationDp__JLorg_joml_Quaterniond_2
   (JNIEnv *, jclass, jlong, jobject);
 
 /*

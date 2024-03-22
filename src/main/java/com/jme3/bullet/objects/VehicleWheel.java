@@ -32,11 +32,13 @@
 package com.jme3.bullet.objects;
 
 import com.jme3.bullet.objects.infos.VehicleTuning;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
+import com.jme3.math.QuaternionfUtils;
 import jme3utilities.Validate;
+import org.joml.Matrix3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * Information about one wheel of a vehicle, based on Bullet's
@@ -94,7 +96,7 @@ public class VehicleWheel {
     /**
      * wheel orientation in physics-space coordinates
      */
-    final private Quaternion wheelWorldRotation = new Quaternion();
+    final private Quaternionf wheelWorldRotation = new Quaternionf();
     /**
      * axis direction (in chassis coordinates, typically to the right/-1,0,0)
      */
@@ -185,7 +187,7 @@ public class VehicleWheel {
     public Vector3f getAxle(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = axisDirection.clone();
+            result = new Vector3f(axisDirection);
         } else {
             result = storeResult.set(axisDirection);
         }
@@ -247,7 +249,7 @@ public class VehicleWheel {
      */
     public Vector3f getDirection(Vector3f storeResult) {
         if (storeResult == null) {
-            return suspensionDirection.clone();
+            return new Vector3f(suspensionDirection);
         } else {
             return storeResult.set(suspensionDirection);
         }
@@ -293,7 +295,7 @@ public class VehicleWheel {
     public Vector3f getLocation(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = location.clone();
+            result = new Vector3f(location);
         } else {
             result = storeResult.set(location);
         }
@@ -442,7 +444,7 @@ public class VehicleWheel {
     public Vector3f getWheelWorldLocation(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = wheelWorldLocation.clone();
+            result = new Vector3f(wheelWorldLocation);
         } else {
             result = storeResult.set(wheelWorldLocation);
         }
@@ -457,10 +459,10 @@ public class VehicleWheel {
      * @return a Quaternion (in physics-space coordinates, either storeResult or
      * a new instance)
      */
-    public Quaternion getWheelWorldRotation(Quaternion storeResult) {
-        Quaternion result;
+    public Quaternionf getWheelWorldRotation(Quaternionf storeResult) {
+        Quaternionf result;
         if (storeResult == null) {
-            result = wheelWorldRotation.clone();
+            result = new Quaternionf(wheelWorldRotation);
         } else {
             result = storeResult.set(wheelWorldRotation);
         }
@@ -683,7 +685,7 @@ public class VehicleWheel {
     public void updatePhysicsState() {
         getWheelLocation(vehicleId, wheelIndex, wheelWorldLocation);
         getWheelRotation(vehicleId, wheelIndex, tmpMatrix);
-        wheelWorldRotation.fromRotationMatrix(tmpMatrix);
+        QuaternionfUtils.fromRotationMatrix(wheelWorldRotation, tmpMatrix);
     }
     // *************************************************************************
     // Java private methods

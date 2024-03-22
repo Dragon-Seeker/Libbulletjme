@@ -98,7 +98,7 @@ JNIEXPORT jint JNICALL Java_com_jme3_bullet_CollisionSpace_pairTest
 /*
  * Class:     com_jme3_bullet_CollisionSpace
  * Method:    rayTestNative
- * Signature: (Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;JLjava/util/List;I)V
+ * Signature: (Lorg/joml/Vector3f;Lorg/joml/Vector3f;JLjava/util/List;I)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_CollisionSpace_rayTestNative
   (JNIEnv *, jclass, jobject, jobject, jlong, jobject, jint);
@@ -106,7 +106,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_CollisionSpace_rayTestNative
 /*
  * Class:     com_jme3_bullet_CollisionSpace
  * Method:    rayTestNativeDp
- * Signature: (Lcom/simsilica/mathd/Vec3d;Lcom/simsilica/mathd/Vec3d;JLjava/util/List;I)V
+ * Signature: (Lorg/joml/Vector3d;Lorg/joml/Vector3d;JLjava/util/List;I)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_CollisionSpace_rayTestNativeDp
   (JNIEnv *, jclass, jobject, jobject, jlong, jobject, jint);

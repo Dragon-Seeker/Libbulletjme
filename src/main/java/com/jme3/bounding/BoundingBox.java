@@ -32,7 +32,7 @@
 package com.jme3.bounding;
 
 import com.jme3.math.FastMath;
-import com.jme3.math.Vector3f;
+import org.joml.Vector3f;
 
 /**
  * <code>BoundingBox</code> describes a bounding volume as an axis-aligned box.
@@ -98,7 +98,7 @@ public class BoundingBox {
      */
     public Vector3f getCenter(Vector3f storeResult) {
         if (storeResult == null) {
-            return center.clone();
+            return new Vector3f(center);
         } else {
             return storeResult.set(center);
         }
@@ -195,7 +195,7 @@ public class BoundingBox {
         if (store == null) {
             store = new Vector3f();
         }
-        store.set(center).subtractLocal(xExtent, yExtent, zExtent);
+        store.set(center).sub(xExtent, yExtent, zExtent);
         return store;
     }
 
@@ -209,7 +209,7 @@ public class BoundingBox {
         if (store == null) {
             store = new Vector3f();
         }
-        store.set(center).addLocal(xExtent, yExtent, zExtent);
+        store.set(center).add(xExtent, yExtent, zExtent);
         return store;
     }
 
@@ -222,7 +222,7 @@ public class BoundingBox {
      * not altered)
      */
     public void setMinMax(Vector3f min, Vector3f max) {
-        this.center.set(max).addLocal(min).multLocal(0.5f);
+        this.center.set(max).add(min).mul(0.5f);
         xExtent = FastMath.abs(max.x - center.x);
         yExtent = FastMath.abs(max.y - center.y);
         zExtent = FastMath.abs(max.z - center.z);

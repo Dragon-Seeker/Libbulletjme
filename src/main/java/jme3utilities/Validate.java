@@ -27,15 +27,18 @@
 package jme3utilities;
 
 import com.jme3.math.FastMath;
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Quatd;
-import com.simsilica.mathd.Vec3d;
+import com.jme3.math.Vector3fUtils;
+import com.simsilica.mathd.QuaterniondUtils;
+import jme3utilities.math.MyQuaternion;
+import jme3utilities.math.MyVector3f;
+import org.joml.Quaterniond;
+import org.joml.Quaternionf;
+import org.joml.Vector3d;
+import org.joml.Vector3f;
+
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jme3utilities.math.MyQuaternion;
-import jme3utilities.math.MyVector3f;
 
 /**
  * Utility methods to throw exceptions for invalid method arguments.
@@ -125,7 +128,7 @@ final public class Validate {
     public static boolean finite(Vector3f vector, String description) {
         nonNull(vector, description);
 
-        if (!Vector3f.isValidVector(vector)) {
+        if (!Vector3fUtils.isValidVector(vector)) {
             String what;
             if (description == null) {
                 what = "Vector3f argument";
@@ -151,7 +154,7 @@ final public class Validate {
      * @throws NullPointerException or IllegalArgumentException if the vector is
      * null
      */
-    public static boolean finite(Vec3d vector, String description) {
+    public static boolean finite(Vector3d vector, String description) {
         nonNull(vector, description);
 
         if (!vector.isFinite()) {
@@ -576,7 +579,7 @@ final public class Validate {
      * @throws NullPointerException or IllegalArgumentException if the
      * Quaternion is null
      */
-    public static boolean nonZero(Quaternion quaternion, String description) {
+    public static boolean nonZero(Quaternionf quaternion, String description) {
         nonNull(quaternion, description);
 
         if (MyQuaternion.isZero(quaternion)) {
@@ -603,10 +606,10 @@ final public class Validate {
      * @throws NullPointerException or IllegalArgumentException if the Quatd is
      * null
      */
-    public static boolean nonZero(Quatd quaternion, String description) {
+    public static boolean nonZero(Quaterniond quaternion, String description) {
         nonNull(quaternion, description);
 
-        if (quaternion.isZero()) {
+        if (QuaterniondUtils.isZero(quaternion)) {
             String what;
             if (description == null) {
                 what = "Quatd argument";

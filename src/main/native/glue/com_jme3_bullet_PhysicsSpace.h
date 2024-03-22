@@ -64,7 +64,7 @@ JNIEXPORT jint JNICALL Java_com_jme3_bullet_PhysicsSpace_countManifolds
 /*
  * Class:     com_jme3_bullet_PhysicsSpace
  * Method:    createPhysicsSpace
- * Signature: (Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;II)J
+ * Signature: (Lorg/joml/Vector3f;Lorg/joml/Vector3f;II)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_PhysicsSpace_createPhysicsSpace
   (JNIEnv *, jobject, jobject, jobject, jint, jint);
@@ -72,7 +72,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_PhysicsSpace_createPhysicsSpace
 /*
  * Class:     com_jme3_bullet_PhysicsSpace
  * Method:    getGravity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_PhysicsSpace_getGravity
   (JNIEnv *, jclass, jlong, jobject);
@@ -160,7 +160,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_PhysicsSpace_setCcdWithStaticOnly
 /*
  * Class:     com_jme3_bullet_PhysicsSpace
  * Method:    setGravity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_PhysicsSpace_setGravity
   (JNIEnv *, jclass, jlong, jobject);

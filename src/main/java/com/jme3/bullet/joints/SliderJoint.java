@@ -32,9 +32,10 @@
 package com.jme3.bullet.joints;
 
 import com.jme3.bullet.objects.PhysicsRigidBody;
-import com.jme3.math.Matrix3f;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
+import org.joml.Matrix3f;
+import org.joml.Vector3f;
+
 import java.util.logging.Logger;
 
 /**
@@ -127,8 +128,8 @@ public class SliderJoint extends Constraint {
         super(rigidBodyA, rigidBodyB, pivotInA, pivotInB);
 
         this.useLinearReferenceFrameA = useLinearReferenceFrameA;
-        this.rotA = rotInA.clone();
-        this.rotB = rotInB.clone();
+        this.rotA = new Matrix3f(rotInA);
+        this.rotB = new Matrix3f(rotInB);
         createJoint();
     }
 
@@ -850,7 +851,7 @@ public class SliderJoint extends Constraint {
              */
             Vector3f saveLocation = b.getPhysicsLocation(null);
 
-            Vector3f offset = pivotA.subtract(pivotB);
+            Vector3f offset = pivotA.sub(pivotB, new Vector3f());
             b.setPhysicsLocation(offset);
             constraintId
                     = createJoint1(bId, pivotB, rotB, useLinearReferenceFrameA);

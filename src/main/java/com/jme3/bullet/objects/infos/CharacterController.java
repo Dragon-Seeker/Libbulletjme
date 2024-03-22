@@ -34,10 +34,11 @@ package com.jme3.bullet.objects.infos;
 import com.jme3.bullet.NativePhysicsObject;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.objects.PhysicsCharacter;
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Vec3d;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Vector3d;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * The "action" (controller) portion of a PhysicsCharacter, based on Bullet's
@@ -487,7 +488,7 @@ public class CharacterController extends NativePhysicsObject {
      * @param location the desired physics location (not null, finite,
      * unaffected)
      */
-    public void warpDp(Vec3d location) {
+    public void warpDp(Vector3d location) {
         Validate.finite(location, "location");
 
         long controllerId = nativeId();
@@ -594,5 +595,5 @@ public class CharacterController extends NativePhysicsObject {
 
     native private static void warp(long controllerId, Vector3f location);
 
-    native private static void warpDp(long controllerId, Vec3d location);
+    native private static void warpDp(long controllerId, Vector3d location);
 }

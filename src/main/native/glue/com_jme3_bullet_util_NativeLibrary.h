@@ -74,7 +74,7 @@ JNIEXPORT jboolean JNICALL Java_com_jme3_bullet_util_NativeLibrary_isDoublePreci
 /*
  * Class:     com_jme3_bullet_util_NativeLibrary
  * Method:    isInsideTriangle
- * Signature: (Lcom/jme3/math/Vector3f;FLcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;)Z
+ * Signature: (Lorg/joml/Vector3f;FLorg/joml/Vector3f;Lorg/joml/Vector3f;Lorg/joml/Vector3f;)Z
  */
 JNIEXPORT jboolean JNICALL Java_com_jme3_bullet_util_NativeLibrary_isInsideTriangle
   (JNIEnv *, jclass, jobject, jfloat, jobject, jobject, jobject);

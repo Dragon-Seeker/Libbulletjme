@@ -34,7 +34,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    getAngularVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_getAngularVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -50,7 +50,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    getGravity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_getGravity
   (JNIEnv *, jclass, jlong, jobject);
@@ -74,7 +74,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    getLinearVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_getLinearVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -106,7 +106,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    getUpDirection
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_getUpDirection
   (JNIEnv *, jclass, jlong, jobject);
@@ -114,7 +114,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_ge
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    getWalkOffset
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_getWalkOffset
   (JNIEnv *, jclass, jlong, jobject);
@@ -130,7 +130,7 @@ JNIEXPORT jboolean JNICALL Java_com_jme3_bullet_objects_infos_CharacterControlle
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    jump
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_jump
   (JNIEnv *, jclass, jlong, jobject);
@@ -162,7 +162,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_se
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    setAngularVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_setAngularVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -178,7 +178,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_se
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    setGravity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_setGravity
   (JNIEnv *, jclass, jlong, jobject);
@@ -202,7 +202,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_se
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    setLinearVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_setLinearVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -234,7 +234,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_se
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    setUp
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_setUp
   (JNIEnv *, jclass, jlong, jobject);
@@ -250,7 +250,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_se
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    setWalkDirection
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_setWalkDirection
   (JNIEnv *, jclass, jlong, jobject);
@@ -258,7 +258,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_se
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    warp
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_warp
   (JNIEnv *, jclass, jlong, jobject);
@@ -266,7 +266,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_wa
 /*
  * Class:     com_jme3_bullet_objects_infos_CharacterController
  * Method:    warpDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_CharacterController_warpDp
   (JNIEnv *, jclass, jlong, jobject);

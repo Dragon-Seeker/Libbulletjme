@@ -35,9 +35,10 @@ import com.jme3.bullet.collision.AfMode;
 import com.jme3.bullet.collision.CollisionFlag;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.objects.PhysicsRigidBody;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Vec3d;
+import org.joml.Matrix3f;
+import org.joml.Vector3d;
+import org.joml.Vector3f;
+
 import java.util.logging.Logger;
 
 /**
@@ -145,15 +146,15 @@ public class RigidBodySnapshot {
     /**
      * angular velocity (in physics-space coordinates)
      */
-    final private Vec3d angularVelocity;
+    final private Vector3d angularVelocity;
     /**
      * linear velocity (in physics-space coordinates)
      */
-    final private Vec3d linearVelocity;
+    final private Vector3d linearVelocity;
     /**
      * location of the center (in physics-space coordinates)
      */
-    final private Vec3d location;
+    final private Vector3d location;
     /**
      * angular factors
      */
@@ -228,8 +229,8 @@ public class RigidBodySnapshot {
             this.angularVelocity = body.getAngularVelocityDp(null);
             this.linearVelocity = body.getLinearVelocityDp(null);
         } else {
-            this.angularVelocity = new Vec3d();
-            this.linearVelocity = new Vec3d();
+            this.angularVelocity = new Vector3d();
+            this.linearVelocity = new Vector3d();
         }
         this.location = body.getPhysicsLocationDp(null);
 

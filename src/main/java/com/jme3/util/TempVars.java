@@ -31,8 +31,8 @@
  */
 package com.jme3.util;
 
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 /**
  * Temporary variables assigned to each thread. Engine classes may access
@@ -144,5 +144,5 @@ public class TempVars {
     /**
      * General quaternions.
      */
-    public final Quaternion quat1 = new Quaternion();
+    public final Quaternionf quat1 = new Quaternionf();
 }

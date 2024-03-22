@@ -32,9 +32,10 @@
 package com.jme3.bullet.joints;
 
 import com.jme3.bullet.objects.PhysicsRigidBody;
-import com.jme3.math.Matrix3f;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
+import org.joml.Matrix3f;
+import org.joml.Vector3f;
+
 import java.util.logging.Logger;
 
 /**
@@ -108,7 +109,7 @@ public class ConeJoint extends Constraint {
     public ConeJoint(
             PhysicsRigidBody rigidBodyA, Vector3f pivotInA, Matrix3f rotInA) {
         super(rigidBodyA, JointEnd.A, pivotInA, translateIdentity);
-        this.rotA = rotInA.clone();
+        this.rotA = new Matrix3f(rotInA);
         this.rotB = rotA;
         createJoint();
     }
@@ -157,8 +158,8 @@ public class ConeJoint extends Constraint {
             Vector3f pivotInA, Vector3f pivotInB, Matrix3f rotInA,
             Matrix3f rotInB) {
         super(rigidBodyA, rigidBodyB, pivotInA, pivotInB);
-        this.rotA = rotInA.clone();
-        this.rotB = rotInB.clone();
+        this.rotA = new Matrix3f(rotInA);
+        this.rotB = new Matrix3f(rotInB);
         createJoint();
     }
     // *************************************************************************

@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_joints_GearJoint
  * Method:    createJoint
- * Signature: (JJLcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;F)J
+ * Signature: (JJLorg/joml/Vector3f;Lorg/joml/Vector3f;F)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_GearJoint_createJoint
   (JNIEnv *, jclass, jlong, jlong, jobject, jobject, jfloat);
@@ -18,7 +18,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_GearJoint_createJoint
 /*
  * Class:     com_jme3_bullet_joints_GearJoint
  * Method:    getAxisA
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_GearJoint_getAxisA
   (JNIEnv *, jclass, jlong, jobject);
@@ -26,7 +26,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_GearJoint_getAxisA
 /*
  * Class:     com_jme3_bullet_joints_GearJoint
  * Method:    getAxisB
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_GearJoint_getAxisB
   (JNIEnv *, jclass, jlong, jobject);
@@ -42,7 +42,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_joints_GearJoint_getRatio
 /*
  * Class:     com_jme3_bullet_joints_GearJoint
  * Method:    setAxisA
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_GearJoint_setAxisA
   (JNIEnv *, jclass, jlong, jobject);
@@ -50,7 +50,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_GearJoint_setAxisA
 /*
  * Class:     com_jme3_bullet_joints_GearJoint
  * Method:    setAxisB
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_GearJoint_setAxisB
   (JNIEnv *, jclass, jlong, jobject);

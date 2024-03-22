@@ -38,14 +38,17 @@ import com.jme3.bullet.collision.shapes.PlaneCollisionShape;
 import com.jme3.bullet.collision.shapes.infos.ChildCollisionShape;
 import com.jme3.bullet.collision.shapes.infos.IndexedMesh;
 import com.jme3.math.Plane;
+import com.jme3.math.QuaternionfUtils;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
 import com.jme3.util.BufferUtils;
-import java.nio.FloatBuffer;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyBuffer;
 import jme3utilities.math.MyVector3f;
+import org.joml.Matrix3f;
+import org.joml.Vector3f;
+
+import java.nio.FloatBuffer;
+import java.util.logging.Logger;
 
 /**
  * A utility class to generate debug meshes for Bullet collision shapes.
@@ -371,7 +374,8 @@ final public class DebugShapeFactory {
         Vector3f v2 = new Vector3f();
         Vector3f v3 = new Vector3f();
         MyVector3f.generateBasis(v1, v2, v3);
-        result.getRotation().fromAxes(v1, v2, v3);
+
+        QuaternionfUtils.fromAxes(result.getRotation(), v1, v2, v3);
 
         return result;
     }

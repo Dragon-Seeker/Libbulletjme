@@ -33,9 +33,10 @@ package com.jme3.bullet.joints;
 
 import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.bullet.objects.PhysicsSoftBody;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * A PhysicsJoint to join a particular node of a soft body (A) to a rigid body
@@ -103,7 +104,7 @@ public class Anchor extends PhysicsJoint {
         setBodyB(rigidBodyB);
         rigidBodyB.addJoint(this);
         this.allowCollisions = allowCollisions;
-        this.pivotInB = pivotInB.clone();
+        this.pivotInB = new Vector3f(pivotInB);
 
         createAnchor();
     }
@@ -120,7 +121,7 @@ public class Anchor extends PhysicsJoint {
     public Vector3f copyPivot(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = pivotInB.clone();
+            result = new Vector3f(pivotInB);
         } else {
             result = storeResult.set(pivotInB);
         }

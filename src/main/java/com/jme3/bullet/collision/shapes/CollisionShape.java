@@ -34,16 +34,17 @@ package com.jme3.bullet.collision.shapes;
 import com.jme3.bounding.BoundingBox;
 import com.jme3.bullet.NativePhysicsObject;
 import com.jme3.bullet.util.DebugShapeFactory;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Vec3d;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyVector3f;
 import jme3utilities.minie.MyShape;
+import org.joml.Matrix3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3d;
+import org.joml.Vector3f;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The abstract base class for collision shapes based on Bullet's
@@ -67,7 +68,7 @@ abstract public class CollisionShape extends NativePhysicsObject {
     /**
      * local copy of {@link com.jme3.math.Quaternion#IDENTITY}
      */
-    final private static Quaternion rotateIdentity = new Quaternion();
+    final private static Quaternionf rotateIdentity = new Quaternionf();
     /**
      * local copy of {@link com.jme3.math.Transform#IDENTITY}
      */
@@ -165,7 +166,7 @@ abstract public class CollisionShape extends NativePhysicsObject {
      * @param storeResult storage for the result (modified if not null)
      * @return a bounding box (either storeResult or a new instance, not null)
      */
-    public BoundingBox boundingBox(Vector3f translation, Quaternion rotation,
+    public BoundingBox boundingBox(Vector3f translation, Quaternionf rotation,
             BoundingBox storeResult) {
         Validate.finite(translation, "translation");
         Validate.nonNull(rotation, "rotation");
@@ -258,9 +259,9 @@ abstract public class CollisionShape extends NativePhysicsObject {
      * @return the scale factor for each local axis (either {@code storeResult}
      * or a new vector, not null, no negative component)
      */
-    public Vec3d getScaleDp(Vec3d storeResult) {
+    public Vector3d getScaleDp(Vector3d storeResult) {
         long shapeId = nativeId();
-        Vec3d result = (storeResult == null) ? new Vec3d() : storeResult;
+        Vector3d result = (storeResult == null) ? new Vector3d() : storeResult;
         getLocalScalingDp(shapeId, result);
 
         return result;
@@ -604,7 +605,7 @@ abstract public class CollisionShape extends NativePhysicsObject {
             getLocalScaling(long shapeId, Vector3f storeVector);
 
     native private static void
-            getLocalScalingDp(long shapeId, Vec3d storeVector);
+            getLocalScalingDp(long shapeId, Vector3d storeVector);
 
     native private static float getMargin(long shapeId);
 

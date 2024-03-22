@@ -35,15 +35,16 @@ import com.jme3.bullet.NativePhysicsObject;
 import com.jme3.math.Plane;
 import com.jme3.math.Transform;
 import com.jme3.math.Triangle;
-import com.jme3.math.Vector3f;
+import jme3utilities.Validate;
+import jme3utilities.math.MyBuffer;
+import jme3utilities.math.MyVector3f;
+import org.joml.Vector3f;
+
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
-import jme3utilities.math.MyBuffer;
-import jme3utilities.math.MyVector3f;
 
 /**
  * A scalable mesh that combines multiple indexed meshes. Based on Bullet's
@@ -224,8 +225,8 @@ public class CompoundMesh extends NativePhysicsObject {
             MyVector3f.accumulateMaxima(storeMaxima, max);
         }
 
-        storeMaxima.multLocal(scale);
-        storeMinima.multLocal(scale);
+        storeMaxima.mul(scale);
+        storeMinima.mul(scale);
     }
 
     /**
@@ -259,7 +260,7 @@ public class CompoundMesh extends NativePhysicsObject {
         for (int vertexIndex = 0; vertexIndex < 3; ++vertexIndex) {
             Vector3f inputVector = scaledTriangle.get(vertexIndex); // alias
             tmpVector.set(inputVector);
-            tmpVector.divideLocal(scale);
+            tmpVector.div(scale);
             descaledTriangle.set(vertexIndex, tmpVector);
         }
 

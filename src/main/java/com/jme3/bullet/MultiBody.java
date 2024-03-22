@@ -33,13 +33,14 @@ package com.jme3.bullet;
 
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.objects.MultiBodyCollider;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
+import jme3utilities.Validate;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
 
 /**
  * An articulated rigid body based on Bullet's {@code btMultiBody}. Uses
@@ -243,9 +244,9 @@ public class MultiBody extends NativePhysicsObject {
      * @param storeResult storage for the result (modified if not null)
      * @return the orientation (either storeResult or a new instance, not null)
      */
-    public Quaternion baseOrientation(Quaternion storeResult) {
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+    public Quaternionf baseOrientation(Quaternionf storeResult) {
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
         long multiBodyId = nativeId();
         getWorldToBaseRot(multiBodyId, result);
@@ -391,8 +392,8 @@ public class MultiBody extends NativePhysicsObject {
      * @return a new link
      */
     public MultiBodyLink configureFixedLink(float mass, Vector3f inertia,
-            MultiBodyLink parent, Quaternion orientation, Vector3f parent2Pivot,
-            Vector3f pivot2Link) {
+                                            MultiBodyLink parent, Quaternionf orientation, Vector3f parent2Pivot,
+                                            Vector3f pivot2Link) {
         Validate.positive(mass, "mass");
         Validate.positive(inertia, "inertia");
         Validate.nonNull(orientation, "orientation");
@@ -427,7 +428,7 @@ public class MultiBody extends NativePhysicsObject {
      * @return a new link
      */
     public MultiBodyLink configurePlanarLink(float mass, Vector3f inertia,
-            MultiBodyLink parent, Quaternion orientation, Vector3f axis,
+            MultiBodyLink parent, Quaternionf orientation, Vector3f axis,
             Vector3f parent2Link, boolean disableCollision) {
         Validate.positive(mass, "mass");
         Validate.positive(inertia, "inertia");
@@ -464,7 +465,7 @@ public class MultiBody extends NativePhysicsObject {
      * @return a new link
      */
     public MultiBodyLink configurePrismaticLink(float mass, Vector3f inertia,
-            MultiBodyLink parent, Quaternion orientation, Vector3f axis,
+            MultiBodyLink parent, Quaternionf orientation, Vector3f axis,
             Vector3f parent2Pivot, Vector3f pivot2Link,
             boolean disableCollision) {
         Validate.positive(mass, "mass");
@@ -503,7 +504,7 @@ public class MultiBody extends NativePhysicsObject {
      * @return a new link
      */
     public MultiBodyLink configureRevoluteLink(float mass, Vector3f inertia,
-            MultiBodyLink parent, Quaternion orientation, Vector3f axis,
+            MultiBodyLink parent, Quaternionf orientation, Vector3f axis,
             Vector3f parent2Pivot, Vector3f pivot2Link,
             boolean disableCollision) {
         Validate.positive(mass, "mass");
@@ -541,7 +542,7 @@ public class MultiBody extends NativePhysicsObject {
      * @return a new link
      */
     public MultiBodyLink configureSphericalLink(float mass, Vector3f inertia,
-            MultiBodyLink parent, Quaternion orientation, Vector3f parent2Pivot,
+            MultiBodyLink parent, Quaternionf orientation, Vector3f parent2Pivot,
             Vector3f pivot2Link, boolean disableCollision) {
         Validate.positive(mass, "mass");
         Validate.positive(inertia, "inertia");
@@ -783,7 +784,7 @@ public class MultiBody extends NativePhysicsObject {
      * @param orientation the desired orientation (in physics-space coordinates,
      * not null, unaffected)
      */
-    public void setBaseOrientation(Quaternion orientation) {
+    public void setBaseOrientation(Quaternionf orientation) {
         Validate.nonNull(orientation, "orientation");
 
         long multiBodyId = nativeId();
@@ -982,7 +983,7 @@ public class MultiBody extends NativePhysicsObject {
     native private static boolean getUseGyroTerm(long multiBodyId);
 
     native private static void
-            getWorldToBaseRot(long multiBodyId, Quaternion storeQuaternion);
+            getWorldToBaseRot(long multiBodyId, Quaternionf storeQuaternion);
 
     native private static boolean hasFixedBase(long multiBodyId);
 
@@ -1013,33 +1014,33 @@ public class MultiBody extends NativePhysicsObject {
 
     native private static void setupFixed(long multiBodyId, int linkIndex,
             float mass, Vector3f inertiaVector, int parentLinkIndex,
-            Quaternion parent2LinkQuaternion, Vector3f parent2PivotVector,
+            Quaternionf parent2LinkQuaternion, Vector3f parent2PivotVector,
             Vector3f pivot2LinkVector);
 
     native private static void setupPlanar(long multiBodyId, int linkIndex,
             float mass, Vector3f inertiaVector, int parentLinkIndex,
-            Quaternion parent2LinkQuaternion, Vector3f axisVector,
+            Quaternionf parent2LinkQuaternion, Vector3f axisVector,
             Vector3f parent2LinkVector, boolean disableParentCollision);
 
     native private static void setupPrismatic(long multiBodyId, int linkIndex,
             float mass, Vector3f inertiaVector, int parentLinkIndex,
-            Quaternion parent2LinkQuaternion, Vector3f axisVector,
+            Quaternionf parent2LinkQuaternion, Vector3f axisVector,
             Vector3f parent2PivotVector, Vector3f pivot2LinkVector,
             boolean disableParentCollision);
 
     native private static void setupRevolute(long multiBodyId, int linkIndex,
             float mass, Vector3f inertiaVector, int parentLinkIndex,
-            Quaternion parent2LinkQuaternion, Vector3f axisVector,
+            Quaternionf parent2LinkQuaternion, Vector3f axisVector,
             Vector3f parent2PivotVector, Vector3f pivot2LinkVector,
             boolean disableParentCollision);
 
     native private static void setupSpherical(long multiBodyId, int linkIndex,
             float mass, Vector3f inertiaVector, int parentLinkIndex,
-            Quaternion parent2LinkQuaternion, Vector3f parent2PivotVector,
+            Quaternionf parent2LinkQuaternion, Vector3f parent2PivotVector,
             Vector3f pivotToLinkVector, boolean disableParentCollision);
 
     native private static void
-            setWorldToBaseRot(long multiBodyId, Quaternion quaternion);
+            setWorldToBaseRot(long multiBodyId, Quaternionf quaternion);
 
     native private static void
             useGlobalVelocities(long multiBodyId, boolean use);

@@ -60,15 +60,15 @@ void jmeBulletUtil::convertDp(
         JNIEnv *pEnv, jobject inQuatd, btQuaternion *pqOut) {
     NULL_CHK(pEnv, inQuatd, "The input Quatd does not exist.",)
     NULL_CHK(pEnv, pqOut, "The output btQuaternion does not exist.",);
-    NULL_CHK(pEnv, jmeClasses::Quatd_x, "The SimMath library is missing.",);
+    NULL_CHK(pEnv, jmeClasses::Quaterniond_x, "The SimMath library is missing.",);
 
-    double x = pEnv->GetDoubleField(inQuatd, jmeClasses::Quatd_x);
+    double x = pEnv->GetDoubleField(inQuatd, jmeClasses::Quaterniond_x);
     EXCEPTION_CHK(pEnv,);
-    double y = pEnv->GetDoubleField(inQuatd, jmeClasses::Quatd_y);
+    double y = pEnv->GetDoubleField(inQuatd, jmeClasses::Quaterniond_y);
     EXCEPTION_CHK(pEnv,);
-    double z = pEnv->GetDoubleField(inQuatd, jmeClasses::Quatd_z);
+    double z = pEnv->GetDoubleField(inQuatd, jmeClasses::Quaterniond_z);
     EXCEPTION_CHK(pEnv,);
-    double w = pEnv->GetDoubleField(inQuatd, jmeClasses::Quatd_w);
+    double w = pEnv->GetDoubleField(inQuatd, jmeClasses::Quaterniond_w);
     EXCEPTION_CHK(pEnv,);
 
     pqOut->setValue(x, y, z, w);
@@ -79,13 +79,13 @@ void jmeBulletUtil::convertDp(
 void jmeBulletUtil::convertDp(JNIEnv *pEnv, jobject inVec3d, btVector3 *pvOut) {
     NULL_CHK(pEnv, inVec3d, "The input Vec3d does not exist.",)
     NULL_CHK(pEnv, pvOut, "The output btVector3 does not exist.",);
-    NULL_CHK(pEnv, jmeClasses::Vec3d_x, "The SimMath library is missing.",);
+    NULL_CHK(pEnv, jmeClasses::Vector3d_x, "The SimMath library is missing.",);
 
-    double x = pEnv->GetDoubleField(inVec3d, jmeClasses::Vec3d_x);
+    double x = pEnv->GetDoubleField(inVec3d, jmeClasses::Vector3d_x);
     EXCEPTION_CHK(pEnv,);
-    double y = pEnv->GetDoubleField(inVec3d, jmeClasses::Vec3d_y);
+    double y = pEnv->GetDoubleField(inVec3d, jmeClasses::Vector3d_y);
     EXCEPTION_CHK(pEnv,);
-    double z = pEnv->GetDoubleField(inVec3d, jmeClasses::Vec3d_z);
+    double z = pEnv->GetDoubleField(inVec3d, jmeClasses::Vector3d_z);
     EXCEPTION_CHK(pEnv,);
 
     pvOut->setValue(x, y, z);
@@ -98,13 +98,13 @@ void jmeBulletUtil::convert(
     NULL_CHK(pEnv, inQuaternion, "The input Quaternion does not exist.",)
     NULL_CHK(pEnv, pqOut, "The output btQuaternion does not exist.",);
 
-    float x = pEnv->GetFloatField(inQuaternion, jmeClasses::Quaternion_x);
+    float x = pEnv->GetFloatField(inQuaternion, jmeClasses::Quaternionf_x);
     EXCEPTION_CHK(pEnv,);
-    float y = pEnv->GetFloatField(inQuaternion, jmeClasses::Quaternion_y);
+    float y = pEnv->GetFloatField(inQuaternion, jmeClasses::Quaternionf_y);
     EXCEPTION_CHK(pEnv,);
-    float z = pEnv->GetFloatField(inQuaternion, jmeClasses::Quaternion_z);
+    float z = pEnv->GetFloatField(inQuaternion, jmeClasses::Quaternionf_z);
     EXCEPTION_CHK(pEnv,);
-    float w = pEnv->GetFloatField(inQuaternion, jmeClasses::Quaternion_w);
+    float w = pEnv->GetFloatField(inQuaternion, jmeClasses::Quaternionf_w);
     EXCEPTION_CHK(pEnv,);
 
     pqOut->setValue(x, y, z, w);
@@ -131,14 +131,14 @@ void jmeBulletUtil::convertDp(
         JNIEnv *pEnv, const btQuaternion *pqIn, jobject outQuatd) {
     NULL_CHK(pEnv, pqIn, "The input btQuaternion does not exist.",)
     NULL_CHK(pEnv, outQuatd, "The output Quatd does not exist.",);
-    NULL_CHK(pEnv, jmeClasses::Quatd_set, "The SimMath library is missing.",);
+    NULL_CHK(pEnv, jmeClasses::Quaterniond_set, "The SimMath library is missing.",);
 
     double x = pqIn->getX();
     double y = pqIn->getY();
     double z = pqIn->getZ();
     double w = pqIn->getW();
 
-    pEnv->CallObjectMethod(outQuatd, jmeClasses::Quatd_set, x, y, z, w);
+    pEnv->CallObjectMethod(outQuatd, jmeClasses::Quaterniond_set, x, y, z, w);
     // no check for exceptions!
 }
 
@@ -148,13 +148,13 @@ void jmeBulletUtil::convertDp(
         JNIEnv *pEnv, const btVector3 *pvIn, jobject outVec3d) {
     NULL_CHK(pEnv, pvIn, "The input btVector3 does not exist.",)
     NULL_CHK(pEnv, outVec3d, "The output Vec3d does not exist.",);
-    NULL_CHK(pEnv, jmeClasses::Vec3d_set, "The SimMath library is missing.",);
+    NULL_CHK(pEnv, jmeClasses::Vector3d_set, "The SimMath library is missing.",);
 
     double x = pvIn->getX();
     double y = pvIn->getY();
     double z = pvIn->getZ();
 
-    pEnv->CallObjectMethod(outVec3d, jmeClasses::Vec3d_set, x, y, z);
+    pEnv->CallObjectMethod(outVec3d, jmeClasses::Vector3d_set, x, y, z);
     // no check for exceptions!
 }
 
@@ -171,7 +171,7 @@ void jmeBulletUtil::convert(
     float w = pqIn->w();
 
     pEnv->CallObjectMethod(
-            outQuaternion, jmeClasses::Quaternion_set, x, y, z, w);
+            outQuaternion, jmeClasses::Quaternionf_set, x, y, z, w);
     // no check for exceptions!
 }
 

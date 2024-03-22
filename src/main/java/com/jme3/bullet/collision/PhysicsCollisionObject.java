@@ -35,19 +35,16 @@ import com.jme3.bounding.BoundingBox;
 import com.jme3.bullet.CollisionSpace;
 import com.jme3.bullet.NativePhysicsObject;
 import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Transform;
 import com.jme3.math.TransformDp;
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Matrix3d;
-import com.simsilica.mathd.Quatd;
-import com.simsilica.mathd.Vec3d;
+import com.jme3.math.Vector3fUtils;
+import jme3utilities.Validate;
+import org.joml.*;
+
 import java.util.Collection;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
 
 /**
  * The abstract base class for collision objects based on Bullet's
@@ -561,7 +558,7 @@ abstract public class PhysicsCollisionObject extends NativePhysicsObject {
         long objectId = nativeId();
         getLocation(objectId, result);
 
-        assert Vector3f.isValidVector(result);
+        assert Vector3fUtils.isValidVector(result);
         return result;
     }
 
@@ -572,8 +569,8 @@ abstract public class PhysicsCollisionObject extends NativePhysicsObject {
      * @return a location vector (in physics-space coordinates, either
      * storeResult or a new vector, not null, finite)
      */
-    public Vec3d getPhysicsLocationDp(Vec3d storeResult) {
-        Vec3d result = (storeResult == null) ? new Vec3d() : storeResult;
+    public Vector3d getPhysicsLocationDp(Vector3d storeResult) {
+        Vector3d result = (storeResult == null) ? new Vector3d() : storeResult;
 
         long objectId = nativeId();
         getLocationDp(objectId, result);
@@ -583,15 +580,15 @@ abstract public class PhysicsCollisionObject extends NativePhysicsObject {
     }
 
     /**
-     * Copy the orientation (rotation) of this object to a Quaternion.
+     * Copy the orientation (rotation) of this object to a Quaternionf.
      *
      * @param storeResult storage for the result (modified if not null)
-     * @return a rotation Quaternion (in physics-space coordinates, either
+     * @return a rotation Quaternionf (in physics-space coordinates, either
      * storeResult or a new instance, not null)
      */
-    public Quaternion getPhysicsRotation(Quaternion storeResult) {
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+    public Quaternionf getPhysicsRotation(Quaternionf storeResult) {
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
         long objectId = nativeId();
         getOrientation(objectId, result);
@@ -600,14 +597,14 @@ abstract public class PhysicsCollisionObject extends NativePhysicsObject {
     }
 
     /**
-     * Copy the orientation (rotation) of this object to a Quatd.
+     * Copy the orientation (rotation) of this object to a Quaterniond.
      *
      * @param storeResult storage for the result (modified if not null)
-     * @return a rotation Quatd (in physics-space coordinates, either
+     * @return a rotation Quaterniond (in physics-space coordinates, either
      * storeResult or a new instance, not null)
      */
-    public Quatd getPhysicsRotationDp(Quatd storeResult) {
-        Quatd result = (storeResult == null) ? new Quatd() : storeResult;
+    public Quaterniond getPhysicsRotationDp(Quaterniond storeResult) {
+        Quaterniond result = (storeResult == null) ? new Quaterniond() : storeResult;
 
         long objectId = nativeId();
         getOrientationDp(objectId, result);
@@ -1360,7 +1357,7 @@ abstract public class PhysicsCollisionObject extends NativePhysicsObject {
 
     native private static void getLocation(long objectId, Vector3f storeVector);
 
-    native private static void getLocationDp(long objectId, Vec3d storeVector);
+    native private static void getLocationDp(long objectId, Vector3d storeVector);
 
     native private static int getNumObjectsWithoutCollision(long objectId);
 
@@ -1368,10 +1365,10 @@ abstract public class PhysicsCollisionObject extends NativePhysicsObject {
             getObjectWithoutCollision(long objectId, int listIndex);
 
     native private static void
-            getOrientation(long objectId, Quaternion storeQuat);
+            getOrientation(long objectId, Quaternionf storeQuat);
 
     native private static void
-            getOrientationDp(long objectId, Quatd storeQuat);
+            getOrientationDp(long objectId, Quaterniond storeQuat);
 
     native private static int getProxyFilterGroup(long objectId);
 

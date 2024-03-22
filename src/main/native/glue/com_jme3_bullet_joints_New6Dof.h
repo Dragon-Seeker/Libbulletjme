@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_joints_New6Dof
  * Method:    createDoubleEnded
- * Signature: (JJLcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;Lcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;I)J
+ * Signature: (JJLorg/joml/Vector3f;Lorg/joml/Matrix3f;Lorg/joml/Vector3f;Lorg/joml/Matrix3f;I)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_New6Dof_createDoubleEnded
   (JNIEnv *, jclass, jlong, jlong, jobject, jobject, jobject, jobject, jint);
@@ -18,7 +18,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_New6Dof_createDoubleEnded
 /*
  * Class:     com_jme3_bullet_joints_New6Dof
  * Method:    createSingleEnded
- * Signature: (JLcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;I)J
+ * Signature: (JLorg/joml/Vector3f;Lorg/joml/Matrix3f;I)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_New6Dof_createSingleEnded
   (JNIEnv *, jclass, jlong, jobject, jobject, jint);
@@ -34,7 +34,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_enableSpring
 /*
  * Class:     com_jme3_bullet_joints_New6Dof
  * Method:    getAngles
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getAngles
   (JNIEnv *, jclass, jlong, jobject);
@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getAngles
 /*
  * Class:     com_jme3_bullet_joints_New6Dof
  * Method:    getAxis
- * Signature: (JILcom/jme3/math/Vector3f;)V
+ * Signature: (JILorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getAxis
   (JNIEnv *, jclass, jlong, jint, jobject);
@@ -50,7 +50,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getAxis
 /*
  * Class:     com_jme3_bullet_joints_New6Dof
  * Method:    getCalculatedBasisA
- * Signature: (JLcom/jme3/math/Matrix3f;)V
+ * Signature: (JLorg/joml/Matrix3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getCalculatedBasisA
   (JNIEnv *, jclass, jlong, jobject);
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getCalculatedBasisA
 /*
  * Class:     com_jme3_bullet_joints_New6Dof
  * Method:    getCalculatedBasisB
- * Signature: (JLcom/jme3/math/Matrix3f;)V
+ * Signature: (JLorg/joml/Matrix3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getCalculatedBasisB
   (JNIEnv *, jclass, jlong, jobject);
@@ -66,7 +66,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getCalculatedBasisB
 /*
  * Class:     com_jme3_bullet_joints_New6Dof
  * Method:    getCalculatedOriginA
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getCalculatedOriginA
   (JNIEnv *, jclass, jlong, jobject);
@@ -74,7 +74,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getCalculatedOriginA
 /*
  * Class:     com_jme3_bullet_joints_New6Dof
  * Method:    getCalculatedOriginB
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getCalculatedOriginB
   (JNIEnv *, jclass, jlong, jobject);
@@ -98,7 +98,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getFrameOffsetB
 /*
  * Class:     com_jme3_bullet_joints_New6Dof
  * Method:    getPivotOffset
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_getPivotOffset
   (JNIEnv *, jclass, jlong, jobject);
@@ -162,7 +162,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_setEquilibriumPointTo
 /*
  * Class:     com_jme3_bullet_joints_New6Dof
  * Method:    setPivotInA
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_setPivotInA
   (JNIEnv *, jclass, jlong, jobject);
@@ -170,7 +170,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_setPivotInA
 /*
  * Class:     com_jme3_bullet_joints_New6Dof
  * Method:    setPivotInB
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_New6Dof_setPivotInB
   (JNIEnv *, jclass, jlong, jobject);

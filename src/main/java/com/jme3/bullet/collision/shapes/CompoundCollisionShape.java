@@ -37,16 +37,17 @@ import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.infos.ChildCollisionShape;
 import com.jme3.bullet.objects.PhysicsGhostObject;
 import com.jme3.bullet.util.DebugShapeFactory;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Matrix4f;
-import com.jme3.math.Transform;
-import com.jme3.math.Triangle;
-import com.jme3.math.Vector3f;
+import com.jme3.math.*;
+import jme3utilities.Validate;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
 
 /**
  * A collision shape formed by combining child shapes, based on Bullet's
@@ -192,7 +193,7 @@ public class CompoundCollisionShape extends CollisionShape {
      */
     public void addChildShape(CollisionShape shape, Transform transform) {
         Vector3f offset = transform.getTranslation(); // alias
-        Matrix3f rotation = transform.getRotation().toRotationMatrix();
+        Matrix3f rotation = QuaternionfUtils.toRotationMatrix(transform.getRotation());
         addChildShape(shape, offset, rotation);
     }
 
@@ -256,14 +257,14 @@ public class CompoundCollisionShape extends CollisionShape {
     public void correctAxes(Transform paTransform) {
         Matrix4f tmpMatrix4f = new Matrix4f(); // TODO garbage
         paTransform.toTransformMatrix(tmpMatrix4f);
-        tmpMatrix4f.invertLocal();
+        tmpMatrix4f.invert(); // TODO [Porting]: May be incorrect
 
         Matrix3f rotation = new Matrix3f(); // TODO garbage
-        tmpMatrix4f.toRotationMatrix(rotation);
+        tmpMatrix4f.set3x3(rotation); // TODO [Porting]: May be incorrect
         rotate(rotation);
 
         Vector3f offset = new Vector3f(); // TODO garbage
-        tmpMatrix4f.toTranslationVector(offset);
+        Vector3fUtils.toTranslationVector(tmpMatrix4f, offset);
         translate(offset);
     }
 
@@ -441,10 +442,10 @@ public class CompoundCollisionShape extends CollisionShape {
         Matrix3f basis = new Matrix3f();
         for (ChildCollisionShape child : children) {
             child.copyOffset(offset);
-            rotation.mult(offset, offset);
+            Matrix3fUtils.mult(rotation, offset, offset);
 
             child.copyRotationMatrix(basis);
-            rotation.mult(basis, basis);
+            Matrix3fUtils.mult(rotation, basis, basis);
 
             child.setTransform(offset, basis);
         }
@@ -471,7 +472,7 @@ public class CompoundCollisionShape extends CollisionShape {
         assert childIndex >= 0 : childIndex;
         assert childIndex < children.size();
 
-        Matrix3f rotation = transform.getRotation().toRotationMatrix();
+        Matrix3f rotation = QuaternionfUtils.toRotationMatrix(transform.getRotation(), new Matrix3f());
         setChildTransform(parentId, childId, offset, rotation);
 
         ChildCollisionShape child = children.get(childIndex);
@@ -529,7 +530,7 @@ public class CompoundCollisionShape extends CollisionShape {
         Matrix3f basis = new Matrix3f();
         for (ChildCollisionShape child : children) {
             child.copyOffset(offset);
-            offset.addLocal(amount);
+            offset.add(amount);
 
             child.copyRotationMatrix(basis);
             child.setTransform(offset, basis);
@@ -597,7 +598,7 @@ public class CompoundCollisionShape extends CollisionShape {
         for (ChildCollisionShape child : children) {
             CollisionShape baseShape = child.getShape();
             child.copyOffset(tmpTransform.getTranslation());
-            tmpTransform.getTranslation().multLocal(scale);
+            tmpTransform.getTranslation().mul(scale);
             child.copyRotation(tmpTransform.getRotation());
             float childRadius = DebugShapeFactory.maxDistance(
                     baseShape, tmpTransform, DebugShapeFactory.lowResolution);

@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_collision_shapes_MultiSphere
  * Method:    createShape
- * Signature: ([Lcom/jme3/math/Vector3f;[FI)J
+ * Signature: ([Lorg/joml/Vector3f;[FI)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_MultiSphere_createShape
   (JNIEnv *, jclass, jobjectArray, jfloatArray, jint);

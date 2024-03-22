@@ -36,15 +36,17 @@ import com.jme3.bullet.joints.motors.MotorParam;
 import com.jme3.bullet.joints.motors.RotationMotor;
 import com.jme3.bullet.joints.motors.TranslationMotor;
 import com.jme3.bullet.objects.PhysicsRigidBody;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
+import com.jme3.math.QuaternionfUtils;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyMath;
 import jme3utilities.math.MyVector3f;
+import org.joml.Matrix3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A 6 degree-of-freedom Constraint based on Bullet's
@@ -126,8 +128,8 @@ public class New6Dof extends Constraint {
             RotationOrder rotationOrder) {
         super(rigidBodyB, JointEnd.B, pivotInB, pivotInWorld);
 
-        this.rotA = rotInWorld.clone();
-        this.rotB = rotInB.clone();
+        this.rotA = new Matrix3f(rotInWorld);
+        this.rotB = new Matrix3f(rotInB);
         this.rotationOrder = rotationOrder;
         createConstraint();
     }
@@ -158,8 +160,8 @@ public class New6Dof extends Constraint {
             Matrix3f rotInA, Matrix3f rotInB, RotationOrder rotationOrder) {
         super(rigidBodyA, rigidBodyB, pivotInA, pivotInB);
 
-        this.rotA = rotInA.clone();
-        this.rotB = rotInB.clone();
+        this.rotA = new Matrix3f(rotInA);
+        this.rotB = new Matrix3f(rotInB);
         this.rotationOrder = rotationOrder;
         createConstraint();
     }
@@ -520,8 +522,8 @@ public class New6Dof extends Constraint {
      * @return a new instance, not in any PhysicsSpace
      */
     public static New6Dof newInstance(PhysicsRigidBody rigidBodyA,
-            PhysicsRigidBody rigidBodyB, Vector3f pivotInWorld,
-            Quaternion rotInWorld, RotationOrder rotationOrder) {
+                                      PhysicsRigidBody rigidBodyB, Vector3f pivotInWorld,
+                                      Quaternionf rotInWorld, RotationOrder rotationOrder) {
         Validate.nonNull(rigidBodyA, "a");
         Validate.nonNull(rigidBodyB, "b");
         Validate.finite(pivotInWorld, "pivot location");
@@ -536,7 +538,7 @@ public class New6Dof extends Constraint {
         Transform p2a = new Transform(pivotInWorld, rotInWorld);
         MyMath.combine(p2a, tmpTransform, p2a);
         Vector3f pivotInA = p2a.getTranslation(); // alias
-        Matrix3f rotInA = p2a.getRotation().toRotationMatrix();
+        Matrix3f rotInA = QuaternionfUtils.toRotationMatrix(p2a.getRotation(), new Matrix3f());
 
         rigidBodyB.getTransform(tmpTransform);
         tmpTransform.setScale(1f); // b2w
@@ -544,7 +546,7 @@ public class New6Dof extends Constraint {
         Transform p2b = new Transform(pivotInWorld, rotInWorld);
         MyMath.combine(p2b, tmpTransform, p2b);
         Vector3f pivotInB = p2b.getTranslation(); // alias
-        Matrix3f rotInB = p2b.getRotation().toRotationMatrix();
+        Matrix3f rotInB = QuaternionfUtils.toRotationMatrix(p2b.getRotation(), new Matrix3f());
 
         New6Dof result = new New6Dof(rigidBodyA, rigidBodyB, pivotInA,
                 pivotInB, rotInA, rotInB, rotationOrder);
@@ -571,7 +573,7 @@ public class New6Dof extends Constraint {
         } else {
             TranslationMotor motor = getTranslationMotor();
             Vector3f vector = motor.get(parameter, null);
-            vector.set(dofIndex, value);
+            vector.setComponent(dofIndex, value);
             motor.set(parameter, vector);
         }
     }
@@ -720,18 +722,18 @@ public class New6Dof extends Constraint {
              * temporarily re-position the body to satisfy the constraint.
              */
             Transform jInWorld = new Transform();
-            jInWorld.getRotation().fromRotationMatrix(rotA);
+            QuaternionfUtils.fromRotationMatrix(jInWorld.getRotation(), rotA);
             jInWorld.setTranslation(pivotA);
 
             Transform jInB = new Transform();
-            jInB.getRotation().fromRotationMatrix(rotB);
+            QuaternionfUtils.fromRotationMatrix(jInB.getRotation(), rotB);
             jInB.setTranslation(pivotB);
 
             Transform bToWorld = jInB.invert();
             MyMath.combine(bToWorld, jInWorld, bToWorld);
 
             Vector3f saveLocation = b.getPhysicsLocation(null);
-            Quaternion saveRotation = b.getPhysicsRotation(null);
+            Quaternionf saveRotation = b.getPhysicsRotation(null);
 
             b.setPhysicsLocation(bToWorld.getTranslation());
             b.setPhysicsRotation(bToWorld.getRotation());

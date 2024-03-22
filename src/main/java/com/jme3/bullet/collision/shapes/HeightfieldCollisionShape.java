@@ -35,12 +35,13 @@ import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.collision.shapes.infos.IndexedMesh;
 import com.jme3.bullet.util.DebugShapeFactory;
 import com.jme3.math.FastMath;
-import com.jme3.math.Vector3f;
 import com.jme3.util.BufferUtils;
-import java.nio.FloatBuffer;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyMath;
+import org.joml.Vector3f;
+
+import java.nio.FloatBuffer;
+import java.util.logging.Logger;
 
 /**
  * A collision shape for terrain defined by a matrix of height values, based on

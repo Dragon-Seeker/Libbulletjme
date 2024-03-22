@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_objects_infos_RigidBodyMotionState
  * Method:    applyTransform
- * Signature: (JLcom/jme3/math/Vector3f;Lcom/jme3/math/Quaternion;)Z
+ * Signature: (JLorg/joml/Vector3f;Lorg/joml/Quaternionf;)Z
  */
 JNIEXPORT jboolean JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_applyTransform
   (JNIEnv *, jclass, jlong, jobject, jobject);
@@ -34,7 +34,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_f
 /*
  * Class:     com_jme3_bullet_objects_infos_RigidBodyMotionState
  * Method:    getWorldLocation
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_getWorldLocation
   (JNIEnv *, jclass, jlong, jobject);
@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_g
 /*
  * Class:     com_jme3_bullet_objects_infos_RigidBodyMotionState
  * Method:    getWorldLocationDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_getWorldLocationDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -50,7 +50,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_g
 /*
  * Class:     com_jme3_bullet_objects_infos_RigidBodyMotionState
  * Method:    getWorldRotation
- * Signature: (JLcom/jme3/math/Matrix3f;)V
+ * Signature: (JLorg/joml/Matrix3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_getWorldRotation
   (JNIEnv *, jclass, jlong, jobject);
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_g
 /*
  * Class:     com_jme3_bullet_objects_infos_RigidBodyMotionState
  * Method:    getWorldRotationDp
- * Signature: (JLcom/simsilica/mathd/Matrix3d;)V
+ * Signature: (JLorg/joml/Matrix3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_getWorldRotationDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -66,7 +66,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_g
 /*
  * Class:     com_jme3_bullet_objects_infos_RigidBodyMotionState
  * Method:    getWorldRotationQuat
- * Signature: (JLcom/jme3/math/Quaternion;)V
+ * Signature: (JLorg/joml/Quaternionf;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_getWorldRotationQuat
   (JNIEnv *, jclass, jlong, jobject);
@@ -74,7 +74,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_g
 /*
  * Class:     com_jme3_bullet_objects_infos_RigidBodyMotionState
  * Method:    getWorldRotationQuatDp
- * Signature: (JLcom/simsilica/mathd/Quatd;)V
+ * Signature: (JLorg/joml/Quaterniond;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_RigidBodyMotionState_getWorldRotationQuatDp
   (JNIEnv *, jclass, jlong, jobject);

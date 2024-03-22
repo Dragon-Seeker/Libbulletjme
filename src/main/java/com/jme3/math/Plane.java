@@ -31,6 +31,8 @@
  */
 package com.jme3.math;
 
+import org.joml.Vector3f;
+
 import java.util.logging.Logger;
 
 /**
@@ -117,7 +119,7 @@ public class Plane implements Cloneable, java.io.Serializable {
 //        float t = constant - normal.dot(point);
 //        return store.set(normal).multLocal(t).addLocal(point);
         float t = (constant - normal.dot(point)) / normal.dot(normal);
-        return store.set(normal).multLocal(t).addLocal(point);
+        return store.set(normal).mul(t).add(point);
     }
 
     /**
@@ -157,7 +159,7 @@ public class Plane implements Cloneable, java.io.Serializable {
     public Plane clone() {
         try {
             Plane p = (Plane) super.clone();
-            p.normal = normal.clone();
+            p.normal = new Vector3f(normal);
             return p;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();

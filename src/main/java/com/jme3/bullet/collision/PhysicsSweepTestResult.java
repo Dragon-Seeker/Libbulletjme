@@ -31,7 +31,8 @@
  */
 package com.jme3.bullet.collision;
 
-import com.jme3.math.Vector3f;
+import org.joml.Vector3f;
+
 import java.util.logging.Logger;
 
 /**
@@ -115,7 +116,7 @@ final public class PhysicsSweepTestResult {
     public Vector3f getHitNormalLocal(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = normal.clone();
+            result = new Vector3f(normal);
         } else {
             result = storeResult.set(normal);
         }

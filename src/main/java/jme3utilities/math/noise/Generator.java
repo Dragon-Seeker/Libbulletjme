@@ -26,14 +26,16 @@
  */
 package jme3utilities.math.noise;
 
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector3f;
-import java.util.Random;
-import java.util.logging.Logger;
+import com.jme3.math.Vector3fUtils;
 import jme3utilities.Validate;
 import jme3utilities.math.MyMath;
 import jme3utilities.math.MyQuaternion;
 import jme3utilities.math.MyVector3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import java.util.Random;
+import java.util.logging.Logger;
 
 /**
  * Generate pseudo-random numbers, quaternions, vectors, and selections.
@@ -110,8 +112,8 @@ public class Generator extends Random {
      * @param storeResult storage for the result (modified if not null)
      * @return a unit quaternion (either storeResult or a new instance)
      */
-    public Quaternion nextQuaternion(Quaternion storeResult) {
-        Quaternion result = (storeResult == null) ? new Quaternion()
+    public Quaternionf nextQuaternion(Quaternionf storeResult) {
+        Quaternionf result = (storeResult == null) ? new Quaternionf()
                 : storeResult;
 
         double lengthSquared = 0.0;
@@ -124,7 +126,7 @@ public class Generator extends Random {
             lengthSquared = MyQuaternion.lengthSquared(result);
         }
         double scaleFactor = 1.0 / Math.sqrt(lengthSquared);
-        result.multLocal((float) scaleFactor);
+        result.mul((float) scaleFactor);
 
         return result;
     }
@@ -147,9 +149,9 @@ public class Generator extends Random {
             lengthSquared = MyVector3f.lengthSquared(result);
         }
         double scaleFactor = 1.0 / Math.sqrt(lengthSquared);
-        result.multLocal((float) scaleFactor);
+        result.mul((float) scaleFactor);
 
-        assert result.isUnitVector();
+        assert Vector3fUtils.isUnitVector(result);
         return result;
     }
 

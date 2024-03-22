@@ -76,7 +76,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setGhostF
 /*
  * Class:     com_jme3_bullet_objects_PhysicsGhostObject
  * Method:    setPhysicsLocation
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysicsLocation
   (JNIEnv *, jclass, jlong, jobject);
@@ -84,7 +84,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysic
 /*
  * Class:     com_jme3_bullet_objects_PhysicsGhostObject
  * Method:    setPhysicsLocationDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysicsLocationDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -92,33 +92,33 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysic
 /*
  * Class:     com_jme3_bullet_objects_PhysicsGhostObject
  * Method:    setPhysicsRotation
- * Signature: (JLcom/jme3/math/Matrix3f;)V
+ * Signature: (JLorg/joml/Matrix3f;)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysicsRotation__JLcom_jme3_math_Matrix3f_2
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysicsRotation__JLorg_joml_Matrix3f_2
   (JNIEnv *, jclass, jlong, jobject);
 
 /*
  * Class:     com_jme3_bullet_objects_PhysicsGhostObject
  * Method:    setPhysicsRotation
- * Signature: (JLcom/jme3/math/Quaternion;)V
+ * Signature: (JLorg/joml/Quaternionf;)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysicsRotation__JLcom_jme3_math_Quaternion_2
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysicsRotation__JLorg_joml_Quaternionf_2
   (JNIEnv *, jclass, jlong, jobject);
 
 /*
  * Class:     com_jme3_bullet_objects_PhysicsGhostObject
  * Method:    setPhysicsRotationDp
- * Signature: (JLcom/simsilica/mathd/Matrix3d;)V
+ * Signature: (JLorg/joml/Matrix3d;)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysicsRotationDp__JLcom_simsilica_mathd_Matrix3d_2
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysicsRotationDp__JLorg_joml_Matrix3d_2
   (JNIEnv *, jclass, jlong, jobject);
 
 /*
  * Class:     com_jme3_bullet_objects_PhysicsGhostObject
  * Method:    setPhysicsRotationDp
- * Signature: (JLcom/simsilica/mathd/Quatd;)V
+ * Signature: (JLorg/joml/Quaterniond;)V
  */
-JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysicsRotationDp__JLcom_simsilica_mathd_Quatd_2
+JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_PhysicsGhostObject_setPhysicsRotationDp__JLorg_joml_Quaterniond_2
   (JNIEnv *, jclass, jlong, jobject);
 
 #ifdef __cplusplus

@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_joints_Anchor
  * Method:    createAnchor
- * Signature: (JIJLcom/jme3/math/Vector3f;ZF)J
+ * Signature: (JIJLorg/joml/Vector3f;ZF)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_Anchor_createAnchor
   (JNIEnv *, jclass, jlong, jint, jlong, jobject, jboolean, jfloat);
@@ -26,7 +26,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_Anchor_setInfluence
 /*
  * Class:     com_jme3_bullet_joints_Anchor
  * Method:    setPivotInB
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_Anchor_setPivotInB
   (JNIEnv *, jclass, jlong, jobject);

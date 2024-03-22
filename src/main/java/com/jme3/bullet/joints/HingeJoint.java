@@ -33,11 +33,14 @@ package com.jme3.bullet.joints;
 
 import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.math.FastMath;
-import com.jme3.math.Quaternion;
+import com.jme3.math.QuaternionfUtils;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
+import com.jme3.math.Vector3fUtils;
 import jme3utilities.math.MyVector3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * A single degree-of-freedom joint based on Bullet's btHingeConstraint.
@@ -120,10 +123,10 @@ public class HingeJoint extends Constraint {
             JointEnd referenceFrame) {
         super(rigidBodyA, JointEnd.A, pivotInA, pivotInWorld);
 
-        assert axisInA.isUnitVector() : axisInA;
-        assert axisInWorld.isUnitVector() : axisInWorld;
-        this.axisA = axisInA.clone();
-        this.axisB = axisInWorld.clone();
+        assert Vector3fUtils.isUnitVector(axisInA) : axisInA;
+        assert Vector3fUtils.isUnitVector(axisInWorld) : axisInWorld;
+        this.axisA = new Vector3f(axisInA);
+        this.axisB = new Vector3f(axisInWorld);
         this.useReferenceFrameA = (referenceFrame == JointEnd.A);
         createJoint();
 
@@ -160,10 +163,10 @@ public class HingeJoint extends Constraint {
             Vector3f axisInB) {
         super(rigidBodyA, rigidBodyB, pivotInA, pivotInB);
 
-        assert axisInA.isUnitVector() : axisInA;
-        assert axisInB.isUnitVector() : axisInB;
-        this.axisA = axisInA.clone();
-        this.axisB = axisInB.clone();
+        assert Vector3fUtils.isUnitVector(axisInA) : axisInA;
+        assert Vector3fUtils.isUnitVector(axisInB) : axisInB;
+        this.axisA = new Vector3f(axisInA);
+        this.axisB = new Vector3f(axisInB);
         createJoint();
 
         // Synchronize btHingeConstraint parameters with local copies.
@@ -394,10 +397,10 @@ public class HingeJoint extends Constraint {
         PhysicsRigidBody a = getBodyA();
         long aId = a.nativeId();
         assert pivotA != null;
-        assert axisA.isUnitVector() : axisA;
+        assert Vector3fUtils.isUnitVector(axisA) : axisA;
 
         assert pivotB != null;
-        assert axisB.isUnitVector() : axisB;
+        assert Vector3fUtils.isUnitVector(axisB) : axisB;
         PhysicsRigidBody b = getBodyB();
 
         long constraintId;
@@ -408,18 +411,18 @@ public class HingeJoint extends Constraint {
              * temporarily re-position the body to satisfy the constraint.
              */
             Vector3f saveLocation = a.getPhysicsLocation(null);
-            Quaternion saveRotation = a.getPhysicsRotation(null);
+            Quaternionf saveRotation = a.getPhysicsRotation(null);
 
             Vector3f cross = axisB.cross(axisA);
             float sinAngle = cross.length();
             float cosAngle = axisB.dot(axisA);
             float angle = FastMath.atan2(sinAngle, cosAngle);
             MyVector3f.normalizeLocal(cross);
-            Quaternion rotation = new Quaternion();
-            rotation.fromAngleNormalAxis(angle, cross);
+            Quaternionf rotation = new Quaternionf();
+            QuaternionfUtils.fromAngleNormalAxis(rotation, angle, cross);
             a.setPhysicsRotation(rotation);
 
-            Vector3f offset = pivotB.subtract(pivotA);
+            Vector3f offset = pivotB.sub(pivotA, new Vector3f());
             a.setPhysicsLocation(offset);
 
             constraintId = createJoint1(aId, pivotA, axisA, useReferenceFrameA);

@@ -84,10 +84,10 @@ public:
 
     static jmethodID PhysicsGhostObject_addOverlappingObject;
 
-    static jfieldID Vec3d_x;
-    static jfieldID Vec3d_y;
-    static jfieldID Vec3d_z;
-    static jmethodID Vec3d_set;
+    static jfieldID Vector3d_x;
+    static jfieldID Vector3d_y;
+    static jfieldID Vector3d_z;
+    static jmethodID Vector3d_set;
 
     static jclass Vector3f;
     static jfieldID Vector3f_x;
@@ -95,17 +95,17 @@ public:
     static jfieldID Vector3f_z;
     static jmethodID Vector3f_set;
 
-    static jfieldID Quatd_x;
-    static jfieldID Quatd_y;
-    static jfieldID Quatd_z;
-    static jfieldID Quatd_w;
-    static jmethodID Quatd_set;
+    static jfieldID Quaterniond_x;
+    static jfieldID Quaterniond_y;
+    static jfieldID Quaterniond_z;
+    static jfieldID Quaterniond_w;
+    static jmethodID Quaterniond_set;
 
-    static jfieldID Quaternion_x;
-    static jfieldID Quaternion_y;
-    static jfieldID Quaternion_z;
-    static jfieldID Quaternion_w;
-    static jmethodID Quaternion_set;
+    static jfieldID Quaternionf_x;
+    static jfieldID Quaternionf_y;
+    static jfieldID Quaternionf_z;
+    static jfieldID Quaternionf_w;
+    static jmethodID Quaternionf_set;
 
     static jfieldID Matrix3d_m00;
     static jfieldID Matrix3d_m01;

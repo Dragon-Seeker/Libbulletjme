@@ -26,16 +26,17 @@
  */
 package jme3utilities.math;
 
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
 import com.jme3.util.BufferUtils;
+import jme3utilities.Validate;
+import org.joml.Matrix3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
 
 /**
  * Utility methods that operate on buffers, especially float buffers containing
@@ -109,9 +110,9 @@ final public class MyBuffer {
             aboveMean[2] = z - sampleMean.z;
             for (int rowIndex = 0; rowIndex < numAxes; ++rowIndex) {
                 for (int colIndex = rowIndex; colIndex < numAxes; ++colIndex) {
-                    float sum = result.get(rowIndex, colIndex);
+                    float sum = result.get(colIndex, rowIndex);
                     sum += aboveMean[rowIndex] * aboveMean[colIndex];
-                    result.set(rowIndex, colIndex, sum);
+                    result.set(colIndex, rowIndex, sum);
                 }
             }
         }
@@ -120,10 +121,10 @@ final public class MyBuffer {
         float nMinus1 = numVectors - 1;
         for (int rowIndex = 0; rowIndex < numAxes; ++rowIndex) {
             for (int colIndex = rowIndex; colIndex < numAxes; ++colIndex) {
-                float sum = result.get(rowIndex, colIndex);
+                float sum = result.get(colIndex, rowIndex);
                 float element = sum / nMinus1;
-                result.set(rowIndex, colIndex, element);
                 result.set(colIndex, rowIndex, element);
+                result.set(rowIndex, colIndex, element);
             }
         }
 
@@ -415,9 +416,9 @@ final public class MyBuffer {
             float y = buffer.get(position + MyVector3f.yAxis);
             float z = buffer.get(position + MyVector3f.zAxis);
 
-            result.addLocal(x, y, z);
+            result.add(x, y, z);
         }
-        result.divideLocal(numVectors);
+        result.div(numVectors);
 
         return result;
     }
@@ -453,7 +454,7 @@ final public class MyBuffer {
      * @param rotation the rotation to apply (not null, unaffected)
      */
     public static void rotate(FloatBuffer buffer, int startPosition,
-            int endPosition, Quaternion rotation) {
+            int endPosition, Quaternionf rotation) {
         Validate.nonNull(buffer, "buffer");
         Validate.nonNull(rotation, "rotation");
         Validate.inRange(startPosition, "start position", 0, endPosition);
@@ -529,7 +530,7 @@ final public class MyBuffer {
         for (int vectorIndex = 0; vectorIndex < numVectors; ++vectorIndex) {
             int position = startPosition + vectorIndex * numAxes;
             get(buffer, position, tmpVector);
-            tmpVector.addLocal(offsetVector);
+            tmpVector.add(offsetVector);
             put(buffer, position, tmpVector);
         }
     }

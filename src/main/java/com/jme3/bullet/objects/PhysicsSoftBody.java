@@ -38,24 +38,17 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.objects.infos.Cluster;
 import com.jme3.bullet.objects.infos.SoftBodyConfig;
 import com.jme3.bullet.objects.infos.SoftBodyMaterial;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
+import com.jme3.math.Vector3fUtils;
 import com.jme3.util.BufferUtils;
-import com.simsilica.mathd.Matrix3d;
-import com.simsilica.mathd.Quatd;
-import com.simsilica.mathd.Vec3d;
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.nio.ShortBuffer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.lbj.IndexBuffer;
 import jme3utilities.math.MyBuffer;
+import org.joml.*;
+
+import java.nio.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A collision object to simulate a soft body, based on Bullet's btSoftBody. It
@@ -316,7 +309,7 @@ public class PhysicsSoftBody extends PhysicsBody {
      *
      * @param rotation the rotation to apply (not null, unaffected)
      */
-    public void applyRotation(Quaternion rotation) {
+    public void applyRotation(Quaternionf rotation) {
         Validate.nonNull(rotation, "rotation");
 
         long objectId = nativeId();
@@ -1192,7 +1185,7 @@ public class PhysicsSoftBody extends PhysicsBody {
      * @param location the desired location (in physics-space coordinates, not
      * null, finite, unaffected)
      */
-    public void setPhysicsLocationDp(Vec3d location) {
+    public void setPhysicsLocationDp(Vector3d location) {
         Validate.finite(location, "location");
 
         long objectId = nativeId();
@@ -1477,7 +1470,7 @@ public class PhysicsSoftBody extends PhysicsBody {
         long objectId = nativeId();
         getPhysicsLocation(objectId, result);
 
-        assert Vector3f.isValidVector(result) : result;
+        assert Vector3fUtils.isValidVector(result) : result;
         return result;
     }
 
@@ -1489,8 +1482,8 @@ public class PhysicsSoftBody extends PhysicsBody {
      * storeResult or a new instance, not null, finite)
      */
     @Override
-    public Vec3d getPhysicsLocationDp(Vec3d storeResult) {
-        Vec3d result = (storeResult == null) ? new Vec3d() : storeResult;
+    public Vector3d getPhysicsLocationDp(Vector3d storeResult) {
+        Vector3d result = (storeResult == null) ? new Vector3d() : storeResult;
 
         long objectId = nativeId();
         getPhysicsLocationDp(objectId, result);
@@ -1507,10 +1500,10 @@ public class PhysicsSoftBody extends PhysicsBody {
      * null)
      */
     @Override
-    public Quaternion getPhysicsRotation(Quaternion storeResult) {
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
-        result.loadIdentity();
+    public Quaternionf getPhysicsRotation(Quaternionf storeResult) {
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
+        result.identity();
         return result;
     }
 
@@ -1522,10 +1515,10 @@ public class PhysicsSoftBody extends PhysicsBody {
      * null)
      */
     @Override
-    public Quatd getPhysicsRotationDp(Quatd storeResult) {
-        Quatd result;
+    public Quaterniond getPhysicsRotationDp(Quaterniond storeResult) {
+        Quaterniond result;
         if (storeResult == null) {
-            result = new Quatd();
+            result = new Quaterniond();
         } else {
             result = storeResult.set(0., 0., 0., 1.);
         }
@@ -1543,7 +1536,7 @@ public class PhysicsSoftBody extends PhysicsBody {
     @Override
     public Matrix3f getPhysicsRotationMatrix(Matrix3f storeResult) {
         Matrix3f result = (storeResult == null) ? new Matrix3f() : storeResult;
-        result.loadIdentity();
+        result.identity();
         return result;
     }
 
@@ -1561,7 +1554,7 @@ public class PhysicsSoftBody extends PhysicsBody {
         if (storeResult == null) {
             result = new Matrix3d();
         } else {
-            result = storeResult.makeIdentity();
+            result = storeResult.identity();
         }
         return result;
     }
@@ -1672,7 +1665,7 @@ public class PhysicsSoftBody extends PhysicsBody {
             appendTetras(long bodyId, int numNodes, ShortBuffer shortBuffer);
 
     native private static void
-            applyPhysicsRotation(long bodyId, Quaternion quaternion);
+            applyPhysicsRotation(long bodyId, Quaternionf quaternion);
 
     native private static void applyPhysicsScale(long bodyId, Vector3f vector);
 
@@ -1777,7 +1770,7 @@ public class PhysicsSoftBody extends PhysicsBody {
             getPhysicsLocation(long bodyId, Vector3f storeVector);
 
     native private static void
-            getPhysicsLocationDp(long bodyId, Vec3d storeVector);
+            getPhysicsLocationDp(long bodyId, Vector3d storeVector);
 
     native private static float getRestLengthScale(long bodyId);
 
@@ -1843,7 +1836,7 @@ public class PhysicsSoftBody extends PhysicsBody {
             setPhysicsLocation(long bodyId, Vector3f locationVector);
 
     native private static void
-            setPhysicsLocationDp(long bodyId, Vec3d locationVector);
+            setPhysicsLocationDp(long bodyId, Vector3d locationVector);
 
     native private static void
             setPose(long bodyId, boolean setVolumePose, boolean setFramePose);

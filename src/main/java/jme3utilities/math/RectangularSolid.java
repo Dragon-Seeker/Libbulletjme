@@ -26,10 +26,11 @@
  */
 package jme3utilities.math;
 
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * A rectangular solid whose axes might not be aligned with the world axes.
@@ -52,7 +53,7 @@ public class RectangularSolid {
     /**
      * orientation of the local (principal) axes (default=identity)
      */
-    final private Quaternion localToWorld = new Quaternion();
+    final private Quaternionf localToWorld = new Quaternionf();
     /**
      * maximum coordinate value for each local axis
      */
@@ -78,7 +79,7 @@ public class RectangularSolid {
      */
     public RectangularSolid(Vector3f halfExtents) {
         maxima.set(halfExtents);
-        halfExtents.mult(-1f, minima);
+        halfExtents.mul(-1f, minima);
     }
     // *************************************************************************
     // new methods exposed
@@ -92,8 +93,8 @@ public class RectangularSolid {
      */
     public Vector3f halfExtents(Vector3f storeResult) {
         Vector3f result = (storeResult == null) ? new Vector3f() : storeResult;
-        maxima.subtract(minima, result);
-        result.divideLocal(2f);
+        maxima.sub(minima, result);
+        result.div(2f);
 
         assert result.x >= 0f : result.x;
         assert result.y >= 0f : result.y;
@@ -129,7 +130,7 @@ public class RectangularSolid {
     public Vector3f maxima(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = maxima.clone();
+            result = new Vector3f(maxima);
         } else {
             result = storeResult.set(maxima);
         }
@@ -145,7 +146,7 @@ public class RectangularSolid {
     public Vector3f minima(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = minima.clone();
+            result = new Vector3f(minima);
         } else {
             result = storeResult.set(minima);
         }

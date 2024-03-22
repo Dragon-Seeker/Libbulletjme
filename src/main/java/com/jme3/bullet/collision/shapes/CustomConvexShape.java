@@ -31,9 +31,10 @@
  */
 package com.jme3.bullet.collision.shapes;
 
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * An abstract base class for collision shapes defined in terms of their
@@ -109,7 +110,7 @@ abstract public class CustomConvexShape extends ConvexShape {
             this.halfExtents = null;
         } else {
             Validate.positive(halfExtents, "half extents");
-            this.halfExtents = halfExtents.clone();
+            this.halfExtents = new Vector3f(halfExtents);
         }
         createShape();
     }

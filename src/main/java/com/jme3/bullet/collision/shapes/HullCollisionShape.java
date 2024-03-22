@@ -36,21 +36,17 @@ import com.jme3.bullet.collision.shapes.infos.ChildCollisionShape;
 import com.jme3.math.FastMath;
 import com.jme3.math.Plane;
 import com.jme3.math.Triangle;
-import com.jme3.math.Vector3f;
 import com.jme3.util.BufferUtils;
+import jme3utilities.Validate;
+import jme3utilities.math.*;
+import org.joml.Vector3f;
+import vhacd.VHACDHull;
+import vhacd4.Vhacd4Hull;
+
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
-import jme3utilities.math.MyBuffer;
-import jme3utilities.math.MyMath;
-import jme3utilities.math.MyVector3f;
-import jme3utilities.math.RectangularSolid;
-import jme3utilities.math.VectorSet;
-import jme3utilities.math.VectorSetUsingBuffer;
-import vhacd.VHACDHull;
-import vhacd4.Vhacd4Hull;
 
 /**
  * A convex-hull collision shape based on Bullet's {@code btConvexHullShape}.
@@ -441,7 +437,7 @@ public class HullCollisionShape extends ConvexShape {
         Vector3f offset = tmpVertex; // alias
         newMinusSet.maxMin(max, min);
         Vector3f minusCenter = MyVector3f.midpoint(max, min, null);
-        offset.set(minusCenter).negateLocal();
+        offset.set(minusCenter).negate();
         FloatBuffer flippedBuffer = newMinusSet.toBuffer();
         MyBuffer.translate(flippedBuffer, 0, flippedBuffer.limit(), offset);
         HullCollisionShape minusShape = new HullCollisionShape(flippedBuffer);
@@ -453,7 +449,7 @@ public class HullCollisionShape extends ConvexShape {
          */
         newPlusSet.maxMin(max, min);
         Vector3f plusCenter = MyVector3f.midpoint(max, min, null);
-        offset.set(plusCenter).negateLocal();
+        offset.set(plusCenter).negate();
         flippedBuffer = newPlusSet.toBuffer();
         MyBuffer.translate(flippedBuffer, 0, flippedBuffer.limit(), offset);
         HullCollisionShape plusShape = new HullCollisionShape(flippedBuffer);

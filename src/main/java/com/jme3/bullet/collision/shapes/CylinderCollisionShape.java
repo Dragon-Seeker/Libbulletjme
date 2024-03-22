@@ -33,14 +33,15 @@ package com.jme3.bullet.collision.shapes;
 
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.util.DebugShapeFactory;
-import com.jme3.math.Vector3f;
-import java.nio.FloatBuffer;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyBuffer;
 import jme3utilities.math.MyMath;
 import jme3utilities.math.MyVector3f;
 import jme3utilities.math.MyVolume;
+import org.joml.Vector3f;
+
+import java.nio.FloatBuffer;
+import java.util.logging.Logger;
 
 /**
  * A cylindrical collision shape based on Bullet's {@code btCylinderShapeX},
@@ -87,7 +88,7 @@ public class CylinderCollisionShape extends ConvexShape {
 
         this.axis = axisIndex;
         halfExtents.set(radius, radius, radius);
-        halfExtents.set(axisIndex, height / 2f);
+        halfExtents.setComponent(axisIndex, height / 2f);
         createShape();
     }
 
@@ -119,7 +120,7 @@ public class CylinderCollisionShape extends ConvexShape {
         float radius = MyBuffer.cylinderRadius(
                 buffer, startPosition, endPosition, axisIndex);
         halfExtents.set(radius, radius, radius);
-        halfExtents.set(axisIndex, halfHeight);
+        halfExtents.setComponent(axisIndex, halfHeight);
         createShape();
     }
 
@@ -180,7 +181,7 @@ public class CylinderCollisionShape extends ConvexShape {
 
         Vector3f result;
         if (storeResult == null) {
-            result = halfExtents.clone();
+            result = new Vector3f(halfExtents);
         } else {
             result = storeResult.set(halfExtents);
         }
@@ -278,7 +279,7 @@ public class CylinderCollisionShape extends ConvexShape {
      */
     @Override
     public HullCollisionShape toHullShape() {
-        Vector3f hes = halfExtents.mult(scale);
+        Vector3f hes = halfExtents.mul(scale, new Vector3f());
         float minHalfExtent = MyMath.min(hes.x, hes.y, hes.z); // in PSU
         float defaultMargin = getDefaultMargin();
         float hullMargin = Math.min(defaultMargin, minHalfExtent);
@@ -286,7 +287,7 @@ public class CylinderCollisionShape extends ConvexShape {
          * Construct a copy of this shape with its half extents reduced
          * to compensate for the hull's collision margin.
          */
-        hes.subtractLocal(hullMargin, hullMargin, hullMargin);
+        hes.sub(hullMargin, hullMargin, hullMargin);
         MyVector3f.accumulateMaxima(hes, new Vector3f(1e-6f, 1e-6f, 1e-6f));
         CylinderCollisionShape reducedShape
                 = new CylinderCollisionShape(hes, axis);

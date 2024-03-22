@@ -32,6 +32,7 @@
 package com.jme3.math;
 
 import jme3utilities.math.MyVector3f;
+import org.joml.Vector3f;
 
 /**
  * Describes a triangle in terms of its vertex locations, with auxiliary storage
@@ -201,7 +202,7 @@ public class Triangle {
         } else {
             normal.set(pointB);
         }
-        normal.subtractLocal(pointA).crossLocal(pointC.x - pointA.x, pointC.y - pointA.y, pointC.z - pointA.z);
+        normal.sub(pointA).cross(pointC.x - pointA.x, pointC.y - pointA.y, pointC.z - pointA.z);
         MyVector3f.normalizeLocal(normal);
     }
 

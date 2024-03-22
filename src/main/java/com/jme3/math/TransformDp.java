@@ -31,10 +31,11 @@
  */
 package com.jme3.math;
 
-import com.simsilica.mathd.Quatd;
-import com.simsilica.mathd.Vec3d;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Quaterniond;
+import org.joml.Vector3d;
+
+import java.util.logging.Logger;
 
 /**
  * A 3-D coordinate transform composed of translation, rotation, and scaling.
@@ -57,15 +58,15 @@ final public class TransformDp {
     /**
      * Rotation component.
      */
-    final private Quatd rotation = new Quatd();
+    final private Quaterniond rotation = new Quaterniond();
     /**
      * Scaling component: a scale factor for each local axis.
      */
-    final private Vec3d scaling = new Vec3d(1.0, 1.0, 1.0);
+    final private Vector3d scaling = new Vector3d(1.0, 1.0, 1.0);
     /**
      * Translation component: an offset for each local axis.
      */
-    final private Vec3d translation = new Vec3d();
+    final private Vector3d translation = new Vector3d();
     // *************************************************************************
     // constructors
 
@@ -83,7 +84,7 @@ final public class TransformDp {
      * @param translate the desired translation (not null, unaffected)
      * @param rotate the desired rotation (not null, unaffected)
      */
-    public TransformDp(Vec3d translate, Quatd rotate) {
+    public TransformDp(Vector3d translate, Quaterniond rotate) {
         Validate.nonNull(translate, "translate");
         Validate.nonNull(rotate, "rotate");
 
@@ -98,7 +99,7 @@ final public class TransformDp {
      * @param rotate the desired rotation (not null, unaffected)
      * @param scale the desired scaling (not null, unaffected)
      */
-    public TransformDp(Vec3d translate, Quatd rotate, Vec3d scale) {
+    public TransformDp(Vector3d translate, Quaterniond rotate, Vector3d scale) {
         Validate.nonNull(translate, "translation");
         Validate.nonNull(rotate, "rotate");
         Validate.nonNull(scale, "scale");
@@ -130,15 +131,15 @@ final public class TransformDp {
      * @return the (modified) current instance (for chaining)
      */
     public TransformDp combineWithParent(TransformDp parent) {
-        Vec3d parentScaling = parent.getScale(); // alias
-        scaling.multLocal(parentScaling);
+        Vector3d parentScaling = parent.getScale(); // alias
+        scaling.mul(parentScaling);
 
-        Quatd parentRotation = parent.getRotation(); // alias
-        parentRotation.mult(rotation, rotation);
+        Quaterniond parentRotation = parent.getRotation(); // alias
+        parentRotation.mul(rotation, rotation);
 
-        translation.multLocal(parentScaling);
-        parentRotation.mult(translation, translation);
-        translation.addLocal(parent.translation);
+        translation.mul(parentScaling);
+        parentRotation.transform(translation, translation);
+        translation.add(parent.translation);
 
         return this;
     }
@@ -148,7 +149,7 @@ final public class TransformDp {
      *
      * @return the pre-existing instance (not null)
      */
-    public Quatd getRotation() {
+    public Quaterniond getRotation() {
         return rotation;
     }
 
@@ -157,7 +158,7 @@ final public class TransformDp {
      *
      * @return the pre-existing instance (not null)
      */
-    public Vec3d getScale() {
+    public Vector3d getScale() {
         return scaling;
     }
 
@@ -166,7 +167,7 @@ final public class TransformDp {
      *
      * @return the pre-existing instance (not null)
      */
-    public Vec3d getTranslation() {
+    public Vector3d getTranslation() {
         return translation;
     }
 
@@ -208,7 +209,7 @@ final public class TransformDp {
      * @param scale the desired scaling (not null, unaffected)
      * @return the (modified) current instance (for chaining)
      */
-    public TransformDp set(Vec3d translate, Quatd rotate, Vec3d scale) {
+    public TransformDp set(Vector3d translate, Quaterniond rotate, Vector3d scale) {
         Validate.nonNull(translate, "translate");
         Validate.nonNull(rotate, "rotate");
         Validate.nonNull(scale, "scale");
@@ -226,7 +227,7 @@ final public class TransformDp {
      * @param rotate the desired rotation value (not null, unaffected)
      * @return the (modified) current instance (for chaining)
      */
-    public TransformDp setRotation(Quatd rotate) {
+    public TransformDp setRotation(Quaterniond rotate) {
         Validate.nonNull(rotate, "rotate");
         rotation.set(rotate);
         return this;
@@ -250,7 +251,7 @@ final public class TransformDp {
      * @param scale the desired scaling (not null, unaffected)
      * @return the (modified) current instance (for chaining)
      */
-    public TransformDp setScale(Vec3d scale) {
+    public TransformDp setScale(Vector3d scale) {
         Validate.nonNull(scale, "scale");
         scaling.set(scale);
         return this;
@@ -262,7 +263,7 @@ final public class TransformDp {
      * @param translate the desired translation (not null, unaffected)
      * @return the (modified) current instance (for chaining)
      */
-    public TransformDp setTranslation(Vec3d translate) {
+    public TransformDp setTranslation(Vector3d translate) {
         Validate.nonNull(translate, "translate");
         translation.set(translate);
         return this;
@@ -282,17 +283,17 @@ final public class TransformDp {
      * @return the transformed coordinates (either {@code storeResult} or a new
      * Vec3d)
      */
-    public Vec3d transformInverseVector(Vec3d in, Vec3d storeResult) {
-        Vec3d result;
+    public Vector3d transformInverseVector(Vector3d in, Vector3d storeResult) {
+        Vector3d result;
         if (storeResult == null) {
-            result = in.clone();
+            result = new Vector3d(in);
         } else {
             result = storeResult.set(in);
         }
 
-        result.subtractLocal(translation);
-        rotation.inverse().mult(result, result);
-        result.divideLocal(scaling);
+        result.sub(translation);
+        rotation.invert(new Quaterniond()).transformUnit(result, result);
+        result.div(scaling);
 
         return result;
     }
@@ -312,17 +313,17 @@ final public class TransformDp {
      * @return the transformed coordinates (either {@code storeResult} or a new
      * Vec3d)
      */
-    public Vec3d transformVector(final Vec3d in, Vec3d storeResult) {
-        Vec3d result;
+    public Vector3d transformVector(final Vector3d in, Vector3d storeResult) {
+        Vector3d result;
         if (storeResult == null) {
-            result = in.clone();
+            result = new Vector3d(in);
         } else {
             result = storeResult.set(in);
         }
 
-        result.multLocal(scaling);
-        rotation.mult(result, result);
-        result.addLocal(translation);
+        result.mul(scaling);
+        rotation.transform(result, result);
+        result.add(translation);
 
         return result;
     }

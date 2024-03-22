@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_objects_infos_VehicleController
  * Method:    addWheel
- * Signature: (JLcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;FFJZ)I
+ * Signature: (JLorg/joml/Vector3f;Lorg/joml/Vector3f;Lorg/joml/Vector3f;FFJZ)I
  */
 JNIEXPORT jint JNICALL Java_com_jme3_bullet_objects_infos_VehicleController_addWheel
   (JNIEnv *, jclass, jlong, jobject, jobject, jobject, jfloat, jfloat, jlong, jboolean);
@@ -66,7 +66,7 @@ JNIEXPORT jint JNICALL Java_com_jme3_bullet_objects_infos_VehicleController_getF
 /*
  * Class:     com_jme3_bullet_objects_infos_VehicleController
  * Method:    getForwardVector
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_VehicleController_getForwardVector
   (JNIEnv *, jclass, jlong, jobject);
@@ -122,7 +122,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_VehicleController_setC
 /*
  * Class:     com_jme3_bullet_objects_infos_VehicleController
  * Method:    setupCoordinateSystem
- * Signature: (JLcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;Lorg/joml/Vector3f;Lorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_infos_VehicleController_setupCoordinateSystem
   (JNIEnv *, jclass, jlong, jobject, jobject, jobject);

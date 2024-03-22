@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_RotationOrder
  * Method:    matrixToEuler
- * Signature: (ILcom/jme3/math/Matrix3f;Lcom/jme3/math/Vector3f;)Z
+ * Signature: (ILorg/joml/Matrix3f;Lorg/joml/Vector3f;)Z
  */
 JNIEXPORT jboolean JNICALL Java_com_jme3_bullet_RotationOrder_matrixToEuler
   (JNIEnv *, jclass, jint, jobject, jobject);

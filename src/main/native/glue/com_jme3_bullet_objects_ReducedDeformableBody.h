@@ -52,7 +52,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_objects_ReducedDeformableBody
  * Method:    create
- * Signature: (J[Lcom/jme3/math/Vector3f;[FI)J
+ * Signature: (J[Lorg/joml/Vector3f;[FI)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_objects_ReducedDeformableBody_create
   (JNIEnv *, jclass, jlong, jobjectArray, jfloatArray, jint);
@@ -60,7 +60,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_objects_ReducedDeformableBody_creat
 /*
  * Class:     com_jme3_bullet_objects_ReducedDeformableBody
  * Method:    getLinearVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_ReducedDeformableBody_getLinearVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -92,7 +92,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_ReducedDeformableBody_setDam
 /*
  * Class:     com_jme3_bullet_objects_ReducedDeformableBody
  * Method:    setLinearVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_ReducedDeformableBody_setLinearVelocity
   (JNIEnv *, jclass, jlong, jobject);

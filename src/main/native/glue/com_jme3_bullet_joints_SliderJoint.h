@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_joints_SliderJoint
  * Method:    createJoint
- * Signature: (JJLcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;Lcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;Z)J
+ * Signature: (JJLorg/joml/Vector3f;Lorg/joml/Matrix3f;Lorg/joml/Vector3f;Lorg/joml/Matrix3f;Z)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_SliderJoint_createJoint
   (JNIEnv *, jclass, jlong, jlong, jobject, jobject, jobject, jobject, jboolean);
@@ -18,7 +18,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_SliderJoint_createJoint
 /*
  * Class:     com_jme3_bullet_joints_SliderJoint
  * Method:    createJoint1
- * Signature: (JLcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;Z)J
+ * Signature: (JLorg/joml/Vector3f;Lorg/joml/Matrix3f;Z)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_joints_SliderJoint_createJoint1
   (JNIEnv *, jclass, jlong, jobject, jobject, jboolean);

@@ -27,55 +27,21 @@
 package jme3utilities.minie;
 
 import com.jme3.bounding.BoundingBox;
-import com.jme3.bullet.DeformableSpace;
-import com.jme3.bullet.MultiBody;
-import com.jme3.bullet.MultiBodyJointType;
-import com.jme3.bullet.MultiBodyLink;
-import com.jme3.bullet.MultiBodySpace;
-import com.jme3.bullet.PhysicsSoftSpace;
-import com.jme3.bullet.PhysicsSpace;
-import com.jme3.bullet.RayTestFlag;
-import com.jme3.bullet.SoftBodyWorldInfo;
-import com.jme3.bullet.SolverInfo;
-import com.jme3.bullet.SolverMode;
-import com.jme3.bullet.SolverType;
+import com.jme3.bullet.*;
 import com.jme3.bullet.collision.Activation;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
-import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.bullet.collision.shapes.CompoundCollisionShape;
-import com.jme3.bullet.collision.shapes.GImpactCollisionShape;
-import com.jme3.bullet.collision.shapes.HeightfieldCollisionShape;
-import com.jme3.bullet.collision.shapes.HullCollisionShape;
-import com.jme3.bullet.collision.shapes.MeshCollisionShape;
-import com.jme3.bullet.collision.shapes.SimplexCollisionShape;
+import com.jme3.bullet.collision.shapes.*;
 import com.jme3.bullet.collision.shapes.infos.ChildCollisionShape;
 import com.jme3.bullet.joints.New6Dof;
 import com.jme3.bullet.joints.PhysicsJoint;
 import com.jme3.bullet.joints.SixDofJoint;
 import com.jme3.bullet.joints.motors.RotationalLimitMotor;
 import com.jme3.bullet.joints.motors.TranslationalLimitMotor;
-import com.jme3.bullet.objects.MultiBodyCollider;
-import com.jme3.bullet.objects.PhysicsBody;
-import com.jme3.bullet.objects.PhysicsCharacter;
-import com.jme3.bullet.objects.PhysicsGhostObject;
-import com.jme3.bullet.objects.PhysicsRigidBody;
-import com.jme3.bullet.objects.PhysicsSoftBody;
-import com.jme3.bullet.objects.PhysicsVehicle;
-import com.jme3.bullet.objects.VehicleWheel;
+import com.jme3.bullet.objects.*;
 import com.jme3.bullet.objects.infos.Cluster;
 import com.jme3.bullet.objects.infos.RigidBodyMotionState;
 import com.jme3.bullet.objects.infos.SoftBodyConfig;
 import com.jme3.bullet.objects.infos.SoftBodyMaterial;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector3f;
-import java.io.PrintStream;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.Collection;
-import java.util.logging.Logger;
 import jme3utilities.MyString;
 import jme3utilities.Validate;
 import jme3utilities.debug.Describer;
@@ -83,6 +49,17 @@ import jme3utilities.debug.Dumper;
 import jme3utilities.math.MyBuffer;
 import jme3utilities.math.MyQuaternion;
 import jme3utilities.math.MyVector3f;
+import org.joml.Matrix3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import java.io.PrintStream;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Collection;
+import java.util.logging.Logger;
 
 /**
  * Dump Minie data structures for debugging purposes.
@@ -361,7 +338,7 @@ public class PhysicsDumper extends Dumper {
         String locString = MyVector3f.describe(location);
         stream.printf(" loc[%s]", locString);
 
-        Quaternion orientation = ghost.getPhysicsRotation(null);
+        Quaternionf orientation = ghost.getPhysicsRotation(null);
         if (!MyQuaternion.isRotationIdentity(orientation)) {
             String orientText = MyQuaternion.describe(orientation);
             stream.printf(" orient[%s]", orientText);
@@ -515,7 +492,7 @@ public class PhysicsDumper extends Dumper {
             stream.printf(" loc[%s]", locString);
         }
 
-        Quaternion orientation = body.getPhysicsRotation(null);
+        Quaternionf orientation = body.getPhysicsRotation(null);
         if (!MyQuaternion.isRotationIdentity(orientation)) {
             String orientText = MyQuaternion.describe(orientation);
             stream.printf(" orient[%s]", orientText);
@@ -637,7 +614,7 @@ public class PhysicsDumper extends Dumper {
                 numFaces, (numFaces == 1) ? "" : "s",
                 numTetras, (numTetras == 1) ? "" : "s");
 
-        Quaternion orientation = body.getPhysicsRotation(null);
+        Quaternionf orientation = body.getPhysicsRotation(null);
         if (!MyQuaternion.isRotationIdentity(orientation)) {
             desc = MyQuaternion.describe(orientation);
             stream.printf(" orient[%s]", desc);
@@ -1122,7 +1099,7 @@ public class PhysicsDumper extends Dumper {
 
         stream.print(" inert[");
         Vector3f iiLocal = rigidBody.getInverseInertiaLocal(null);
-        Vector3f inert = scaleIdentity.divide(iiLocal);
+        Vector3f inert = scaleIdentity.div(iiLocal, new Vector3f());
         stream.print(MyVector3f.describe(inert));
         stream.print(']');
 
@@ -1186,7 +1163,7 @@ public class PhysicsDumper extends Dumper {
                 stream.print(']');
             }
 
-            Quaternion rot = child.copyRotation(null);
+            Quaternionf rot = child.copyRotation(null);
             if (!MyQuaternion.isRotationIdentity(rot)) {
                 stream.print(" rot[");
                 desc = MyQuaternion.describe(rot);

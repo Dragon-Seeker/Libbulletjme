@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_collision_shapes_CustomConvexShape
  * Method:    createShapeNative
- * Signature: (Lcom/jme3/math/Vector3f;)J
+ * Signature: (Lorg/joml/Vector3f;)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_collision_shapes_CustomConvexShape_createShapeNative
   (JNIEnv *, jobject, jobject);

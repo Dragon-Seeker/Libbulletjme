@@ -35,10 +35,11 @@ import com.jme3.bullet.collision.shapes.infos.ChildCollisionShape;
 import com.jme3.bullet.collision.shapes.infos.CompoundMesh;
 import com.jme3.bullet.collision.shapes.infos.IndexedMesh;
 import com.jme3.math.Triangle;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyVector3f;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * A mesh collisions shape based on Bullet's {@code btGImpactMeshShape}.
@@ -173,7 +174,7 @@ public class GImpactCollisionShape extends CollisionShape {
             for (int i = 0; i < 2; ++i) {
                 mp[i].maxMin(max, min);
                 MyVector3f.midpoint(max, min, center);
-                offset.set(center).negateLocal();
+                offset.set(center).negate();
                 GImpactCollisionShape shape
                         = new GImpactCollisionShape(mp[i], offset);
                 shape.setScale(scale);

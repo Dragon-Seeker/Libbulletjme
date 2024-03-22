@@ -26,7 +26,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_VehicleWheel_getBrake
 /*
  * Class:     com_jme3_bullet_objects_VehicleWheel
  * Method:    getCollisionLocation
- * Signature: (JILcom/jme3/math/Vector3f;)V
+ * Signature: (JILorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_VehicleWheel_getCollisionLocation
   (JNIEnv *, jclass, jlong, jint, jobject);
@@ -34,7 +34,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_VehicleWheel_getCollisionLoc
 /*
  * Class:     com_jme3_bullet_objects_VehicleWheel
  * Method:    getCollisionNormal
- * Signature: (JILcom/jme3/math/Vector3f;)V
+ * Signature: (JILorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_VehicleWheel_getCollisionNormal
   (JNIEnv *, jclass, jlong, jint, jobject);
@@ -114,7 +114,7 @@ JNIEXPORT jfloat JNICALL Java_com_jme3_bullet_objects_VehicleWheel_getSuspension
 /*
  * Class:     com_jme3_bullet_objects_VehicleWheel
  * Method:    getWheelLocation
- * Signature: (JILcom/jme3/math/Vector3f;)V
+ * Signature: (JILorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_VehicleWheel_getWheelLocation
   (JNIEnv *, jclass, jlong, jint, jobject);
@@ -122,7 +122,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_VehicleWheel_getWheelLocatio
 /*
  * Class:     com_jme3_bullet_objects_VehicleWheel
  * Method:    getWheelRotation
- * Signature: (JILcom/jme3/math/Matrix3f;)V
+ * Signature: (JILorg/joml/Matrix3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_VehicleWheel_getWheelRotation
   (JNIEnv *, jclass, jlong, jint, jobject);

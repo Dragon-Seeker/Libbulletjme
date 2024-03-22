@@ -32,10 +32,12 @@
 package com.jme3.bullet.joints;
 
 import com.jme3.bullet.objects.PhysicsRigidBody;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
+import com.jme3.math.Vector3fUtils;
 import jme3utilities.Validate;
 import jme3utilities.math.MyVector3f;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * A joint that couples the angular velocities of two bodies, based on Bullet's
@@ -93,7 +95,7 @@ public class GearJoint extends Constraint {
      */
     public GearJoint(PhysicsRigidBody rigidBodyA, PhysicsRigidBody rigidBodyB,
             Vector3f axisInA, Vector3f axisInB) {
-        super(rigidBodyA, rigidBodyB, Vector3f.ZERO, Vector3f.ZERO);
+        super(rigidBodyA, rigidBodyB, Vector3fUtils.ZERO, Vector3fUtils.ZERO);
 
         Validate.nonZero(axisInA, "axis in body A");
         Validate.nonZero(axisInB, "axis in body B");
@@ -122,7 +124,7 @@ public class GearJoint extends Constraint {
      */
     public GearJoint(PhysicsRigidBody rigidBodyA, PhysicsRigidBody rigidBodyB,
             Vector3f axisInA, Vector3f axisInB, float ratio) {
-        super(rigidBodyA, rigidBodyB, Vector3f.ZERO, Vector3f.ZERO);
+        super(rigidBodyA, rigidBodyB, Vector3fUtils.ZERO, Vector3fUtils.ZERO);
 
         Validate.nonZero(axisInA, "axis in body A");
         Validate.nonZero(axisInB, "axis in body B");
@@ -147,7 +149,7 @@ public class GearJoint extends Constraint {
 
         Vector3f result;
         if (storeResult == null) {
-            result = axisA.clone();
+            result = new Vector3f(axisA);
         } else {
             result = storeResult.set(axisA);
         }
@@ -166,7 +168,7 @@ public class GearJoint extends Constraint {
 
         Vector3f result;
         if (storeResult == null) {
-            result = axisB.clone();
+            result = new Vector3f(axisB);
         } else {
             result = storeResult.set(axisB);
         }

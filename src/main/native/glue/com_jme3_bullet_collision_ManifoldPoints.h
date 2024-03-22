@@ -122,7 +122,7 @@ JNIEXPORT jint JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getIndex1
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    getLateralFrictionDir1
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getLateralFrictionDir1
   (JNIEnv *, jclass, jlong, jobject);
@@ -130,7 +130,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getLateralF
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    getLateralFrictionDir2
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getLateralFrictionDir2
   (JNIEnv *, jclass, jlong, jobject);
@@ -146,7 +146,7 @@ JNIEXPORT jint JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getLifeTime
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    getLocalPointA
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getLocalPointA
   (JNIEnv *, jclass, jlong, jobject);
@@ -154,7 +154,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getLocalPoi
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    getLocalPointB
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getLocalPointB
   (JNIEnv *, jclass, jlong, jobject);
@@ -162,7 +162,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getLocalPoi
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    getNormalWorldOnB
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getNormalWorldOnB
   (JNIEnv *, jclass, jlong, jobject);
@@ -186,7 +186,7 @@ JNIEXPORT jint JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getPartId1
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    getPositionWorldOnA
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getPositionWorldOnA
   (JNIEnv *, jclass, jlong, jobject);
@@ -194,7 +194,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getPosition
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    getPositionWorldOnADp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getPositionWorldOnADp
   (JNIEnv *, jclass, jlong, jobject);
@@ -202,7 +202,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getPosition
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    getPositionWorldOnB
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getPositionWorldOnB
   (JNIEnv *, jclass, jlong, jobject);
@@ -210,7 +210,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getPosition
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    getPositionWorldOnBDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_getPositionWorldOnBDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -322,7 +322,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setFlags
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    setLateralFrictionDir1
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setLateralFrictionDir1
   (JNIEnv *, jclass, jlong, jobject);
@@ -330,7 +330,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setLateralF
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    setLateralFrictionDir2
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setLateralFrictionDir2
   (JNIEnv *, jclass, jlong, jobject);
@@ -338,7 +338,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setLateralF
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    setLocalPointA
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setLocalPointA
   (JNIEnv *, jclass, jlong, jobject);
@@ -346,7 +346,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setLocalPoi
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    setLocalPointB
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setLocalPointB
   (JNIEnv *, jclass, jlong, jobject);
@@ -354,7 +354,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setLocalPoi
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    setNormalWorldOnB
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setNormalWorldOnB
   (JNIEnv *, jclass, jlong, jobject);
@@ -362,7 +362,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setNormalWo
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    setPositionWorldOnA
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setPositionWorldOnA
   (JNIEnv *, jclass, jlong, jobject);
@@ -370,7 +370,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setPosition
 /*
  * Class:     com_jme3_bullet_collision_ManifoldPoints
  * Method:    setPositionWorldOnB
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_ManifoldPoints_setPositionWorldOnB
   (JNIEnv *, jclass, jlong, jobject);

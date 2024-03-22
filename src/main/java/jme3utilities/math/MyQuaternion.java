@@ -26,12 +26,15 @@
  */
 package jme3utilities.math;
 
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector3f;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.jme3.math.QuaternionfUtils;
+import com.jme3.math.Vector3fUtils;
 import jme3utilities.MyString;
 import jme3utilities.Validate;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Mathematical utility methods.
@@ -79,38 +82,38 @@ final public class MyQuaternion {
      * @param scale scale factor to apply to the input
      */
     public static void accumulateScaled(
-            Quaternion total, Quaternion input, float scale) {
-        float tx = total.getX();
-        float ix = input.getX();
+            Quaternionf total, Quaternionf input, float scale) {
+        float tx = total.x();
+        float ix = input.x();
         float x = tx + ix * scale;
-        float y = total.getY() + input.getY() * scale;
-        float z = total.getZ() + input.getZ() * scale;
-        float w = total.getW() + input.getW() * scale;
+        float y = total.y() + input.y() * scale;
+        float z = total.z() + input.z() * scale;
+        float w = total.w() + input.w() * scale;
         total.set(x, y, z, w);
     }
 
     /**
-     * Find the cardinal rotation most similar to the specified Quaternion. A
+     * Find the cardinal rotation most similar to the specified Quaternionf. A
      * cardinal rotation is one for which the rotation angles on all 3 axes are
      * integer multiples of Pi/2 radians.
      *
      * @param input the input value (not null, modified)
      */
-    public static void cardinalizeLocal(Quaternion input) {
+    public static void cardinalizeLocal(Quaternionf input) {
         assert Validate.nonNull(input, "input");
 
         normalizeLocal(input);
 
         // Generate each of the 24 cardinal rotations.
-        Quaternion cardinalRotation = new Quaternion();
-        Quaternion bestCardinalRotation = new Quaternion();
+        Quaternionf cardinalRotation = new Quaternionf();
+        Quaternionf bestCardinalRotation = new Quaternionf();
         Vector3f z = new Vector3f();
         double bestAbsDot = -1.0;
         for (Vector3f x : cardinalAxes) {
             for (Vector3f y : cardinalAxes) {
                 x.cross(y, z);
-                if (z.isUnitVector()) {
-                    cardinalRotation.fromAxes(x, y, z);
+                if (Vector3fUtils.isUnitVector(z)) {
+                    QuaternionfUtils.fromAxes(cardinalRotation, x, y, z);
                     /*
                      * Measure the similarity of the 2 rotations
                      * using the absolute value of their dot product.
@@ -129,7 +132,7 @@ final public class MyQuaternion {
     }
 
     /**
-     * Return the conjugate of a Quaternion.
+     * Return the conjugate of a Quaternionf.
      * <p>
      * For normalized quaternions, the conjugate is a fast way to calculate the
      * inverse.
@@ -141,14 +144,14 @@ final public class MyQuaternion {
      * @return a conjugate quaternion (either {@code storeResult} or a new
      * instance)
      */
-    public static Quaternion conjugate(Quaternion q, Quaternion storeResult) {
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+    public static Quaternionf conjugate(Quaternionf q, Quaternionf storeResult) {
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
-        float qx = q.getX();
-        float qy = q.getY();
-        float qz = q.getZ();
-        float qw = q.getW();
+        float qx = q.x();
+        float qy = q.y();
+        float qz = q.z();
+        float qw = q.w();
         result.set(-qx, -qy, -qz, qw);
 
         return result;
@@ -160,26 +163,26 @@ final public class MyQuaternion {
      * @param q the value to describe (may be null, unaffected)
      * @return a description (not null, not empty)
      */
-    public static String describe(Quaternion q) {
+    public static String describe(Quaternionf q) {
         String result;
         if (q == null) {
             result = "null";
         } else {
             StringBuilder builder = new StringBuilder(40);
             builder.append("x=");
-            String x = MyString.describeFraction(q.getX());
+            String x = MyString.describeFraction(q.x());
             builder.append(x);
 
             builder.append(" y=");
-            String y = MyString.describeFraction(q.getY());
+            String y = MyString.describeFraction(q.y());
             builder.append(y);
 
             builder.append(" z=");
-            String z = MyString.describeFraction(q.getZ());
+            String z = MyString.describeFraction(q.z());
             builder.append(z);
 
             builder.append(" w=");
-            String w = MyString.describeFraction(q.getW());
+            String w = MyString.describeFraction(q.w());
             builder.append(w);
 
             result = builder.toString();
@@ -200,39 +203,39 @@ final public class MyQuaternion {
      * @param q2 the 2nd input value (not null, unaffected)
      * @return the dot product
      */
-    public static double dot(Quaternion q1, Quaternion q2) {
-        double w1 = q1.getW();
-        double w2 = q2.getW();
-        double x1 = q1.getX();
-        double x2 = q2.getX();
-        double y1 = q1.getY();
-        double y2 = q2.getY();
-        double z1 = q1.getZ();
-        double z2 = q2.getZ();
+    public static double dot(Quaternionf q1, Quaternionf q2) {
+        double w1 = q1.w();
+        double w2 = q2.w();
+        double x1 = q1.x();
+        double x2 = q2.x();
+        double y1 = q1.y();
+        double y2 = q2.y();
+        double z1 = q1.z();
+        double z2 = q2.z();
         double result = w1 * w2 + x1 * x2 + y1 * y2 + z1 * z2;
 
         return result;
     }
 
     /**
-     * Return the exponential of a pure Quaternion.
+     * Return the exponential of a pure Quaternionf.
      *
      * @param q the input value (not null, w=0, unaffected)
      * @param storeResult storage for the result (modified if not null)
      * @return the exponential value (either {@code storeResult} or a new
      * instance)
      */
-    public static Quaternion exp(Quaternion q, Quaternion storeResult) {
+    public static Quaternionf exp(Quaternionf q, Quaternionf storeResult) {
         assert Validate.require(isPure(q), "a pure quaternion");
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
-        double qx = q.getX();
-        double qy = q.getY();
-        double qz = q.getZ();
+        double qx = q.x();
+        double qy = q.y();
+        double qz = q.z();
         double theta = MyMath.hypotenuseDouble(qx, qy, qz);
         if (theta == 0.0) {
-            result.loadIdentity();
+            result.identity();
         } else {
             float w = (float) Math.cos(theta);
             double scale = Math.sin(theta) / theta;
@@ -251,8 +254,8 @@ final public class MyQuaternion {
      * @param q the value to test (not null, unaffected)
      * @return true if w=0, false otherwise
      */
-    public static boolean isPure(Quaternion q) {
-        float qw = q.getW();
+    public static boolean isPure(Quaternionf q) {
+        float qw = q.w();
 
         if (qw == 0f) {
             return true;
@@ -269,11 +272,11 @@ final public class MyQuaternion {
      * @param q the value to test (not null, unaffected)
      * @return true for a rotation identity, otherwise false
      */
-    public static boolean isRotationIdentity(Quaternion q) {
-        float qw = q.getW();
+    public static boolean isRotationIdentity(Quaternionf q) {
+        float qw = q.w();
 
         if (qw != 0f && !Float.isNaN(qw)
-                && q.getX() == 0f && q.getY() == 0f && q.getZ() == 0f) {
+                && q.x() == 0f && q.y() == 0f && q.z() == 0f) {
             return true;
         } else {
             return false;
@@ -286,10 +289,10 @@ final public class MyQuaternion {
      * @param q the value to test (not null, unaffected)
      * @return true if the argument equals (0,0,0,0), false otherwise
      */
-    public static boolean isZero(Quaternion q) {
-        float qw = q.getW();
+    public static boolean isZero(Quaternionf q) {
+        float qw = q.w();
 
-        if (qw == 0f && q.getX() == 0f && q.getY() == 0f && q.getZ() == 0f) {
+        if (qw == 0f && q.x() == 0f && q.y() == 0f && q.z() == 0f) {
             return true;
         } else {
             return false;
@@ -299,17 +302,17 @@ final public class MyQuaternion {
     /**
      * Return the squared length of the argument.
      * <p>
-     * Unlike {@link com.jme3.math.Quaternion#norm()}, this method returns a
+     * Unlike {@link com.jme3.math.QuaternionfUtils#norm(Quaternionf)}, this method returns a
      * double-precision value for precise comparison of lengths.
      *
      * @param q the input value (not null, unaffected)
      * @return the squared length (&ge;0)
      */
-    public static double lengthSquared(Quaternion q) {
-        double xx = q.getX();
-        double yy = q.getY();
-        double zz = q.getZ();
-        double ww = q.getW();
+    public static double lengthSquared(Quaternionf q) {
+        double xx = q.x();
+        double yy = q.y();
+        double zz = q.z();
+        double ww = q.w();
         double result = xx * xx + yy * yy + zz * zz + ww * ww;
 
         return result;
@@ -326,17 +329,17 @@ final public class MyQuaternion {
      * {@code q})
      * @return a pure quaternion (either {@code storeResult} or a new instance)
      */
-    public static Quaternion log(Quaternion q, Quaternion storeResult) {
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+    public static Quaternionf log(Quaternionf q, Quaternionf storeResult) {
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
-        float qw = q.getW();
+        float qw = q.w();
         if (qw >= 1f || qw <= -1f) {
             result.set(0f, 0f, 0f, 0f);
         } else {
-            double qx = q.getX();
-            double qy = q.getY();
-            double qz = q.getZ();
+            double qx = q.x();
+            double qy = q.y();
+            double qz = q.z();
             double sineTheta = MyMath.hypotenuseDouble(qx, qy, qz);
             sineTheta = MyMath.clamp(sineTheta, 0.0, 1.0);
             if (sineTheta == 0.0) {
@@ -362,29 +365,29 @@ final public class MyQuaternion {
      * @param b the 2nd input value (not null, unaffected)
      * @return true if distinct, otherwise false
      */
-    public static boolean ne(Quaternion a, Quaternion b) {
-        float aw = a.getW();
-        float bw = b.getW();
+    public static boolean ne(Quaternionf a, Quaternionf b) {
+        float aw = a.w();
+        float bw = b.w();
         boolean result = aw != bw
-                || a.getX() != b.getX()
-                || a.getY() != b.getY()
-                || a.getZ() != b.getZ();
+                || a.x() != b.x()
+                || a.y() != b.y()
+                || a.z() != b.z();
         return result;
     }
 
     /**
-     * Normalize the specified Quaternion in place.
+     * Normalize the specified Quaternionf in place.
      *
      * @param input the instance to normalize (not null, modified)
      */
-    public static void normalizeLocal(Quaternion input) {
+    public static void normalizeLocal(Quaternionf input) {
         assert Validate.nonNull(input, "input");
 
         double lengthSquared = lengthSquared(input);
         if (lengthSquared < 0.9999998 || lengthSquared > 1.0000002) {
             float fScale = (float) Math.sqrt(lengthSquared);
             if (fScale != 0f) {
-                input.multLocal(1f / fScale);
+                input.mul(1f / fScale);
             }
         }
     }
@@ -399,22 +402,22 @@ final public class MyQuaternion {
      * {@code base})
      * @return the power (either {@code storeResult} or a new instance)
      */
-    public static Quaternion pow(
-            Quaternion base, float exponent, Quaternion storeResult) {
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+    public static Quaternionf pow(
+            Quaternionf base, float exponent, Quaternionf storeResult) {
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
-        float baseW = base.getW();
+        float baseW = base.w();
         if (baseW >= 1f || baseW <= -1f || exponent == 0f) {
-            result.loadIdentity();
+            result.identity();
         } else {
-            double baseX = base.getX();
-            double baseY = base.getY();
-            double baseZ = base.getZ();
+            double baseX = base.x();
+            double baseY = base.y();
+            double baseZ = base.z();
             double sineTheta = MyMath.hypotenuseDouble(baseX, baseY, baseZ);
             sineTheta = MyMath.clamp(sineTheta, 0.0, 1.0);
             if (sineTheta == 0.0) {
-                result.loadIdentity();
+                result.identity();
             } else {
                 double theta = Math.asin(sineTheta);
                 float w = (float) Math.cos(exponent * theta);
@@ -443,15 +446,15 @@ final public class MyQuaternion {
      * @return the rotated vector (either {@code storeResult} or a new instance)
      */
     public static Vector3f rotate(
-            Quaternion rotation, Vector3f input, Vector3f storeResult) {
+            Quaternionf rotation, Vector3f input, Vector3f storeResult) {
         Validate.nonZero(rotation, "rotation");
         Validate.finite(input, "input vector");
         Vector3f result = (storeResult == null) ? new Vector3f() : storeResult;
 
-        float x = rotation.getX();
-        float y = rotation.getY();
-        float z = rotation.getZ();
-        float w = rotation.getW();
+        float x = rotation.x();
+        float y = rotation.y();
+        float z = rotation.z();
+        float w = rotation.w();
         double lengthSquared = lengthSquared(rotation);
         if (lengthSquared < 0.9999998 || lengthSquared > 1.0000002) {
             double dScale = Math.sqrt(lengthSquared);
@@ -491,15 +494,15 @@ final public class MyQuaternion {
      * @return the rotated vector (either {@code storeResult} or a new instance)
      */
     public static Vector3f rotateInverse(
-            Quaternion rotation, Vector3f input, Vector3f storeResult) {
+            Quaternionf rotation, Vector3f input, Vector3f storeResult) {
         Validate.nonZero(rotation, "rotation");
         Validate.finite(input, "input vector");
         Vector3f result = (storeResult == null) ? new Vector3f() : storeResult;
 
-        float x = rotation.getX();
-        float y = rotation.getY();
-        float z = rotation.getZ();
-        float w = rotation.getW();
+        float x = rotation.x();
+        float y = rotation.y();
+        float z = rotation.z();
+        float w = rotation.w();
         double lengthSquared = lengthSquared(rotation);
         if (lengthSquared < 0.9999998 || lengthSquared > 1.0000002) {
             double dScale = Math.sqrt(lengthSquared);
@@ -545,19 +548,19 @@ final public class MyQuaternion {
      * @return an interpolated value (either {@code storeResult} or a new
      * instance)
      */
-    public static Quaternion slerp(
-            float t, Quaternion q0, Quaternion q1, Quaternion storeResult) {
+    public static Quaternionf slerp(
+            float t, Quaternionf q0, Quaternionf q1, Quaternionf storeResult) {
         assert Validate.fraction(t, "weight");
         assert validateUnit(q0, "q0", 0.0001f);
         assert validateUnit(q1, "q1", 0.0001f);
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
-        Quaternion q0inverse = conjugate(q0, null); // TODO garbage
-        Quaternion ratio = q0inverse.multLocal(q1);
-        Quaternion power = pow(ratio, t, ratio);
+        Quaternionf q0inverse = conjugate(q0, null); // TODO garbage
+        Quaternionf ratio = q0inverse.mul(q1);
+        Quaternionf power = pow(ratio, t, ratio);
         result.set(q0);
-        result.multLocal(power);
+        result.mul(power);
 
         return result;
     }
@@ -580,18 +583,18 @@ final public class MyQuaternion {
      * @return the interpolated value (either {@code storeResult} or a new
      * instance)
      */
-    public static Quaternion squad(float t, Quaternion p, Quaternion a,
-            Quaternion b, Quaternion q, Quaternion storeResult) {
+    public static Quaternionf squad(float t, Quaternionf p, Quaternionf a,
+            Quaternionf b, Quaternionf q, Quaternionf storeResult) {
         assert Validate.fraction(t, "weight");
         assert validateUnit(p, "p", 0.0001f);
         assert validateUnit(a, "a", 0.0001f);
         assert validateUnit(b, "b", 0.0001f);
         assert validateUnit(q, "q", 0.0001f);
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
-        Quaternion qSlerp = slerp(t, p, q, null);
-        Quaternion aSlerp = slerp(t, a, b, null);
+        Quaternionf qSlerp = slerp(t, p, q, null);
+        Quaternionf aSlerp = slerp(t, a, b, null);
         slerp(2f * t * (1f - t), qSlerp, aSlerp, result);
 
         return result;
@@ -611,24 +614,24 @@ final public class MyQuaternion {
      * @return the Squad parameter (either {@code storeResult} or a new
      * instance)
      */
-    public static Quaternion squadA(Quaternion q0, Quaternion q1,
-            Quaternion q2, Quaternion storeResult) {
+    public static Quaternionf squadA(Quaternionf q0, Quaternionf q1,
+            Quaternionf q2, Quaternionf storeResult) {
         assert validateUnit(q0, "q0", 0.0001f);
         assert validateUnit(q1, "q1", 0.0001f);
         assert validateUnit(q2, "q2", 0.0001f);
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
-        Quaternion q1c = conjugate(q1, null);
-        Quaternion turn0 = q1c.mult(q0);
-        Quaternion logTurn0 = log(turn0, turn0);
-        Quaternion turn2 = q1c.mult(q2);
-        Quaternion logTurn2 = log(turn2, turn2);
-        Quaternion sum = logTurn2.addLocal(logTurn0);
-        sum.multLocal(-0.25f);
-        Quaternion exp = exp(sum, sum);
+        Quaternionf q1c = conjugate(q1, null);
+        Quaternionf turn0 = q1c.mul(q0, new Quaternionf());
+        Quaternionf logTurn0 = log(turn0, turn0);
+        Quaternionf turn2 = q1c.mul(q2, new Quaternionf());
+        Quaternionf logTurn2 = log(turn2, turn2);
+        Quaternionf sum = logTurn2.add(logTurn0);
+        sum.mul(-0.25f);
+        Quaternionf exp = exp(sum, sum);
         result.set(q1);
-        result.multLocal(exp);
+        result.mul(exp);
 
         return result;
     }
@@ -643,15 +646,15 @@ final public class MyQuaternion {
      * @return an equivalent Quaternion without negative zeros (either
      * storeResult or a new instance)
      */
-    public static Quaternion standardize(
-            Quaternion input, Quaternion storeResult) {
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+    public static Quaternionf standardize(
+            Quaternionf input, Quaternionf storeResult) {
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
-        float w = input.getW();
-        float x = input.getX();
-        float y = input.getY();
-        float z = input.getZ();
+        float w = input.w();
+        float x = input.x();
+        float y = input.y();
+        float z = input.z();
         w = MyMath.standardize(w);
         x = MyMath.standardize(x);
         y = MyMath.standardize(y);
@@ -672,7 +675,7 @@ final public class MyQuaternion {
      * @throws NullPointerException if the Quaternion is null
      */
     public static boolean validateUnit(
-            Quaternion q, String description, float tolerance) {
+            Quaternionf q, String description, float tolerance) {
         assert Validate.nonNull(q, description);
 
         double norm = lengthSquared(q);

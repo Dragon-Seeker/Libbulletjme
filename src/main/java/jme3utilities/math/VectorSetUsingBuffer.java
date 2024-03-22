@@ -26,12 +26,13 @@
  */
 package jme3utilities.math;
 
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Vector3f;
 import com.jme3.util.BufferUtils;
+import jme3utilities.Validate;
+import org.joml.Matrix3f;
+import org.joml.Vector3f;
+
 import java.nio.FloatBuffer;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
 
 /**
  * A VectorSet implemented using FloatBuffer.

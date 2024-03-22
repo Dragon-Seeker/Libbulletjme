@@ -31,15 +31,12 @@
  */
 package com.jme3.bullet.collision.shapes;
 
-import com.jme3.math.Vector3f;
+import jme3utilities.Validate;
+import jme3utilities.math.*;
+import org.joml.Vector3f;
+
 import java.nio.FloatBuffer;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
-import jme3utilities.math.MyBuffer;
-import jme3utilities.math.MyMath;
-import jme3utilities.math.MyVector3f;
-import jme3utilities.math.MyVolume;
-import jme3utilities.math.RectangularSolid;
 
 /**
  * An axis-aligned, rectangular-solid collision shape based on Bullet's
@@ -149,7 +146,7 @@ public class BoxCollisionShape extends ConvexShape {
 
         Vector3f result;
         if (storeResult == null) {
-            result = halfExtents.clone();
+            result = new Vector3f(halfExtents);
         } else {
             result = storeResult.set(halfExtents);
         }
@@ -204,7 +201,7 @@ public class BoxCollisionShape extends ConvexShape {
      */
     @Override
     public HullCollisionShape toHullShape() {
-        Vector3f hes = scale.mult(halfExtents); // in PSU
+        Vector3f hes = scale.mul(halfExtents, new Vector3f()); // in PSU
         float minHalfExtent = MyMath.min(hes.x, hes.y, hes.z);
         float defaultMargin = getDefaultMargin();
         float hullMargin = Math.min(minHalfExtent, defaultMargin);
@@ -212,7 +209,7 @@ public class BoxCollisionShape extends ConvexShape {
             hullMargin = 1e-9f;
         }
 
-        hes.subtractLocal(hullMargin, hullMargin, hullMargin);
+        hes.sub(hullMargin, hullMargin, hullMargin);
         RectangularSolid shrunkenSolid = new RectangularSolid(hes);
         HullCollisionShape result = new HullCollisionShape(shrunkenSolid);
         result.setMargin(hullMargin);

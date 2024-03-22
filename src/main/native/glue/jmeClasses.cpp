@@ -57,10 +57,10 @@ jmethodID jmeClasses::PhysicsSpace_onContactStarted;
 
 jmethodID jmeClasses::PhysicsGhostObject_addOverlappingObject;
 
-jfieldID jmeClasses::Vec3d_x;
-jfieldID jmeClasses::Vec3d_y;
-jfieldID jmeClasses::Vec3d_z;
-jmethodID jmeClasses::Vec3d_set;
+jfieldID jmeClasses::Vector3d_x;
+jfieldID jmeClasses::Vector3d_y;
+jfieldID jmeClasses::Vector3d_z;
+jmethodID jmeClasses::Vector3d_set;
 
 jclass jmeClasses::Vector3f;
 jfieldID jmeClasses::Vector3f_x;
@@ -68,17 +68,17 @@ jfieldID jmeClasses::Vector3f_y;
 jfieldID jmeClasses::Vector3f_z;
 jmethodID jmeClasses::Vector3f_set;
 
-jfieldID jmeClasses::Quatd_x;
-jfieldID jmeClasses::Quatd_y;
-jfieldID jmeClasses::Quatd_z;
-jfieldID jmeClasses::Quatd_w;
-jmethodID jmeClasses::Quatd_set;
+jfieldID jmeClasses::Quaterniond_x;
+jfieldID jmeClasses::Quaterniond_y;
+jfieldID jmeClasses::Quaterniond_z;
+jfieldID jmeClasses::Quaterniond_w;
+jmethodID jmeClasses::Quaterniond_set;
 
-jfieldID jmeClasses::Quaternion_x;
-jfieldID jmeClasses::Quaternion_y;
-jfieldID jmeClasses::Quaternion_z;
-jfieldID jmeClasses::Quaternion_w;
-jmethodID jmeClasses::Quaternion_set;
+jfieldID jmeClasses::Quaternionf_x;
+jfieldID jmeClasses::Quaternionf_y;
+jfieldID jmeClasses::Quaternionf_z;
+jfieldID jmeClasses::Quaternionf_w;
+jmethodID jmeClasses::Quaternionf_set;
 
 jfieldID jmeClasses::Matrix3d_m00;
 jfieldID jmeClasses::Matrix3d_m01;
@@ -244,7 +244,7 @@ void jmeClasses::initJavaClasses(JNIEnv *pEnv) {
             = pEnv->FindClass("com/jme3/bullet/collision/shapes/CustomConvexShape");
     EXCEPTION_CHK(pEnv,);
     GLOBAL_METHOD(CustomConvexShape_locateSupport, customConvexShape,
-            "locateSupport", "(FFF)Lcom/jme3/math/Vector3f;");
+            "locateSupport", "(FFF)Lorg/joml/Vector3f;");
 
     jclass physicsSpace = pEnv->FindClass("com/jme3/bullet/PhysicsSpace");
     EXCEPTION_CHK(pEnv,);
@@ -269,23 +269,23 @@ void jmeClasses::initJavaClasses(JNIEnv *pEnv) {
             "(Lcom/jme3/bullet/collision/PhysicsCollisionObject;)V"
     );
 
-    jclass vec3d = pEnv->FindClass("com/simsilica/mathd/Vec3d");
+    jclass vec3d = pEnv->FindClass("org/joml/Vector3d");
     if (pEnv->ExceptionCheck()) {
         pEnv->ExceptionClear();
 
         printf("WARNING: Libbulletjme didn't find the SimMath library.\n");
         fflush(stdout);
 
-        Vec3d_x = NULL;
-        Vec3d_y = NULL;
-        Vec3d_z = NULL;
-        Vec3d_set = NULL;
+        Vector3d_x = NULL;
+        Vector3d_y = NULL;
+        Vector3d_z = NULL;
+        Vector3d_set = NULL;
 
-        Quatd_x = NULL;
-        Quatd_y = NULL;
-        Quatd_z = NULL;
-        Quatd_w = NULL;
-        Quatd_set = NULL;
+        Quaterniond_x = NULL;
+        Quaterniond_y = NULL;
+        Quaterniond_z = NULL;
+        Quaterniond_w = NULL;
+        Quaterniond_set = NULL;
 
         Matrix3d_m00 = NULL;
         Matrix3d_m01 = NULL;
@@ -298,22 +298,22 @@ void jmeClasses::initJavaClasses(JNIEnv *pEnv) {
         Matrix3d_m22 = NULL;
 
     } else {
-        GLOBAL_FIELD(Vec3d_x, vec3d, "x", "D");
-        GLOBAL_FIELD(Vec3d_y, vec3d, "y", "D");
-        GLOBAL_FIELD(Vec3d_z, vec3d, "z", "D");
-        GLOBAL_METHOD(Vec3d_set,
-                vec3d, "set", "(DDD)Lcom/simsilica/mathd/Vec3d;");
+        GLOBAL_FIELD(Vector3d_x, vec3d, "x", "D");
+        GLOBAL_FIELD(Vector3d_y, vec3d, "y", "D");
+        GLOBAL_FIELD(Vector3d_z, vec3d, "z", "D");
+        GLOBAL_METHOD(Vector3d_set,
+                vec3d, "set", "(DDD)Lorg/joml/Vector3d;");
 
-        jclass quatd = pEnv->FindClass("com/simsilica/mathd/Quatd");
+        jclass quatd = pEnv->FindClass("org/joml/Quaterniond");
         EXCEPTION_CHK(pEnv,);
-        GLOBAL_FIELD(Quatd_x, quatd, "x", "D");
-        GLOBAL_FIELD(Quatd_y, quatd, "y", "D");
-        GLOBAL_FIELD(Quatd_z, quatd, "z", "D");
-        GLOBAL_FIELD(Quatd_w, quatd, "w", "D");
-        GLOBAL_METHOD(Quatd_set,
-                quatd, "set", "(DDDD)Lcom/simsilica/mathd/Quatd;");
+        GLOBAL_FIELD(Quaterniond_x, quatd, "x", "D");
+        GLOBAL_FIELD(Quaterniond_y, quatd, "y", "D");
+        GLOBAL_FIELD(Quaterniond_z, quatd, "z", "D");
+        GLOBAL_FIELD(Quaterniond_w, quatd, "w", "D");
+        GLOBAL_METHOD(Quaterniond_set,
+                quatd, "set", "(DDDD)Lorg/joml/Quaterniond;");
 
-        jclass matrix3d = pEnv->FindClass("com/simsilica/mathd/Matrix3d");
+        jclass matrix3d = pEnv->FindClass("org/joml/Matrix3d");
         EXCEPTION_CHK(pEnv,);
         GLOBAL_FIELD(Matrix3d_m00, matrix3d, "m00", "D");
         GLOBAL_FIELD(Matrix3d_m01, matrix3d, "m01", "D");
@@ -326,23 +326,23 @@ void jmeClasses::initJavaClasses(JNIEnv *pEnv) {
         GLOBAL_FIELD(Matrix3d_m22, matrix3d, "m22", "D");
     }
 
-    GLOBAL_CLASS(Vector3f, "com/jme3/math/Vector3f");
+    GLOBAL_CLASS(Vector3f, "org/joml/Vector3f");
     GLOBAL_FIELD(Vector3f_x, Vector3f, "x", "F");
     GLOBAL_FIELD(Vector3f_y, Vector3f, "y", "F");
     GLOBAL_FIELD(Vector3f_z, Vector3f, "z", "F");
     GLOBAL_METHOD(Vector3f_set,
-            Vector3f, "set", "(FFF)Lcom/jme3/math/Vector3f;");
+            Vector3f, "set", "(FFF)Lorg/joml/Vector3f;");
 
-    jclass quaternion = pEnv->FindClass("com/jme3/math/Quaternion");
+    jclass quaternion = pEnv->FindClass("org/joml/Quaternionf");
     EXCEPTION_CHK(pEnv,);
-    GLOBAL_FIELD(Quaternion_x, quaternion, "x", "F");
-    GLOBAL_FIELD(Quaternion_y, quaternion, "y", "F");
-    GLOBAL_FIELD(Quaternion_z, quaternion, "z", "F");
-    GLOBAL_FIELD(Quaternion_w, quaternion, "w", "F");
-    GLOBAL_METHOD(Quaternion_set,
-            quaternion, "set", "(FFFF)Lcom/jme3/math/Quaternion;");
+    GLOBAL_FIELD(Quaternionf_x, quaternion, "x", "F");
+    GLOBAL_FIELD(Quaternionf_y, quaternion, "y", "F");
+    GLOBAL_FIELD(Quaternionf_z, quaternion, "z", "F");
+    GLOBAL_FIELD(Quaternionf_w, quaternion, "w", "F");
+    GLOBAL_METHOD(Quaternionf_set,
+            quaternion, "set", "(FFFF)Lorg/joml/Quaternionf;");
 
-    jclass matrix3f = pEnv->FindClass("com/jme3/math/Matrix3f");
+    jclass matrix3f = pEnv->FindClass("org/joml/Matrix3f");
     EXCEPTION_CHK(pEnv,);
     GLOBAL_FIELD(Matrix3f_m00, matrix3f, "m00", "F");
     GLOBAL_FIELD(Matrix3f_m01, matrix3f, "m01", "F");
@@ -389,7 +389,7 @@ void jmeClasses::initJavaClasses(JNIEnv *pEnv) {
     );
     GLOBAL_FIELD(PhysicsRay_hitFraction, PhysicsRay_Class, "hitFraction", "F");
     GLOBAL_FIELD(PhysicsRay_normal,
-            PhysicsRay_Class, "normal", "Lcom/jme3/math/Vector3f;");
+            PhysicsRay_Class, "normal", "Lorg/joml/Vector3f;");
     GLOBAL_FIELD(PhysicsRay_partIndex, PhysicsRay_Class, "partIndex", "I");
     GLOBAL_FIELD(PhysicsRay_triangleIndex,
             PhysicsRay_Class, "triangleIndex", "I");
@@ -404,7 +404,7 @@ void jmeClasses::initJavaClasses(JNIEnv *pEnv) {
     GLOBAL_FIELD(PhysicsSweep_hitFraction,
             PhysicsSweep_Class, "hitFraction", "F");
     GLOBAL_FIELD(PhysicsSweep_normal,
-            PhysicsSweep_Class, "normal", "Lcom/jme3/math/Vector3f;");
+            PhysicsSweep_Class, "normal", "Lorg/joml/Vector3f;");
     GLOBAL_FIELD(PhysicsSweep_partIndex,
             PhysicsSweep_Class, "partIndex", "I");
     GLOBAL_FIELD(PhysicsSweep_triangleIndex,
@@ -413,11 +413,11 @@ void jmeClasses::initJavaClasses(JNIEnv *pEnv) {
     jclass transform = pEnv->FindClass("com/jme3/math/Transform");
     EXCEPTION_CHK(pEnv,);
     GLOBAL_METHOD(Transform_rotation,
-            transform, "getRotation", "()Lcom/jme3/math/Quaternion;");
+            transform, "getRotation", "()Lorg/joml/Quaternionf;");
     GLOBAL_METHOD(Transform_scale,
-            transform, "getScale", "()Lcom/jme3/math/Vector3f;");
+            transform, "getScale", "()Lorg/joml/Vector3f;");
     GLOBAL_METHOD(Transform_translation,
-            transform, "getTranslation", "()Lcom/jme3/math/Vector3f;");
+            transform, "getTranslation", "()Lorg/joml/Vector3f;");
 
     GLOBAL_CLASS(Vhacd4, "vhacd4/Vhacd4");
     GLOBAL_STATIC_METHOD(Vhacd4_addHull, Vhacd4, "addHull", "(J)V");

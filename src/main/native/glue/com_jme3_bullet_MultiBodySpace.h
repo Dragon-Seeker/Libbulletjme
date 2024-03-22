@@ -32,7 +32,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_MultiBodySpace_addMultiBodyConstrain
 /*
  * Class:     com_jme3_bullet_MultiBodySpace
  * Method:    createMultiBodySpace
- * Signature: (Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;I)J
+ * Signature: (Lorg/joml/Vector3f;Lorg/joml/Vector3f;I)J
  */
 JNIEXPORT jlong JNICALL Java_com_jme3_bullet_MultiBodySpace_createMultiBodySpace
   (JNIEnv *, jobject, jobject, jobject, jint);

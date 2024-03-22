@@ -40,18 +40,17 @@ import com.jme3.bullet.collision.shapes.HeightfieldCollisionShape;
 import com.jme3.bullet.objects.infos.RigidBodyMotionState;
 import com.jme3.bullet.objects.infos.RigidBodySnapshot;
 import com.jme3.math.FastMath;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
+import com.jme3.math.Matrix3fUtils;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Matrix3d;
-import com.simsilica.mathd.Quatd;
-import com.simsilica.mathd.Vec3d;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.simsilica.mathd.Matrix3dUtils;
+import com.simsilica.mathd.QuaterniondUtils;
 import jme3utilities.Validate;
 import jme3utilities.math.MyQuaternion;
 import jme3utilities.math.MyVector3f;
+import org.joml.*;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A collision object to simulate a rigid body, based on Bullet's
@@ -314,9 +313,9 @@ public class PhysicsRigidBody extends PhysicsBody {
      * @return a velocity vector (radians per second in physics-space
      * coordinates, either storeResult or a new vector, not null)
      */
-    public Vec3d getAngularVelocityDp(Vec3d storeResult) {
+    public Vector3d getAngularVelocityDp(Vector3d storeResult) {
         assert isDynamic();
-        Vec3d result = (storeResult == null) ? new Vec3d() : storeResult;
+        Vector3d result = (storeResult == null) ? new Vector3d() : storeResult;
 
         long objectId = nativeId();
         getAngularVelocityDp(objectId, result);
@@ -338,7 +337,7 @@ public class PhysicsRigidBody extends PhysicsBody {
 
         long objectId = nativeId();
         getAngularVelocity(objectId, result);
-        Quaternion localToWorld = getPhysicsRotation(null); // garbage
+        Quaternionf localToWorld = getPhysicsRotation(null); // garbage
         MyQuaternion.rotateInverse(localToWorld, result, result);
 
         return result;
@@ -351,8 +350,8 @@ public class PhysicsRigidBody extends PhysicsBody {
      * @return an acceleration vector in physics-space coordinates (either
      * storeResult or a new vector, not null)
      */
-    public Vec3d getGravityDp(Vec3d storeResult) {
-        Vec3d result = (storeResult == null) ? new Vec3d() : storeResult;
+    public Vector3d getGravityDp(Vector3d storeResult) {
+        Vector3d result = (storeResult == null) ? new Vector3d() : storeResult;
 
         long objectId = nativeId();
         getGravityDp(objectId, result);
@@ -461,9 +460,9 @@ public class PhysicsRigidBody extends PhysicsBody {
      * @return a velocity vector (physics-space units per second in
      * physics-space coordinates, either storeResult or a new vector, not null)
      */
-    public Vec3d getLinearVelocityDp(Vec3d storeResult) {
+    public Vector3d getLinearVelocityDp(Vector3d storeResult) {
         assert isDynamic();
-        Vec3d result = (storeResult == null) ? new Vec3d() : storeResult;
+        Vector3d result = (storeResult == null) ? new Vector3d() : storeResult;
 
         long objectId = nativeId();
         getLinearVelocityDp(objectId, result);
@@ -581,7 +580,7 @@ public class PhysicsRigidBody extends PhysicsBody {
         long oldId = 0L;
         PhysicsSpace removedFrom = null;
         RigidBodySnapshot snapshot = null;
-        Vec3d gravity = null;
+        Vector3d gravity = null;
 
         if (hasAssignedNativeObject()) {
             // Gather information regarding the existing native object.
@@ -702,7 +701,7 @@ public class PhysicsRigidBody extends PhysicsBody {
      * @param omega the desired angular velocity (in physics-space coordinates,
      * not null, unaffected)
      */
-    public void setAngularVelocityDp(Vec3d omega) {
+    public void setAngularVelocityDp(Vector3d omega) {
         long objectId = nativeId();
         setAngularVelocityDp(objectId, omega);
         activate();
@@ -795,7 +794,7 @@ public class PhysicsRigidBody extends PhysicsBody {
      * @param acceleration the desired acceleration vector (in physics-space
      * coordinates, not null, unaffected, default=(0,0,0))
      */
-    public void setGravityDp(Vec3d acceleration) {
+    public void setGravityDp(Vector3d acceleration) {
         Validate.nonNull(acceleration, "acceleration");
         if (!isInWorld() && !isGravityProtected()) {
             logger2.warning(
@@ -899,7 +898,7 @@ public class PhysicsRigidBody extends PhysicsBody {
      * @param velocity the desired velocity (physics-space units per second in
      * physics-space coordinates, not null, unaffected)
      */
-    public void setLinearVelocityDp(Vec3d velocity) {
+    public void setLinearVelocityDp(Vector3d velocity) {
         Validate.nonNull(velocity, "velocity");
 
         long objectId = nativeId();
@@ -913,7 +912,7 @@ public class PhysicsRigidBody extends PhysicsBody {
      * @param location the desired location (in physics-space coordinates, not
      * null, unaffected)
      */
-    public void setPhysicsLocationDp(Vec3d location) {
+    public void setPhysicsLocationDp(Vector3d location) {
         Validate.nonNull(location, "location");
 
         long objectId = nativeId();
@@ -929,7 +928,7 @@ public class PhysicsRigidBody extends PhysicsBody {
     public void setPhysicsRotation(Matrix3f orientation) {
         Validate.nonNull(orientation, "rotation");
         if (getCollisionShape() instanceof HeightfieldCollisionShape
-                && !orientation.isIdentity()) {
+                && !Matrix3fUtils.isIdentity(orientation)) {
             throw new IllegalArgumentException("No rotation of heightfields.");
         }
 
@@ -943,7 +942,7 @@ public class PhysicsRigidBody extends PhysicsBody {
      * @param orientation the desired orientation (relative to physics-space
      * coordinates, not null, not zero, unaffected)
      */
-    public void setPhysicsRotation(Quaternion orientation) {
+    public void setPhysicsRotation(Quaternionf orientation) {
         Validate.nonZero(orientation, "orientation");
         if (getCollisionShape() instanceof HeightfieldCollisionShape
                 && !MyQuaternion.isRotationIdentity(orientation)) {
@@ -963,7 +962,7 @@ public class PhysicsRigidBody extends PhysicsBody {
     public void setPhysicsRotationDp(Matrix3d orientation) {
         Validate.nonNull(orientation, "orientation");
         if (getCollisionShape() instanceof HeightfieldCollisionShape
-                && !orientation.isIdentity()) {
+                && !Matrix3dUtils.isIdentity(orientation)) {
             throw new IllegalArgumentException("No rotation of heightfields.");
         }
 
@@ -977,10 +976,10 @@ public class PhysicsRigidBody extends PhysicsBody {
      * @param orientation the desired orientation (relative to physics-space
      * coordinates, not null, not zero, unaffected)
      */
-    public void setPhysicsRotationDp(Quatd orientation) {
+    public void setPhysicsRotationDp(Quaterniond orientation) {
         Validate.nonZero(orientation, "orientation");
         if (getCollisionShape() instanceof HeightfieldCollisionShape
-                && !orientation.isRotationIdentity()) {
+                && !QuaterniondUtils.isRotationIdentity(orientation)) {
             throw new IllegalArgumentException("No rotation of heightfields.");
         }
 
@@ -1148,7 +1147,7 @@ public class PhysicsRigidBody extends PhysicsBody {
      * gravity.
      *
      * @see #setProtectGravity(boolean)
-     * @see #setGravityDp(com.simsilica.mathd.Vec3d)
+     * @see #setGravityDp(Vector3d)
      *
      * @param acceleration the desired acceleration vector (in physics-space
      * coordinates, not null, finite, unaffected, default=(0,0,0))
@@ -1301,11 +1300,11 @@ public class PhysicsRigidBody extends PhysicsBody {
             getAngularVelocity(long objectId, Vector3f storeResult);
 
     native private static void
-            getAngularVelocityDp(long objectId, Vec3d storeResult);
+            getAngularVelocityDp(long objectId, Vector3d storeResult);
 
     native private static void getGravity(long objectId, Vector3f storeResult);
 
-    native private static void getGravityDp(long objectId, Vec3d storeResult);
+    native private static void getGravityDp(long objectId, Vector3d storeResult);
 
     native private static void
             getInverseInertiaLocal(long objectId, Vector3f storeResult);
@@ -1324,7 +1323,7 @@ public class PhysicsRigidBody extends PhysicsBody {
             getLinearVelocity(long objectId, Vector3f storeResult);
 
     native private static void
-            getLinearVelocityDp(long objectId, Vec3d storeResult);
+            getLinearVelocityDp(long objectId, Vector3d storeResult);
 
     native private static float getMass(long objectId);
 
@@ -1348,7 +1347,7 @@ public class PhysicsRigidBody extends PhysicsBody {
 
     native private static void setAngularVelocity(long objectId, Vector3f vec);
 
-    native private static void setAngularVelocityDp(long objectId, Vec3d vec);
+    native private static void setAngularVelocityDp(long objectId, Vector3d vec);
 
     native private static void
             setCollisionShape(long objectId, long collisionShapeId);
@@ -1358,7 +1357,7 @@ public class PhysicsRigidBody extends PhysicsBody {
 
     native private static void setGravity(long objectId, Vector3f gravity);
 
-    native private static void setGravityDp(long objectId, Vec3d gravity);
+    native private static void setGravityDp(long objectId, Vector3d gravity);
 
     native private static void setInverseInertiaLocal(
             long objectId, Vector3f inverseInertialLocal);
@@ -1372,25 +1371,25 @@ public class PhysicsRigidBody extends PhysicsBody {
 
     native private static void setLinearVelocity(long objectId, Vector3f vec);
 
-    native private static void setLinearVelocityDp(long objectId, Vec3d vec);
+    native private static void setLinearVelocityDp(long objectId, Vector3d vec);
 
     native private static void
             setPhysicsLocation(long objectId, Vector3f location);
 
     native private static void
-            setPhysicsLocationDp(long objectId, Vec3d location);
+            setPhysicsLocationDp(long objectId, Vector3d location);
 
     native private static void
             setPhysicsRotation(long objectId, Matrix3f rotation);
 
     native private static void
-            setPhysicsRotation(long objectId, Quaternion rotation);
+            setPhysicsRotation(long objectId, Quaternionf rotation);
 
     native private static void
             setPhysicsRotationDp(long objectId, Matrix3d rotation);
 
     native private static void
-            setPhysicsRotationDp(long objectId, Quatd rotation);
+            setPhysicsRotationDp(long objectId, Quaterniond rotation);
 
     native private static void
             setSleepingThresholds(long objectId, float linear, float angular);

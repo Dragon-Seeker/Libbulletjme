@@ -35,14 +35,16 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.collision.shapes.CompoundCollisionShape;
 import com.jme3.bullet.collision.shapes.EmptyShape;
 import com.jme3.bullet.collision.shapes.HullCollisionShape;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
+import com.jme3.math.QuaternionfUtils;
 import com.jme3.math.Transform;
 import com.jme3.math.Triangle;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyMath;
+import org.joml.Matrix3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * An element in a CompoundCollisionShape, consisting of a (non-compound) base
@@ -97,8 +99,8 @@ public class ChildCollisionShape {
                     "CompoundCollisionShapes cannot be child shapes!");
         }
 
-        this.offset = offset.clone();
-        this.rotation = rotation.clone();
+        this.offset = new Vector3f(offset);
+        this.rotation = new Matrix3f(rotation);
         this.shape = shape;
     }
 
@@ -117,7 +119,7 @@ public class ChildCollisionShape {
                     "CompoundCollisionShapes cannot be child shapes!");
         }
 
-        this.offset = offset.clone();
+        this.offset = new Vector3f(offset);
         this.rotation = new Matrix3f();
         this.shape = shape;
     }
@@ -134,7 +136,7 @@ public class ChildCollisionShape {
     public Vector3f copyOffset(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = offset.clone();
+            result = new Vector3f(offset);
         } else {
             result = storeResult.set(offset);
         }
@@ -148,10 +150,10 @@ public class ChildCollisionShape {
      * @param storeResult storage for the result (modified if not null)
      * @return a Quaternion (either storeResult or a new Quaternion, not null)
      */
-    public Quaternion copyRotation(Quaternion storeResult) {
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
-        result.fromRotationMatrix(rotation);
+    public Quaternionf copyRotation(Quaternionf storeResult) {
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
+        QuaternionfUtils.fromRotationMatrix(result, rotation);
         return result;
     }
 
@@ -164,7 +166,7 @@ public class ChildCollisionShape {
     public Matrix3f copyRotationMatrix(Matrix3f storeResult) {
         Matrix3f result;
         if (storeResult == null) {
-            result = rotation.clone();
+            result = new Matrix3f(rotation);
         } else {
             result = storeResult.set(rotation);
         }
@@ -184,7 +186,7 @@ public class ChildCollisionShape {
                 = (storeResult == null) ? new Transform() : storeResult;
 
         result.setTranslation(offset);
-        result.getRotation().fromRotationMatrix(rotation);
+        QuaternionfUtils.fromRotationMatrix(result.getRotation(), rotation);
         result.setScale(1f);
 
         return result;

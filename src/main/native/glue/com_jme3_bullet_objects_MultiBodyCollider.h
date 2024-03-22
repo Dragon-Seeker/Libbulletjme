@@ -52,7 +52,7 @@ JNIEXPORT jlong JNICALL Java_com_jme3_bullet_objects_MultiBodyCollider_createCol
 /*
  * Class:     com_jme3_bullet_objects_MultiBodyCollider
  * Method:    setPhysicsLocation
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_MultiBodyCollider_setPhysicsLocation
   (JNIEnv *, jclass, jlong, jobject);
@@ -60,7 +60,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_MultiBodyCollider_setPhysics
 /*
  * Class:     com_jme3_bullet_objects_MultiBodyCollider
  * Method:    setPhysicsLocationDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_MultiBodyCollider_setPhysicsLocationDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -68,7 +68,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_MultiBodyCollider_setPhysics
 /*
  * Class:     com_jme3_bullet_objects_MultiBodyCollider
  * Method:    setPhysicsRotation
- * Signature: (JLcom/jme3/math/Matrix3f;)V
+ * Signature: (JLorg/joml/Matrix3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_MultiBodyCollider_setPhysicsRotation
   (JNIEnv *, jclass, jlong, jobject);
@@ -76,7 +76,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_MultiBodyCollider_setPhysics
 /*
  * Class:     com_jme3_bullet_objects_MultiBodyCollider
  * Method:    setPhysicsRotationDp
- * Signature: (JLcom/simsilica/mathd/Matrix3d;)V
+ * Signature: (JLorg/joml/Matrix3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_objects_MultiBodyCollider_setPhysicsRotationDp
   (JNIEnv *, jclass, jlong, jobject);

@@ -33,9 +33,10 @@ package com.jme3.bullet.joints;
 
 import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.bullet.objects.PhysicsSoftBody;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * A SoftPhysicsJoint based on Bullet's btSoftBody::LJoint.
@@ -75,7 +76,7 @@ public class SoftLinearJoint extends SoftPhysicsJoint {
         super(softA, clusterIndexA, rigidB);
         Validate.finite(location, "location");
 
-        this.location = location.clone();
+        this.location = new Vector3f(location);
         createJoint();
     }
 
@@ -95,7 +96,7 @@ public class SoftLinearJoint extends SoftPhysicsJoint {
         super(softA, clusterIndexA, softB, clusterIndexB);
         Validate.finite(location, "location");
 
-        this.location = location.clone();
+        this.location = new Vector3f(location);
         createJoint();
     }
     // *************************************************************************
@@ -112,7 +113,7 @@ public class SoftLinearJoint extends SoftPhysicsJoint {
         Vector3f result;
         // TODO verify copy
         if (storeResult == null) {
-            result = location.clone();
+            result = new Vector3f(location);
         } else {
             result = storeResult.set(location);
         }

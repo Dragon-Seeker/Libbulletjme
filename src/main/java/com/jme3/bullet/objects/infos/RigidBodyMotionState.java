@@ -33,13 +33,10 @@ package com.jme3.bullet.objects.infos;
 
 import com.jme3.bullet.NativePhysicsObject;
 import com.jme3.bullet.objects.PhysicsVehicle;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Matrix3d;
-import com.simsilica.mathd.Quatd;
-import com.simsilica.mathd.Vec3d;
+import com.jme3.math.Vector3fUtils;
+import org.joml.*;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -96,7 +93,7 @@ public class RigidBodyMotionState extends NativePhysicsObject {
         long motionStateId = nativeId();
         getWorldLocation(motionStateId, result);
 
-        assert Vector3f.isValidVector(result);
+        assert Vector3fUtils.isValidVector(result);
         return result;
     }
 
@@ -107,8 +104,8 @@ public class RigidBodyMotionState extends NativePhysicsObject {
      * @return the location vector (in physics-space coordinates, either
      * storeResult or a new vector, not null, finite)
      */
-    public Vec3d getLocationDp(Vec3d storeResult) {
-        Vec3d result = (storeResult == null) ? new Vec3d() : storeResult;
+    public Vector3d getLocationDp(Vector3d storeResult) {
+        Vector3d result = (storeResult == null) ? new Vector3d() : storeResult;
 
         long motionStateId = nativeId();
         getWorldLocationDp(motionStateId, result);
@@ -140,9 +137,9 @@ public class RigidBodyMotionState extends NativePhysicsObject {
      * @return the orientation (in physics-space coordinates, either storeResult
      * or a new instance, not null)
      */
-    public Quaternion getOrientation(Quaternion storeResult) {
-        Quaternion result
-                = (storeResult == null) ? new Quaternion() : storeResult;
+    public Quaternionf getOrientation(Quaternionf storeResult) {
+        Quaternionf result
+                = (storeResult == null) ? new Quaternionf() : storeResult;
 
         long motionStateId = nativeId();
         getWorldRotationQuat(motionStateId, result);
@@ -173,8 +170,8 @@ public class RigidBodyMotionState extends NativePhysicsObject {
      * @return the orientation (in physics-space coordinates, either storeResult
      * or a new instance, not null)
      */
-    public Quatd getOrientationQuaternionDp(Quatd storeResult) {
-        Quatd result = (storeResult == null) ? new Quatd() : storeResult;
+    public Quaterniond getOrientationQuaternionDp(Quaterniond storeResult) {
+        Quaterniond result = (storeResult == null) ? new Quaterniond() : storeResult;
 
         long motionStateId = nativeId();
         getWorldRotationQuatDp(motionStateId, result);
@@ -250,7 +247,7 @@ public class RigidBodyMotionState extends NativePhysicsObject {
     // native private methods
 
     native private static boolean applyTransform(
-            long stateId, Vector3f location, Quaternion rotation);
+            long stateId, Vector3f location, Quaternionf rotation);
 
     native private static long createMotionState();
 
@@ -260,7 +257,7 @@ public class RigidBodyMotionState extends NativePhysicsObject {
             getWorldLocation(long stateId, Vector3f storeVector);
 
     native private static void
-            getWorldLocationDp(long stateId, Vec3d storeVector);
+            getWorldLocationDp(long stateId, Vector3d storeVector);
 
     native private static void
             getWorldRotation(long stateId, Matrix3f storeMatrix);
@@ -269,8 +266,8 @@ public class RigidBodyMotionState extends NativePhysicsObject {
             getWorldRotationDp(long stateId, Matrix3d storeMatrix);
 
     native private static void
-            getWorldRotationQuat(long stateId, Quaternion storeQuat);
+            getWorldRotationQuat(long stateId, Quaternionf storeQuat);
 
     native private static void
-            getWorldRotationQuatDp(long stateId, Quatd storeQuat);
+            getWorldRotationQuatDp(long stateId, Quaterniond storeQuat);
 }

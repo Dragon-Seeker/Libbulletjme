@@ -26,7 +26,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CollisionShape_fina
 /*
  * Class:     com_jme3_bullet_collision_shapes_CollisionShape
  * Method:    getAabb
- * Signature: (JLcom/jme3/math/Vector3f;Lcom/jme3/math/Matrix3f;Lcom/jme3/math/Vector3f;Lcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;Lorg/joml/Matrix3f;Lorg/joml/Vector3f;Lorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CollisionShape_getAabb
   (JNIEnv *, jclass, jlong, jobject, jobject, jobject, jobject);
@@ -34,7 +34,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CollisionShape_getA
 /*
  * Class:     com_jme3_bullet_collision_shapes_CollisionShape
  * Method:    getLocalScaling
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CollisionShape_getLocalScaling
   (JNIEnv *, jclass, jlong, jobject);
@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CollisionShape_getL
 /*
  * Class:     com_jme3_bullet_collision_shapes_CollisionShape
  * Method:    getLocalScalingDp
- * Signature: (JLcom/simsilica/mathd/Vec3d;)V
+ * Signature: (JLorg/joml/Vector3d;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CollisionShape_getLocalScalingDp
   (JNIEnv *, jclass, jlong, jobject);
@@ -114,7 +114,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CollisionShape_setC
 /*
  * Class:     com_jme3_bullet_collision_shapes_CollisionShape
  * Method:    setLocalScaling
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_CollisionShape_setLocalScaling
   (JNIEnv *, jclass, jlong, jobject);

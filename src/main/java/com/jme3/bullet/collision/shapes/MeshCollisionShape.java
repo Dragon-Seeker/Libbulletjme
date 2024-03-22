@@ -35,9 +35,10 @@ import com.jme3.bullet.collision.shapes.infos.BoundingValueHierarchy;
 import com.jme3.bullet.collision.shapes.infos.CompoundMesh;
 import com.jme3.bullet.collision.shapes.infos.IndexedMesh;
 import com.jme3.math.Triangle;
+import jme3utilities.Validate;
+
 import java.util.Collection;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
 
 /**
  * A mesh collision shape that uses a Bounding Value Hierarchy (BVH), based on

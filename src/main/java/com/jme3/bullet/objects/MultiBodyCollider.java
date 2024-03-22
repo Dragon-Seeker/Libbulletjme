@@ -35,13 +35,14 @@ import com.jme3.bullet.MultiBody;
 import com.jme3.bullet.collision.PcoType;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Matrix3d;
-import com.simsilica.mathd.Vec3d;
+import jme3utilities.Validate;
+import org.joml.Matrix3d;
+import org.joml.Matrix3f;
+import org.joml.Vector3d;
+import org.joml.Vector3f;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
 
 /**
  * A collision object for a link or base in a MultiBody, based on Bullet's
@@ -163,7 +164,7 @@ public class MultiBodyCollider extends PhysicsCollisionObject {
      * @param location the desired location (in physics-space coordinates, not
      * null, finite, unaffected)
      */
-    public void setPhysicsLocationDp(Vec3d location) {
+    public void setPhysicsLocationDp(Vector3d location) {
         Validate.finite(location, "location");
 
         long objectId = nativeId();
@@ -220,7 +221,7 @@ public class MultiBodyCollider extends PhysicsCollisionObject {
             setPhysicsLocation(long colliderId, Vector3f locationVector);
 
     native private static void
-            setPhysicsLocationDp(long colliderId, Vec3d locationVector);
+            setPhysicsLocationDp(long colliderId, Vector3d locationVector);
 
     native private static void
             setPhysicsRotation(long colliderId, Matrix3f rotationMatrix);

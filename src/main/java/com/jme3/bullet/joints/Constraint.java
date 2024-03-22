@@ -33,9 +33,10 @@ package com.jme3.bullet.joints;
 
 import com.jme3.bullet.objects.PhysicsBody;
 import com.jme3.bullet.objects.PhysicsRigidBody;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * The abstract base class for rigid-body physics joints based on Bullet's
@@ -99,14 +100,14 @@ abstract public class Constraint extends PhysicsJoint {
         switch (bodyEnd) {
             case A:
                 setBodyA(body);
-                this.pivotA = pivotInBody.clone();
+                this.pivotA = new Vector3f(pivotInBody);
                 this.pivotB = null;
                 break;
 
             case B:
                 setBodyB(body);
                 this.pivotA = null;
-                this.pivotB = pivotInBody.clone();
+                this.pivotB = new Vector3f(pivotInBody);
                 break;
 
             default:
@@ -141,14 +142,14 @@ abstract public class Constraint extends PhysicsJoint {
         switch (bodyEnd) {
             case A:
                 setBodyA(body);
-                this.pivotA = pivotInBody.clone();
-                this.pivotB = pivotInWorld.clone();
+                this.pivotA = new Vector3f(pivotInBody);
+                this.pivotB = new Vector3f(pivotInWorld);
                 break;
 
             case B:
                 setBodyB(body);
-                this.pivotA = pivotInWorld.clone();
-                this.pivotB = pivotInBody.clone();
+                this.pivotA = new Vector3f(pivotInWorld);
+                this.pivotB = new Vector3f(pivotInBody);
                 break;
 
             default:
@@ -184,8 +185,8 @@ abstract public class Constraint extends PhysicsJoint {
 
         setBodyA(bodyA);
         setBodyB(bodyB);
-        this.pivotA = pivotInA.clone();
-        this.pivotB = pivotInB.clone();
+        this.pivotA = new Vector3f(pivotInA);
+        this.pivotB = new Vector3f(pivotInB);
         bodyA.addJoint(this);
         bodyB.addJoint(this);
     }

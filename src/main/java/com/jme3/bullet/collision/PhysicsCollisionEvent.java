@@ -32,9 +32,10 @@
 package com.jme3.bullet.collision;
 
 import com.jme3.bullet.NativePhysicsObject;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * Describe a point of contact between 2 collision objects in a PhysicsSpace,

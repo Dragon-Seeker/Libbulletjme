@@ -34,7 +34,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_infos_CompoundMesh_
 /*
  * Class:     com_jme3_bullet_collision_shapes_infos_CompoundMesh
  * Method:    getScaling
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_collision_shapes_infos_CompoundMesh_getScaling
   (JNIEnv *, jclass, jlong, jobject);

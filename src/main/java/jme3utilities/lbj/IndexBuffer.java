@@ -27,11 +27,12 @@
 package jme3utilities.lbj;
 
 import com.jme3.util.BufferUtils;
+import jme3utilities.Validate;
+
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
-import jme3utilities.Validate;
 
 /**
  * Wrapper class for the index buffer of a mesh.

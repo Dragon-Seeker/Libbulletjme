@@ -10,7 +10,7 @@ extern "C" {
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    getBounce
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getBounce
   (JNIEnv *, jclass, jlong, jobject);
@@ -18,7 +18,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getBo
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    getDamping
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getDamping
   (JNIEnv *, jclass, jlong, jobject);
@@ -26,7 +26,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getDa
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    getEquilibrium
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getEquilibrium
   (JNIEnv *, jclass, jlong, jobject);
@@ -34,7 +34,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getEq
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    getLowerLimit
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getLowerLimit
   (JNIEnv *, jclass, jlong, jobject);
@@ -42,7 +42,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getLo
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    getMaxMotorForce
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getMaxMotorForce
   (JNIEnv *, jclass, jlong, jobject);
@@ -50,7 +50,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getMa
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    getParameter
- * Signature: (JILcom/jme3/math/Vector3f;)V
+ * Signature: (JILorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getParameter
   (JNIEnv *, jclass, jlong, jint, jobject);
@@ -58,7 +58,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getPa
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    getServoTarget
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getServoTarget
   (JNIEnv *, jclass, jlong, jobject);
@@ -66,7 +66,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getSe
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    getStiffness
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getStiffness
   (JNIEnv *, jclass, jlong, jobject);
@@ -74,7 +74,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getSt
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    getTargetVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getTargetVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -82,7 +82,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getTa
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    getUpperLimit
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_getUpperLimit
   (JNIEnv *, jclass, jlong, jobject);
@@ -130,7 +130,7 @@ JNIEXPORT jboolean JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_i
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    setBounce
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setBounce
   (JNIEnv *, jclass, jlong, jobject);
@@ -138,7 +138,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setBo
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    setDamping
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setDamping
   (JNIEnv *, jclass, jlong, jobject);
@@ -154,7 +154,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setDa
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    setEquilibrium
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setEquilibrium
   (JNIEnv *, jclass, jlong, jobject);
@@ -162,7 +162,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setEq
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    setLowerLimit
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setLowerLimit
   (JNIEnv *, jclass, jlong, jobject);
@@ -170,7 +170,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setLo
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    setMaxMotorForce
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setMaxMotorForce
   (JNIEnv *, jclass, jlong, jobject);
@@ -186,7 +186,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setMo
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    setParameter
- * Signature: (JILcom/jme3/math/Vector3f;)V
+ * Signature: (JILorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setParameter
   (JNIEnv *, jclass, jlong, jint, jobject);
@@ -202,7 +202,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setSe
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    setServoTarget
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setServoTarget
   (JNIEnv *, jclass, jlong, jobject);
@@ -218,7 +218,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setSp
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    setStiffness
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setStiffness
   (JNIEnv *, jclass, jlong, jobject);
@@ -234,7 +234,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setSt
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    setTargetVelocity
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setTargetVelocity
   (JNIEnv *, jclass, jlong, jobject);
@@ -242,7 +242,7 @@ JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setTa
 /*
  * Class:     com_jme3_bullet_joints_motors_TranslationMotor
  * Method:    setUpperLimit
- * Signature: (JLcom/jme3/math/Vector3f;)V
+ * Signature: (JLorg/joml/Vector3f;)V
  */
 JNIEXPORT void JNICALL Java_com_jme3_bullet_joints_motors_TranslationMotor_setUpperLimit
   (JNIEnv *, jclass, jlong, jobject);

@@ -33,9 +33,10 @@ package com.jme3.bullet.joints;
 
 import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.bullet.objects.PhysicsSoftBody;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * A SoftPhysicsJoint that allows rotation around an axis, based on Bullet's
@@ -76,7 +77,7 @@ public class SoftAngularJoint extends SoftPhysicsJoint {
         super(softA, clusterIndexA, rigidB);
         Validate.finite(axis, "axis");
 
-        this.axis = axis.clone();
+        this.axis = new Vector3f(axis);
         createJoint();
     }
 
@@ -96,7 +97,7 @@ public class SoftAngularJoint extends SoftPhysicsJoint {
         super(softA, clusterIndexA, softB, clusterIndexB);
         Validate.finite(axis, "axis");
 
-        this.axis = axis.clone();
+        this.axis = new Vector3f(axis);
         createJoint();
     }
     // *************************************************************************
@@ -113,7 +114,7 @@ public class SoftAngularJoint extends SoftPhysicsJoint {
         Vector3f result;
         // TODO verify copy
         if (storeResult == null) {
-            result = axis.clone();
+            result = new Vector3f(axis);
         } else {
             result = storeResult.set(axis);
         }

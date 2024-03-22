@@ -34,17 +34,13 @@ package com.jme3.bullet.objects;
 import com.jme3.bullet.collision.PcoType;
 import com.jme3.bullet.collision.PhysicsCollisionObject;
 import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Matrix3d;
-import com.simsilica.mathd.Quatd;
-import com.simsilica.mathd.Vec3d;
+import jme3utilities.Validate;
+import org.joml.*;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
 
 /**
  * A collision object for intangibles, based on Bullet's
@@ -154,7 +150,7 @@ public class PhysicsGhostObject extends PhysicsCollisionObject {
      * @param location the desired location (in physics-space coordinates, not
      * null, finite, unaffected)
      */
-    public void setPhysicsLocationDp(Vec3d location) {
+    public void setPhysicsLocationDp(Vector3d location) {
         Validate.finite(location, "location");
 
         long objectId = nativeId();
@@ -180,7 +176,7 @@ public class PhysicsGhostObject extends PhysicsCollisionObject {
      * @param orientation the desired orientation (a rotation quaternion in
      * physics-space coordinates, not null, not zero, unaffected)
      */
-    public void setPhysicsRotation(Quaternion orientation) {
+    public void setPhysicsRotation(Quaternionf orientation) {
         Validate.nonZero(orientation, "orientation");
 
         long objectId = nativeId();
@@ -206,7 +202,7 @@ public class PhysicsGhostObject extends PhysicsCollisionObject {
      * @param orientation the desired orientation (a rotation quaternion in
      * physics-space coordinates, not null, not zero, unaffected)
      */
-    public void setPhysicsRotationDp(Quatd orientation) {
+    public void setPhysicsRotationDp(Quaterniond orientation) {
         Validate.nonZero(orientation, "orientation");
 
         long objectId = nativeId();
@@ -273,17 +269,17 @@ public class PhysicsGhostObject extends PhysicsCollisionObject {
             setPhysicsLocation(long objectId, Vector3f location);
 
     native private static void
-            setPhysicsLocationDp(long objectId, Vec3d location);
+            setPhysicsLocationDp(long objectId, Vector3d location);
 
     native private static void
             setPhysicsRotation(long objectId, Matrix3f rotation);
 
     native private static void
-            setPhysicsRotation(long objectId, Quaternion rotation);
+            setPhysicsRotation(long objectId, Quaternionf rotation);
 
     native private static void
             setPhysicsRotationDp(long objectId, Matrix3d rotation);
 
     native private static void
-            setPhysicsRotationDp(long objectId, Quatd rotation);
+            setPhysicsRotationDp(long objectId, Quaterniond rotation);
 }

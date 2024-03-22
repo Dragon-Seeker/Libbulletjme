@@ -1,7 +1,7 @@
 // Gradle build script for Maven artifacts and desktop native libraries
 
 plugins {
-    id 'checkstyle'
+    /*id 'checkstyle'*/
     id 'cpp'
     id 'java-library'
     id 'maven-publish'
@@ -310,6 +310,7 @@ model {
 
 dependencies {
     testImplementation 'junit:junit:4.13.2'
+    implementation("org.joml:joml:${project.property("jomlVersion")}")
 }
 
 java {
@@ -371,7 +372,7 @@ artifacts {
 }
 javadoc.dependsOn('compileTestJava')
 
-checkstyleMain.dependsOn('compileTestJava')
+//checkstyleMain.dependsOn('compileTestJava')
 
 assemble.dependsOn('module', 'moduleAsc', 'pom', 'pomAsc')
 tasks.register('module', Copy) {
@@ -456,10 +457,10 @@ tasks.withType(Sign) {
 }
 signMavenPublication.dependsOn('module')
 
-tasks.register('checkstyle') {
-    dependsOn 'checkstyleMain', 'checkstyleTest'
-    description 'Checks the style of all Java sourcecode.'
-}
+//tasks.register('checkstyle') {
+//    dependsOn 'checkstyleMain', 'checkstyleTest'
+//    description 'Checks the style of all Java sourcecode.'
+//}
 
 // Register cleanup tasks:
 

@@ -35,13 +35,15 @@ import com.jme3.bullet.joints.motors.RotationalLimitMotor;
 import com.jme3.bullet.joints.motors.TranslationalLimitMotor;
 import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.math.FastMath;
-import com.jme3.math.Matrix3f;
-import com.jme3.math.Quaternion;
+import com.jme3.math.QuaternionfUtils;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
 import jme3utilities.math.MyMath;
+import org.joml.Matrix3f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import java.util.logging.Logger;
 
 /**
  * A 6 degree-of-freedom joint based on Bullet's btGeneric6DofConstraint. Axis
@@ -143,8 +145,8 @@ public class SixDofJoint extends Constraint {
         super(rigidBodyB, JointEnd.B, pivotInB, pivotInWorld);
 
         this.useLinearReferenceFrameA = (linearReferenceFrame == JointEnd.A);
-        this.rotA = rotInWorld.clone();
-        this.rotB = rotInB.clone();
+        this.rotA = new Matrix3f(rotInWorld);
+        this.rotB = new Matrix3f(rotInB);
         createJoint();
     }
 
@@ -174,8 +176,8 @@ public class SixDofJoint extends Constraint {
         super(rigidBodyA, rigidBodyB, pivotInA, pivotInB);
 
         this.useLinearReferenceFrameA = useLinearReferenceFrameA;
-        this.rotA = rotInA.clone();
-        this.rotB = rotInB.clone();
+        this.rotA = new Matrix3f(rotInA);
+        this.rotB = new Matrix3f(rotInB);
         createJoint();
     }
 
@@ -233,7 +235,7 @@ public class SixDofJoint extends Constraint {
     public Vector3f getAngularLowerLimit(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = angularLowerLimit.clone();
+            result = new Vector3f(angularLowerLimit);
         } else {
             result = storeResult.set(angularLowerLimit);
         }
@@ -251,7 +253,7 @@ public class SixDofJoint extends Constraint {
     public Vector3f getAngularUpperLimit(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = angularUpperLimit.clone();
+            result = new Vector3f(angularUpperLimit);
         } else {
             result = storeResult.set(angularUpperLimit);
         }
@@ -296,7 +298,7 @@ public class SixDofJoint extends Constraint {
     public Vector3f getLinearLowerLimit(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = linearLowerLimit.clone();
+            result = new Vector3f(linearLowerLimit);
         } else {
             result = storeResult.set(linearLowerLimit);
         }
@@ -314,7 +316,7 @@ public class SixDofJoint extends Constraint {
     public Vector3f getLinearUpperLimit(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = linearUpperLimit.clone();
+            result = new Vector3f(linearUpperLimit);
         } else {
             result = storeResult.set(linearUpperLimit);
         }
@@ -476,18 +478,18 @@ public class SixDofJoint extends Constraint {
              * temporarily re-position the body to satisfy the constraint.
              */
             Transform jInWorld = new Transform();
-            jInWorld.getRotation().fromRotationMatrix(rotA);
+            QuaternionfUtils.fromRotationMatrix(jInWorld.getRotation(), rotA);
             jInWorld.setTranslation(pivotA);
 
             Transform jInB = new Transform();
-            jInB.getRotation().fromRotationMatrix(rotB);
+            QuaternionfUtils.fromRotationMatrix(jInB.getRotation(), rotB);
             jInB.setTranslation(pivotB);
 
             Transform bToWorld = jInB.invert();
             MyMath.combine(bToWorld, jInWorld, bToWorld);
 
             Vector3f saveLocation = b.getPhysicsLocation(null);
-            Quaternion saveRotation = b.getPhysicsRotation(null);
+            Quaternionf saveRotation = b.getPhysicsRotation(null);
 
             b.setPhysicsLocation(bToWorld.getTranslation());
             b.setPhysicsRotation(bToWorld.getRotation());

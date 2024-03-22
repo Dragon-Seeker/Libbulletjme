@@ -33,8 +33,9 @@ package com.jme3.bullet.collision.shapes.infos;
 
 import com.jme3.bullet.NativePhysicsObject;
 import com.jme3.bullet.collision.shapes.MeshCollisionShape;
-import java.util.logging.Logger;
 import jme3utilities.Validate;
+
+import java.util.logging.Logger;
 
 /**
  * A Bounding-Value Hierarchy (BVH) generated for a MeshCollisionShape, based on

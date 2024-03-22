@@ -31,8 +31,9 @@
  */
 package com.jme3.bullet.collision;
 
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Vec3d;
+import org.joml.Vector3d;
+import org.joml.Vector3f;
+
 import java.util.logging.Logger;
 
 /**
@@ -345,7 +346,7 @@ final public class ManifoldPoints {
      * @param storeVector storage for the result (not null, modified)
      */
     native public static void
-            getPositionWorldOnADp(long manifoldPointId, Vec3d storeVector);
+            getPositionWorldOnADp(long manifoldPointId, Vector3d storeVector);
 
     /**
      * Determine the location of the specified point on object B in
@@ -367,7 +368,7 @@ final public class ManifoldPoints {
      * @param storeVector storage for the result (modified if not null)
      */
     native public static void
-            getPositionWorldOnBDp(long manifoldPointId, Vec3d storeVector);
+            getPositionWorldOnBDp(long manifoldPointId, Vector3d storeVector);
 
     /**
      * Determine how many points are used to calculate the area of the convex

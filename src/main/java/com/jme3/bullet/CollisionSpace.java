@@ -39,19 +39,14 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.collision.shapes.ConvexShape;
 import com.jme3.bullet.objects.PhysicsGhostObject;
 import com.jme3.math.Transform;
-import com.jme3.math.Vector3f;
-import com.simsilica.mathd.Vec3d;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
+import jme3utilities.Validate;
+import org.joml.Vector3d;
+import org.joml.Vector3f;
+
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jme3utilities.Validate;
 
 /**
  * A Bullet-JME collision space with its own {@code btCollisionWorld}.
@@ -329,7 +324,7 @@ public class CollisionSpace extends NativePhysicsObject {
     public Vector3f getWorldMax(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = worldMax.clone();
+            result = new Vector3f(worldMax);
         } else {
             result = storeResult.set(worldMax);
         }
@@ -347,7 +342,7 @@ public class CollisionSpace extends NativePhysicsObject {
     public Vector3f getWorldMin(Vector3f storeResult) {
         Vector3f result;
         if (storeResult == null) {
-            result = worldMin.clone();
+            result = new Vector3f(worldMin);
         } else {
             result = storeResult.set(worldMin);
         }
@@ -523,7 +518,7 @@ public class CollisionSpace extends NativePhysicsObject {
      * @return results (sorted)
      */
     public List<PhysicsRayTestResult> rayTestDp(
-            Vec3d from, Vec3d to, List<PhysicsRayTestResult> results) {
+            Vector3d from, Vector3d to, List<PhysicsRayTestResult> results) {
         results.clear();
         long spaceId = nativeId();
         rayTestNativeDp(from, to, spaceId, results, rayTestFlags);
@@ -822,7 +817,7 @@ public class CollisionSpace extends NativePhysicsObject {
             List<PhysicsRayTestResult> addToList, int flags);
 
     native private static void rayTestNativeDp(
-            Vec3d fromLocation, Vec3d toLocation, long spaceId,
+            Vector3d fromLocation, Vector3d toLocation, long spaceId,
             List<PhysicsRayTestResult> addToList, int flags);
 
     native private static void removeCollisionObject(long spaceId, long pcoId);
